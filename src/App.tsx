@@ -5,21 +5,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { AuthProvider } from "@/context/AuthContext";
 import ScrollToTop from "@/components/ScrollToTop";
-import BrandThemeLoader from "@/components/BrandThemeLoader";
-import ProtectedRoute from "@/components/ProtectedRoute";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { QuickInquiryModal } from "@/components/layout/QuickInquiryModal";
 import Index from "./pages/Index";
 
-// Route-level code splitting: every page below the homepage is fetched on
-// demand instead of being bundled into the initial JS payload. Index stays
-// a static import so the most-visited route (/) has no extra network
-// waterfall before first paint.
+// Lazy-loaded pages
 const ForRetailers = lazy(() => import("./pages/ForRetailers"));
 const Products = lazy(() => import("./pages/Products"));
-const ProductsMpos = lazy(() => import("./pages/ProductsMpos"));
 const Solutions = lazy(() => import("./pages/Solutions"));
 const Features = lazy(() => import("./pages/Features"));
 const ReviewFeature = lazy(() => import("./pages/features/ReviewFeature"));
@@ -41,8 +34,6 @@ const Help = lazy(() => import("./pages/Help"));
 const GettingStarted = lazy(() => import("./pages/GettingStarted"));
 const BillingGuide = lazy(() => import("./pages/BillingGuide"));
 const Contact = lazy(() => import("./pages/Contact"));
-const AdminLogin = lazy(() => import("./pages/admin/Login"));
-const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
 const About = lazy(() => import("./pages/company/About"));
 const Startup = lazy(() => import("./pages/Startup"));
 const Careers = lazy(() => import("./pages/company/Careers"));
@@ -56,35 +47,36 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <LanguageProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <BrandThemeLoader />
-            <ScrollToTop />
-            <WhatsAppFab />
-            <QuickInquiryModal />
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <WhatsAppFab />
+          <QuickInquiryModal />
+          <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center text-purple-400 font-bold text-sm">Loading Aira...</div>}>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/platform" element={<Features />} />
+              <Route path="/ai-intelligence" element={<Features />} />
               <Route path="/for-retailers" element={<ForRetailers />} />
               <Route path="/industries" element={<Navigate to="/industries/fashion" replace />} />
               <Route path="/industries/:slug" element={<IndustryPageRoute />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/products/mpos" element={<ProductsMpos />} />
-            <Route path="/products/:id" element={<Products />} />
+              <Route path="/products/mpos" element={<Navigate to="/products" replace />} />
+              <Route path="/products/:id" element={<Products />} />
               <Route path="/solutions" element={<Solutions />} />
               <Route path="/solutions/:id" element={<Solutions />} />
               <Route path="/features" element={<Features />} />
               <Route path="/features/reviews" element={<ReviewFeature />} />
               <Route path="/features/referrals" element={<ReferralFeature />} />
               <Route path="/features/digital-bills" element={<DigitalBillsFeature />} />
-            <Route path="/features/loyalty" element={<LoyaltyFeature />} />
-            <Route path="/features/promotion" element={<PromotionFeature />} />
-            <Route path="/features/analytics" element={<AnalyticsFeature />} />
-            <Route path="/features/surveys" element={<SurveysFeature />} />
-            <Route path="/features/:id" element={<Features />} />
+              <Route path="/features/loyalty" element={<LoyaltyFeature />} />
+              <Route path="/features/promotion" element={<PromotionFeature />} />
+              <Route path="/features/analytics" element={<AnalyticsFeature />} />
+              <Route path="/features/surveys" element={<SurveysFeature />} />
+              <Route path="/features/:id" element={<Features />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/resources/guides" element={<Guides />} />
               <Route path="/resources/case-studies" element={<CaseStudies />} />
@@ -98,33 +90,22 @@ const App = () => (
               <Route path="/help/getting-started" element={<GettingStarted />} />
               <Route path="/help/billing-guide" element={<BillingGuide />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route
-                path="/admin"
-                element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
               <Route path="/company/about" element={<About />} />
               <Route path="/company/careers" element={<Careers />} />
               <Route path="/privacy-policy" element={<Privacy />} />
               <Route path="/terms-conditions" element={<Terms />} />
-              {/* Shorter legal URLs for reviewers */}
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
-              {/* Startup overview page for Google reviewers */}
               <Route path="/startup" element={<Startup />} />
               <Route path="/trial" element={<BookDemo />} />
               <Route path="/demo" element={<BookDemo />} />
               <Route path="/book-demo" element={<BookDemo />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </LanguageProvider>
-    </AuthProvider>
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

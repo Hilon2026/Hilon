@@ -130,7 +130,7 @@ export function HowToChooseRightPosEn() {
         <p>
           <strong style={{ color: "#1b181f" }}>Per-transaction pricing.</strong> Some systems
           charge a small fee per transaction in addition to a monthly subscription. At high
-          transaction volumes, this can become a significant cost that was not obvious during
+          transaction voAiras, this can become a significant cost that was not obvious during
           the sales process.
         </p>
         <p>
@@ -221,7 +221,7 @@ export function HowToChooseRightPosEn() {
         aria-labelledby="blog-cta-heading-choosingpos"
       >
         <h2 id="blog-cta-heading-choosingpos" className="text-xl font-bold" style={{ color: "#1b181f" }}>
-          See if Lume is the right fit for your store.
+          See if Aira is the right fit for your store.
         </h2>
         <p>
           <Link
@@ -230,7 +230,7 @@ export function HowToChooseRightPosEn() {
           >
             Book a free demo
           </Link>{" "}
-          and walk through how Lume handles billing, inventory, GST, and customer engagement
+          and walk through how Aira handles billing, inventory, GST, and customer engagement
           for stores like yours — no commitment required.
         </p>
       </section>
@@ -238,3 +238,4 @@ export function HowToChooseRightPosEn() {
     </div>
   );
 }
+

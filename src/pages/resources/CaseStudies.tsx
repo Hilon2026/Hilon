@@ -49,39 +49,39 @@ const videoTestimonials = [
     title: "Golden Steel",
     titleHI: "Golden Steel",
     url: "https://www.instagram.com/reel/DObCsAFiU8S/?igsh=MXh6MnQ4b3oyN2tncw==",
-    profileUrl: "https://www.instagram.com/the_lume.app/",
+    profileUrl: "https://www.instagram.com/the_Aira.app/",
   },
   {
     id: "city-shoes",
     title: "City Shoes",
     titleHI: "City Shoes",
     url: "https://www.instagram.com/reel/DOqWfX5j020/?igsh=emppa2M2eTJldGds",
-    profileUrl: "https://www.instagram.com/the_lume.app/",
+    profileUrl: "https://www.instagram.com/the_Aira.app/",
   },
   {
     id: "customer-review-1",
     title: "Customer Review",
     titleHI: "कस्टमर रिव्यू",
     url: "https://www.instagram.com/reel/DOsdwk6iOpJ/?igsh=M2lpbW41MjlobnZt",
-    profileUrl: "https://www.instagram.com/the_lume.app/",
+    profileUrl: "https://www.instagram.com/the_Aira.app/",
   },
   {
     id: "ladies-garment",
     title: "Ladies Garment Store",
     titleHI: "लेडीज़ गारमेंट स्टोर",
     url: "https://www.instagram.com/reel/DO-wwx8kX2E/?igsh=MW1tN2NlYnoxOTZneA==",
-    profileUrl: "https://www.instagram.com/the_lume.app/",
+    profileUrl: "https://www.instagram.com/the_Aira.app/",
   },
   {
     id: "customer-review-2",
     title: "Customer Review",
     titleHI: "कस्टमर रिव्यू",
     url: "https://www.instagram.com/reel/DPCQO0XiViK/?igsh=MTB5OGIyNDJzbnl5ag==",
-    profileUrl: "https://www.instagram.com/the_lume.app/",
+    profileUrl: "https://www.instagram.com/the_Aira.app/",
   },
 ];
 
-// Retailer Success Stories — real brands with logos, why they chose Lume, testimonials
+// Retailer Success Stories — real brands with logos, why they chose Aira, testimonials
 const successStories = [
   {
     id: "senoritas",
@@ -106,7 +106,7 @@ const successStories = [
       "नए प्रोडक्ट्स, कलेक्शन और कैंपेन प्रोमोट करना",
       "कस्टमर रिलेशन और रिटेंशन बेहतर करना",
     ],
-    testimonial: "Lume helps us track customers across all our stores and run reward campaigns that bring them back.",
+    testimonial: "Aira helps us track customers across all our stores and run reward campaigns that bring them back.",
     testimonialHI: "ल्यूम से हम सभी स्टोर्स के कस्टमर्स ट्रैक कर पाते हैं और रिवॉर्ड कैंपेन चलाते हैं जो उन्हें वापस लाते हैं।",
   },
   {
@@ -130,7 +130,7 @@ const successStories = [
       "ई-बिल",
       "वापस आने वाले ग्राहकों के लिए ऑफ़र",
     ],
-    testimonial: "With Lume it’s easier to bring phone buyers back for accessories instead of losing them to online offers.",
+    testimonial: "With Aira it’s easier to bring phone buyers back for accessories instead of losing them to online offers.",
     testimonialHI: "ल्यूम की मदद से अब मोबाइल खरीदने वाले ग्राहक एक्सेसरीज़ के लिए हमारी ही दुकान पर वापस आते हैं, ऑनलाइन ऑफ़र की तरफ नहीं जाते।",
   },
   {
@@ -163,7 +163,7 @@ const successStories = [
     categoryHI: "मेन और वूमन फ़ैशन",
     location: "Thane",
     stores: null,
-    special: "Using Lume mPOS Billing System",
+    special: "Using Aira mPOS Billing System",
     specialHI: "ल्यूम mPOS बिलिंग सिस्टम इस्तेमाल कर रहे हैं",
     logo: "byondezines-log.png",
     whyChose: [
@@ -186,7 +186,7 @@ const successStories = [
       "कस्टमर खरीद ट्रैकिंग",
       "रिपीट बायर्स के लिए लॉयल्टी रिवॉर्ड्स",
     ],
-    testimonial: "Lume mPOS keeps billing fast and simple, and still gives us the data and rewards engine we need for fashion retail.",
+    testimonial: "Aira mPOS keeps billing fast and simple, and still gives us the data and rewards engine we need for fashion retail.",
     testimonialHI: "ल्यूम mPOS से बिलिंग तेज़ और आसान रहती है, फिर भी हमें फ़ैशन रिटेल के लिए ज़रूरी डेटा और रिवॉर्ड इंजन मिल जाता है।",
   },
   {
@@ -214,7 +214,7 @@ const successStories = [
       "कस्टमर लॉयल्टी रिवॉर्ड्स",
       "सीज़नल कैंपेन मैनेजमेंट",
     ],
-    testimonial: "Seasonal saree and fashion campaigns are much easier with Lume – one place to run offers and track loyal customers.",
+    testimonial: "Seasonal saree and fashion campaigns are much easier with Aira – one place to run offers and track loyal customers.",
     testimonialHI: "अब सीज़नल साड़ी और फ़ैशन कैंपेन ल्यूम से बहुत आसान हो गए हैं – एक ही जगह से ऑफ़र चलाना और लॉयल कस्टमर ट्रैक करना संभव है।",
   },
   {
@@ -273,7 +273,7 @@ const successStories = [
   },
 ];
 
-// Structured case studies: Store profile → Problem → Lume solution → Results (from docs)
+// Structured case studies: Store profile → Problem → Aira solution → Results (from docs)
 const caseStudies = [
   {
     id: 1,
@@ -297,7 +297,7 @@ const caseStudies = [
       "सेल ज़्यादातर फुटफॉल पर निर्भर थी",
     ],
     solution: [
-      "Implemented Lume reward system — Next Visit Reward",
+      "Implemented Aira reward system — Next Visit Reward",
       "Spend ₹2,000 → Get ₹200 reward for next visit",
       "Customers received message after purchase about their reward",
     ],
@@ -341,7 +341,7 @@ const caseStudies = [
       "पुराने खरीदारों से कोई मार्केटिंग कम्युनिकेशन नहीं",
     ],
     solution: [
-      "Lume purchase rewards — Buy phone worth ₹20,000 → Get ₹500 reward for next purchase",
+      "Aira purchase rewards — Buy phone worth ₹20,000 → Get ₹500 reward for next purchase",
       "Customers received reward messages encouraging them to return",
     ],
     solutionHI: [
@@ -381,7 +381,7 @@ const caseStudies = [
       "फेस्टिवल कलेक्शन प्रोमोट करना मुश्किल",
     ],
     solution: [
-      "Festival reward campaigns using Lume — Spend ₹50,000 → Get ₹1,000 reward for next visit",
+      "Festival reward campaigns using Aira — Spend ₹50,000 → Get ₹1,000 reward for next visit",
       "Customers received notifications about their rewards",
     ],
     solutionHI: [
@@ -429,7 +429,7 @@ const testimonials = [
 
 export default function CaseStudies() {
   const { language } = useLanguage();
-  useSEO('Case Studies – Retailers Growing with Lume', 'See how Indian retailers use Lume for digital billing, loyalty & growth. Real success stories.');
+  useSEO('Case Studies – Retailers Growing with Aira', 'See how Indian retailers use Aira for digital billing, loyalty & growth. Real success stories.');
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
@@ -460,7 +460,7 @@ export default function CaseStudies() {
               <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
                 {language === "HI"
                   ? "क्यों रिटेलर्स ल्यूम चुनते हैं — और कैसे वे उससे ग्रो करते हैं।"
-                  : "Why retailers choose Lume — and how they grow with it."}
+                  : "Why retailers choose Aira — and how they grow with it."}
               </p>
             </motion.div>
 
@@ -533,7 +533,7 @@ export default function CaseStudies() {
                           </div>
                         </div>
                         <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
-                          {language === "HI" ? "ल्यूम क्यों चुना" : "Why they chose Lume"}
+                          {language === "HI" ? "ल्यूम क्यों चुना" : "Why they chose Aira"}
                         </p>
                         <ul className="space-y-2 flex-1">
                           {(language === "HI" && (story as any).whyChoseHI ? (story as any).whyChoseHI : story.whyChose).slice(0, 4).map((item, idx) => (
@@ -591,7 +591,7 @@ export default function CaseStudies() {
               <p className="text-slate-600 text-base sm:text-lg">
                 {language === "HI"
                   ? "असली रिटेलर्स की आवाज़ — देखिए उन्होंने ल्यूम के बारे में क्या कहा।"
-                  : "Hear it directly from retailers — what they say about Lume."}
+                  : "Hear it directly from retailers — what they say about Aira."}
               </p>
             </motion.div>
 
@@ -620,14 +620,14 @@ export default function CaseStudies() {
                       <div className="px-5 py-3 border-b border-slate-100 flex items-center justify-between">
                         <div className="flex flex-col">
                           <span className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                            the lume app
+                            the Aira app
                           </span>
                           <span className="text-sm font-semibold text-slate-900">
                             {language === "HI" && (v as any).titleHI ? (v as any).titleHI : v.title}
                           </span>
                         </div>
                         <a
-                          href={(v as any).profileUrl ?? "https://www.instagram.com/the_lume.app/"}
+                          href={(v as any).profileUrl ?? "https://www.instagram.com/the_Aira.app/"}
                           target="_blank"
                           rel="noreferrer"
                           className="text-xs font-semibold text-white bg-[var(--brand)] hover:bg-[#115a94] px-3 py-2 rounded-sm shadow-sm"
@@ -680,7 +680,7 @@ export default function CaseStudies() {
           </div>
         </section>
 
-        {/* How they use Lume */}
+        {/* How they use Aira */}
         <section className="py-16 sm:py-20 bg-white">
           <div className="site-container">
             <motion.div
@@ -690,7 +690,7 @@ export default function CaseStudies() {
               className="max-w-4xl mx-auto"
             >
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-8">
-                {language === "HI" ? "वे ल्यूम का इस्तेमाल कैसे करते हैं" : "How they use Lume"}
+                {language === "HI" ? "वे ल्यूम का इस्तेमाल कैसे करते हैं" : "How they use Aira"}
               </h2>
               <div className="grid sm:grid-cols-2 gap-3">
                 {(language === "HI"
@@ -760,10 +760,10 @@ export default function CaseStudies() {
               className="text-center mb-12"
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-2">
-                {language === "HI" ? "ल्यूम केस स्टडीज़" : "Lume Case Studies"}
+                {language === "HI" ? "ल्यूम केस स्टडीज़" : "Aira Case Studies"}
               </h2>
               <p className="text-slate-600 text-base sm:text-lg">
-                {language === "HI" ? "स्टोर प्रोफाइल → समस्या → ल्यूम समाधान → नतीजे।" : "Store profile → Problem → Lume solution → Results."}
+                {language === "HI" ? "स्टोर प्रोफाइल → समस्या → ल्यूम समाधान → नतीजे।" : "Store profile → Problem → Aira solution → Results."}
               </p>
               <div className="mt-4 h-1 w-20 mx-auto rounded-full bg-gradient-to-r from-[var(--brand)] to-[#38bdf8]" />
             </motion.div>
@@ -821,7 +821,7 @@ export default function CaseStudies() {
                           <div className="flex items-center gap-2 mb-3">
                             <Lightbulb className="w-5 h-5 text-[var(--brand)]" />
                             <h3 className="text-base font-bold text-slate-900">
-                              {language === "HI" ? "ल्यूम के साथ समाधान" : "Solution with Lume"}
+                              {language === "HI" ? "ल्यूम के साथ समाधान" : "Solution with Aira"}
                             </h3>
                           </div>
                           <ul className="space-y-2">
@@ -911,7 +911,7 @@ export default function CaseStudies() {
                 {language === "HI" ? (
                   <><strong className="text-slate-900">ल्यूम का लक्ष्य हर रिटेल स्टोर को बदलना है</strong> — पारंपरिक दुकान से डेटा‑प्रेरित ग्रोथ बिज़नेस तक।</>
                 ) : (
-                  <><strong className="text-slate-900">Lume's goal is to transform every retail store</strong> — from traditional to data-enabled growth businesses.</>
+                  <><strong className="text-slate-900">Aira's goal is to transform every retail store</strong> — from traditional to data-enabled growth businesses.</>
                 )}
               </p>
             </motion.div>
@@ -941,7 +941,7 @@ export default function CaseStudies() {
                         {language === "HI" ? "मुख्य समस्या" : "Main Problem"}
                       </th>
                       <th className="text-left py-4 px-4 font-bold text-sm sm:text-base text-slate-900">
-                        {language === "HI" ? "ल्यूम का असर" : "Lume Impact"}
+                        {language === "HI" ? "ल्यूम का असर" : "Aira Impact"}
                       </th>
                       <th className="text-left py-4 px-4 font-bold text-sm sm:text-base text-slate-900">
                         {language === "HI" ? "मुख्य नतीजा" : "Key Result"}
@@ -1054,7 +1054,7 @@ export default function CaseStudies() {
               <p className="text-sm sm:text-base text-slate-600 mb-8">
                 {language === "HI"
                   ? "एक छोटा सा डेमो आपके स्टोर के लिए ल्यूम कैसे काम करेगा, ये साफ दिखा देगा — बिना सिस्टम बदले, सिर्फ बेहतर तरीके से ग्रो करके।"
-                  : "A short demo can show exactly how Lume will work for your store — without changing your systems, just growing smarter."}
+                  : "A short demo can show exactly how Aira will work for your store — without changing your systems, just growing smarter."}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
@@ -1084,7 +1084,7 @@ export default function CaseStudies() {
               <p className="text-base sm:text-lg leading-relaxed text-center text-slate-600">
                 {language === "HI"
                   ? "ल्यूम की ये केस स्टडीज़ आपको ये समझने में मदद करती हैं कि रिटेलर्स स्मार्ट बिलिंग, कस्टमर इनसाइट्स, लॉयल्टी टूल्स और मल्टी‑चैनल कैंपेन के साथ वास्तव में कैसे ग्रो कर रहे हैं। अगर आपकी दुकान पर रिपीट कस्टमर कम आ रहे हैं या सेल्स परफॉर्मेंस साफ़ नज़र नहीं आ रही, तो ये सक्सेस पैटर्न आपके अगले कदम तय करने में मदद कर सकते हैं।"
-                  : "Lume case studies help you explore real ways retailers are growing with smart billing, customer insights, loyalty tools, and multi-channel campaigns. If your store isn't seeing repeat customers or lacks visibility into sales performance, these success patterns can guide your next steps."}
+                  : "Aira case studies help you explore real ways retailers are growing with smart billing, customer insights, loyalty tools, and multi-channel campaigns. If your store isn't seeing repeat customers or lacks visibility into sales performance, these success patterns can guide your next steps."}
               </p>
             </motion.div>
           </div>
@@ -1095,4 +1095,5 @@ export default function CaseStudies() {
     </div>
   );
 }
+
 

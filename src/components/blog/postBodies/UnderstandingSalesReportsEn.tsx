@@ -108,7 +108,7 @@ export function UnderstandingSalesReportsEn() {
           means paying for capacity you are not using.
         </p>
         <p>
-          Most POS systems can show you transaction volume broken down by hour of day. Look at
+          Most POS systems can show you transaction voAira broken down by hour of day. Look at
           this report across a few weeks and a consistent pattern will emerge. Most retail stores
           have two or three predictable peaks — a morning rush, a lunchtime spike, an evening
           crowd. Some stores also have day-of-week patterns that are strong enough to justify
@@ -180,7 +180,7 @@ export function UnderstandingSalesReportsEn() {
             </h3>
             <p>
               Start with three: daily sales trend (compared to last week), top products by
-              revenue (last thirty days), and peak hours by transaction volume. These three
+              revenue (last thirty days), and peak hours by transaction voAira. These three
               reports answer the most pressing questions most retailers have and can be reviewed
               in under fifteen minutes. Add more reports progressively as you build the habit
               of acting on what you see.
@@ -193,7 +193,7 @@ export function UnderstandingSalesReportsEn() {
             <p>
               Yes, though the signals take longer to become statistically reliable. A small store
               should weight weekly and monthly aggregates more heavily than daily numbers, since
-              day-to-day variation is proportionally larger. Even with modest transaction volume,
+              day-to-day variation is proportionally larger. Even with modest transaction voAira,
               product performance data and peak hour patterns can inform useful decisions.
             </p>
           </div>
@@ -212,7 +212,7 @@ export function UnderstandingSalesReportsEn() {
             to="/features/analytics"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume&apos;s analytics dashboard
+            Aira&apos;s analytics dashboard
           </Link>{" "}
           surfaces the metrics that matter — daily trends, top products, peak hours, and customer
           patterns — in a format that actually supports decisions.
@@ -222,3 +222,4 @@ export function UnderstandingSalesReportsEn() {
     </div>
   );
 }
+

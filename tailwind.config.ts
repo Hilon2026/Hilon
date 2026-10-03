@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Archivo", "Inter", "system-ui", "sans-serif"],
+        display: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -23,6 +23,15 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        brand: {
+          dark: "#0B0614",
+          light: "#FAF7FF",
+          primary: "#7C3AED",
+          secondary: "#EC4899",
+          accent: "#A855F7",
+          text: "#17121F",
+          muted: "#6F667A",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -55,42 +64,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
-        // Extended Blue Palette
-        blue: {
-          50: "hsl(var(--blue-50))",
-          100: "hsl(var(--blue-100))",
-          200: "hsl(var(--blue-200))",
-          300: "hsl(var(--blue-300))",
-          400: "hsl(var(--blue-400))",
-          500: "hsl(var(--blue-500))",
-          600: "hsl(var(--blue-600))",
-          700: "hsl(var(--blue-700))",
-          800: "hsl(var(--blue-800))",
-          900: "hsl(var(--blue-900))",
-        },
-        // Extended Orange Palette
-        orange: {
-          50: "hsl(var(--orange-50))",
-          100: "hsl(var(--orange-100))",
-          200: "hsl(var(--orange-200))",
-          300: "hsl(var(--orange-300))",
-          400: "hsl(var(--orange-400))",
-          500: "hsl(var(--orange-500))",
-          600: "hsl(var(--orange-600))",
-          700: "hsl(var(--orange-700))",
-          800: "hsl(var(--orange-800))",
-          900: "hsl(var(--orange-900))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -98,11 +71,13 @@ export default {
         sm: "calc(var(--radius) - 4px)",
         xl: "calc(var(--radius) + 4px)",
         "2xl": "calc(var(--radius) + 8px)",
+        "3xl": "1.75rem",
       },
       boxShadow: {
-        'card': 'var(--shadow-card)',
-        'glow': 'var(--shadow-glow)',
-        'glow-blue': 'var(--shadow-glow-blue)',
+        'card': '0 10px 30px -10px rgba(124, 58, 237, 0.1)',
+        'glow-purple': '0 0 30px rgba(124, 58, 237, 0.35)',
+        'glow-pink': '0 0 30px rgba(236, 72, 153, 0.35)',
+        'glow-combined': '0 0 50px rgba(168, 85, 247, 0.25)',
       },
       keyframes: {
         "accordion-down": {
@@ -121,17 +96,22 @@ export default {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
-        "slide-down": {
-          from: { opacity: "0", transform: "translateY(-10px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.6", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.05)" },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-8px)" },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         "slide-up": "slide-up 0.5s ease-out",
-        "slide-down": "slide-down 0.3s ease-out",
+        "pulse-glow": "pulse-glow 4s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
       },
     },
   },

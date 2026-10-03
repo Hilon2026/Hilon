@@ -26,11 +26,11 @@ export const guideData = [
   {
     slug: "download-app",
     type: "download" as const,
-    title: "Getting Started with Lume",
+    title: "Getting Started with Aira",
     buttonLabel: "Download",
     buttonLink: "https://play.google.com/store/apps/details?id=com.mhjs.retailerapp&hl=en",
     bullets: [
-      "Download the Lume app from Play Store",
+      "Download the Aira app from Play Store",
       "Set up your store details and staff",
       "Start billing within minutes",
       "Send your first digital bill to a customer"
@@ -192,7 +192,7 @@ export const guideData = [
     title: "Marketing Campaigns – Basics & Overview",
     videoUrl: "https://www.youtube.com/embed/1MoOO5XbFgE?rel=0",
     bullets: [
-      "Understand how marketing campaigns work inside Lume.",
+      "Understand how marketing campaigns work inside Aira.",
       "Pick the right customers and channels for each campaign.",
       "Set clear goals and track basic campaign performance.",
       "Use campaigns to bring back inactive customers and lift average bill value."
@@ -227,19 +227,19 @@ export const guideData = [
 
 export default function Guides() {
   const { language } = useLanguage();
-  useSEO('Guides – Lume Setup, Billing & Campaigns', 'Step-by-step Lume guides: getting started, billing, campaigns, loyalty. For Indian retailers.');
+  useSEO('Guides – Aira Setup, Billing & Campaigns', 'Step-by-step Aira guides: getting started, billing, campaigns, loyalty. For Indian retailers.');
 
   const faqs = [
     {
-      question: "What is Lume?",
+      question: "What is Aira?",
       questionHI: "ल्यूम क्या है?",
-      answer: "Lume is a smart retail platform designed to help retailers manage billing, customer engagement, campaigns, analytics, and online sales — all from one system. It goes beyond basic billing and helps you grow your business using data and digital tools.",
+      answer: "Aira is a smart retail platform designed to help retailers manage billing, customer engagement, campaigns, analytics, and online sales — all from one system. It goes beyond basic billing and helps you grow your business using data and digital tools.",
       answerHI: "ल्यूम एक स्मार्ट रिटेल प्लेटफ़ॉर्म है जो दुकानदारों को बिलिंग, ग्राहक जुड़ाव, कैंपेन, एनालिटिक्स और ऑनलाइन सेल्स — सब कुछ एक ही सिस्टम से मैनेज करने में मदद करता है। यह सिर्फ़ बेसिक बिलिंग से आगे बढ़कर डेटा और डिजिटल टूल्स की मदद से आपका बिज़नेस बढ़ाने के लिए बनाया गया है।"
     },
     {
       question: "What features do I get for free?",
       questionHI: "मुझे फ्री में कौन‑कौन से फीचर्स मिलते हैं?",
-      answer: "With Lume, you get free access to essential tools including: Basic tax and non-tax billing, Digital bills via SMS, WhatsApp, and Email, Store listing and visibility, Customer feedback collection, Staff and team management tools, ONDC auto-onboarding, Simple promotional campaigns. These features are enough to start billing and engaging customers digitally.",
+      answer: "With Aira, you get free access to essential tools including: Basic tax and non-tax billing, Digital bills via SMS, WhatsApp, and Email, Store listing and visibility, Customer feedback collection, Staff and team management tools, ONDC auto-onboarding, Simple promotional campaigns. These features are enough to start billing and engaging customers digitally.",
       answerHI: "ल्यूम के साथ आपको कई ज़रूरी टूल्स का फ्री एक्सेस मिलता है: बेसिक टैक्स और नॉन‑टैक्स बिलिंग, SMS, WhatsApp और Email के ज़रिये डिजिटल बिल, स्टोर लिस्टिंग और विज़िबिलिटी, कस्टमर फ़ीडबैक कलेक्शन, स्टाफ और टीम मैनेजमेंट टूल्स, ONDC ऑटो‑ऑनबोर्डिंग और सिंपल प्रमोशनल कैंपेन। ये सब आपको डिजिटल बिलिंग और कस्टमर एंगेजमेंट शुरू करने के लिए काफ़ी है।"
     },
     {
@@ -251,37 +251,37 @@ export default function Guides() {
     {
       question: "Can I send bills directly to my customers?",
       questionHI: "क्या मैं सीधे अपने ग्राहकों को बिल भेज सकता हूँ?",
-      answer: "Yes. Lume allows you to send bills instantly through: WhatsApp, SMS, Email, App notifications. This ensures customers always receive and remember your store bills.",
+      answer: "Yes. Aira allows you to send bills instantly through: WhatsApp, SMS, Email, App notifications. This ensures customers always receive and remember your store bills.",
       answerHI: "हाँ। ल्यूम आपको तुरंत WhatsApp, SMS, Email और ऐप नोटिफिकेशन के ज़रिये ग्राहकों को बिल भेजने की सुविधा देता है। इससे ग्राहक हमेशा आपका बिल आसानी से देख और संभाल पाते हैं और आपकी दुकान याद रहती है।"
     },
     {
-      question: "How can I promote my store using Lume?",
+      question: "How can I promote my store using Aira?",
       questionHI: "मैं ल्यूम के ज़रिये अपनी दुकान का प्रमोशन कैसे करूँ?",
-      answer: "You can promote your store using multiple channels: WhatsApp and SMS campaigns, Social media promotions, Visibility on the Lume consumer app, Listing and discovery via ONDC. These tools help attract new customers and bring back existing ones.",
+      answer: "You can promote your store using multiple channels: WhatsApp and SMS campaigns, Social media promotions, Visibility on the Aira consumer app, Listing and discovery via ONDC. These tools help attract new customers and bring back existing ones.",
       answerHI: "आप कई चैनलों के ज़रिये अपनी दुकान प्रमोट कर सकते हैं: WhatsApp और SMS कैंपेन, सोशल मीडिया प्रमोशन, ल्यूम कंज्यूमर ऐप पर विज़िबिलिटी, और ONDC के माध्यम से लिस्टिंग व डिस्कवरी। ये टूल्स नए ग्राहकों को लाने और पुराने ग्राहकों को वापस बुलाने में मदद करते हैं।"
     },
     {
-      question: "Can I manage more than one shop in Lume?",
+      question: "Can I manage more than one shop in Aira?",
       questionHI: "क्या मैं ल्यूम में एक से ज़्यादा दुकानें मैनेज कर सकता हूँ?",
-      answer: "Yes. Lume supports: Multiple stores, POS-based billing, Franchise or chain store management. All your stores can be managed from a single dashboard.",
+      answer: "Yes. Aira supports: Multiple stores, POS-based billing, Franchise or chain store management. All your stores can be managed from a single dashboard.",
       answerHI: "हाँ। ल्यूम में आप मल्टीपल स्टोर्स, POS‑आधारित बिलिंग और फ्रैंचाइज़ या चेन स्टोर्स को मैनेज कर सकते हैं। आपकी सारी दुकानों का कंट्रोल एक ही डैशबोर्ड से हो सकता है।"
     },
     {
       question: "Can I track customer activity and behaviour?",
       questionHI: "क्या मैं ग्राहकों की एक्टिविटी और व्यवहार ट्रैक कर सकता हूँ?",
-      answer: "Yes. Lume automatically: Tracks customer purchase history, Collects feedback, Segments customers based on behaviour, Helps you create targeted campaigns. This allows you to make better business decisions.",
+      answer: "Yes. Aira automatically: Tracks customer purchase history, Collects feedback, Segments customers based on behaviour, Helps you create targeted campaigns. This allows you to make better business decisions.",
       answerHI: "हाँ। ल्यूम अपने आप ग्राहकों की खरीदारी हिस्ट्री ट्रैक करता है, फ़ीडबैक जुटाता है, व्यवहार के आधार पर कस्टमर सेगमेंट बनाता है और आपको टार्गेटेड कैंपेन बनाने में मदद करता है। इससे आप बेहतर बिज़नेस डिसीज़न ले पाते हैं।"
     },
     {
       question: "What are cashback, rewards, and loyalty features?",
       questionHI: "कैशबैक, रिवॉर्ड और लॉयल्टी फीचर्स क्या हैं?",
-      answer: "Lume lets you run custom retention programs such as: Loyalty points, Discount coupons, Cashback offers, Referral programs. These tools help increase repeat customers and long-term loyalty.",
+      answer: "Aira lets you run custom retention programs such as: Loyalty points, Discount coupons, Cashback offers, Referral programs. These tools help increase repeat customers and long-term loyalty.",
       answerHI: "ल्यूम आपको कई तरह के रिटेंशन प्रोग्राम चलाने देता है जैसे: लॉयल्टी पॉइंट्स, डिस्काउंट कूपन, कैशबैक ऑफ़र और रेफ़रल प्रोग्राम। ये टूल्स रिपीट कस्टमर बढ़ाने और लंबी अवधि की लॉयल्टी बनाने में मदद करते हैं।"
     },
     {
       question: "Is customer support available?",
       questionHI: "क्या कस्टमर सपोर्ट उपलब्ध है?",
-      answer: "Yes. Lume provides: WhatsApp support, Phone support, Personalised onboarding and assistance. Our support team helps you at every step of your journey.",
+      answer: "Yes. Aira provides: WhatsApp support, Phone support, Personalised onboarding and assistance. Our support team helps you at every step of your journey.",
       answerHI: "हाँ। ल्यूम आपको WhatsApp सपोर्ट, फ़ोन सपोर्ट और पर्सनलाइज़्ड ऑनबोर्डिंग व असिस्टेंस देता है। हमारी सपोर्ट टीम हर स्टेप पर आपकी मदद के लिए तैयार रहती है।"
     },
     {
@@ -298,13 +298,13 @@ export default function Guides() {
   }));
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
       <FaqJsonLd faqs={faqSchemaItems} />
       <Header />
 
       <main className="flex-1">
         {/* Guides Grid Section */}
-        <section className="hero-section bg-gradient-to-b from-white via-[#f4f7fb] to-white">
+        <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950">
           <div className="site-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -313,16 +313,17 @@ export default function Guides() {
               transition={{ duration: 0.6 }}
               className="text-center mb-10 sm:mb-12"
             >
-              <div className="inline-flex items-center gap-2 mb-4">
-                <Video className="w-6 h-6" style={{ color: 'var(--brand)' }} />
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight" style={{ color: '#1b181f' }}>
-                  {language === "HI" ? "गाइड्स" : "Guides"}
-                </h2>
+              <div className="inline-flex items-center gap-2 mb-4 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider">
+                <Video className="w-4 h-4 text-pink-400" />
+                <span>{language === "HI" ? "गाइड्स" : "Video & Setup Guides"}</span>
               </div>
-              <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: '#4f4f4f' }}>
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-4">
+                {language === "HI" ? "Aira ट्यूटोरियल और गाइड्स" : "Step-by-Step Aira Guides"}
+              </h1>
+              <p className="text-base sm:text-lg max-w-2xl mx-auto text-slate-300">
                 {language === "HI"
-                  ? "Lume के साथ शुरुआत करने के लिए चरण-दर-चरण गाइड"
-                  : "Step-by-step guides to get started with Lume"}
+                  ? "Aira के साथ शुरुआत करने और बिज़नेस बढ़ाने के लिए वीडियो ट्यूटोरियल"
+                  : "Step-by-step video guides to master Aira billing, WhatsApp campaigns, and analytics."}
               </p>
             </motion.div>
 
@@ -340,57 +341,47 @@ export default function Guides() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[rgb(var(--brand-rgb)/0.3)] flex flex-col"
+                  className="bg-slate-900/80 rounded-2xl p-5 sm:p-6 shadow-xl border border-purple-900/40 hover:border-purple-500/60 transition-all duration-300 flex flex-col justify-between"
                 >
-                  <div className="mb-3 flex items-center justify-between gap-2">
-                    <h3 className="text-lg sm:text-xl font-bold" style={{ color: '#1b181f' }}>
-                      {guide.title}
-                    </h3>
-                    <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] sm:text-xs font-semibold bg-[rgb(var(--brand-rgb)/0.05)] text-[var(--brand)]">
-                      {guide.type === "download" ? "Download" : "Video"}
-                    </span>
+                  <div>
+                    <div className="mb-3 flex items-center justify-between gap-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-white">
+                        {guide.title}
+                      </h3>
+                      <span className="inline-flex items-center rounded-full border border-purple-500/30 px-2.5 py-0.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-purple-950 text-pink-300">
+                        {guide.type === "download" ? "Download" : "Video"}
+                      </span>
+                    </div>
+
+                    <ul className="space-y-2 text-xs sm:text-sm flex-1 text-slate-300">
+                      {guide.bullets.slice(0, 4).map((bullet, bulletIndex) => (
+                        <li key={bulletIndex} className="flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0 text-pink-400" />
+                          <span className="leading-relaxed">
+                            {bullet}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <ul className="space-y-2 text-sm sm:text-[0.95rem] flex-1">
-                    {guide.bullets.slice(0, 4).map((bullet, bulletIndex) => (
-                      <li key={bulletIndex} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--brand)' }} />
-                        <span className="leading-relaxed" style={{ color: '#4f4f4f' }}>
-                          {bullet}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {guide.bullets.length > 4 && (
-                    <p className="mt-2 text-xs text-[#6b7280]">
-                      + {guide.bullets.length - 4} more points inside the guide
-                    </p>
-                  )}
-
-                  <div className="mt-4">
+                  <div className="mt-6">
                     {guide.type === "download" ? (
-                      <Button
-                        size="sm"
-                        variant="cta"
+                      <button
                         onClick={() => window.open(guide.buttonLink, '_blank')}
-                        className="w-full justify-center text-xs sm:text-sm"
+                        className="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs sm:text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-md"
                       >
-                        <Download className="w-4 h-4 mr-1" />
+                        <Download className="w-4 h-4" />
                         {guide.buttonLabel}
-                      </Button>
+                      </button>
                     ) : (
-                      <Button
-                        size="sm"
-                        variant="cta"
-                        asChild
-                        className="w-full justify-center text-xs sm:text-sm"
+                      <Link
+                        to={`/guides/${guide.slug}`}
+                        className="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs sm:text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-md"
                       >
-                        <Link to={`/guides/${guide.slug}`}>
-                          <Play className="w-4 h-4 mr-1" />
-                          Watch guide
-                        </Link>
-                      </Button>
+                        <Play className="w-4 h-4 fill-white" />
+                        Watch Guide
+                      </Link>
                     )}
                   </div>
                 </motion.div>
@@ -404,24 +395,21 @@ export default function Guides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="mb-4 sm:mb-6 text-center"
+                className="mb-6 text-center"
               >
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgb(var(--brand-rgb)/0.05)] border border-[rgb(var(--brand-rgb)/0.2)]">
-                    <span className="w-2 h-2 rounded-full bg-[var(--brand)]" />
-                    <span className="text-xs sm:text-sm font-semibold" style={{ color: "var(--brand)" }}>
-                      {language === "HI" ? "कैंपेन और मार्केटिंग गाइड्स" : "Campaign & marketing guides"}
-                    </span>
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider">
+                    <span>{language === "HI" ? "कैंपेन और मार्केटिंग गाइड्स" : "Campaign & marketing guides"}</span>
                   </div>
-                  <h3 className="mt-3 text-lg sm:text-xl font-bold tracking-tight" style={{ color: "#1b181f" }}>
+                  <h3 className="mt-3 text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
                     {language === "HI"
                       ? "ऑफ़र, कूपन और कैंपेन की पूरी समझ"
-                      : "Master offers, coupons & campaigns"}
+                      : "Master WhatsApp Offers, Coupons & Campaigns"}
                   </h3>
                 </div>
               </motion.div>
 
-              <div className="rounded-2xl border border-[#e0e7ff] bg-white/90 p-4 sm:p-6">
+              <div className="rounded-3xl border border-purple-900/40 bg-slate-900/60 p-4 sm:p-6 backdrop-blur-xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
                   {guideData
                     .filter((guide) =>
@@ -434,46 +422,38 @@ export default function Guides() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: i * 0.05 }}
-                        className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[rgb(var(--brand-rgb)/0.3)] flex flex-col"
+                        className="bg-slate-950 rounded-2xl p-5 sm:p-6 shadow-xl border border-purple-900/40 hover:border-purple-500/60 transition-all duration-300 flex flex-col justify-between"
                       >
-                        <div className="mb-3 flex items-center justify-between gap-2">
-                          <h4 className="text-lg sm:text-xl font-bold" style={{ color: "#1b181f" }}>
-                            {guide.title}
-                          </h4>
-                          <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] sm:text-xs font-semibold bg-[rgb(var(--brand-rgb)/0.05)] text-[var(--brand)]">
-                            Video
-                          </span>
+                        <div>
+                          <div className="mb-3 flex items-center justify-between gap-2">
+                            <h4 className="text-lg font-bold text-white">
+                              {guide.title}
+                            </h4>
+                            <span className="inline-flex items-center rounded-full border border-purple-500/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-purple-950 text-pink-300">
+                              Video
+                            </span>
+                          </div>
+
+                          <ul className="space-y-2 text-xs text-slate-300 flex-1">
+                            {guide.bullets.slice(0, 4).map((bullet, bulletIndex) => (
+                              <li key={bulletIndex} className="flex items-start gap-2">
+                                <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-pink-400" />
+                                <span className="leading-relaxed">
+                                  {bullet}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
 
-                        <ul className="space-y-2 text-sm sm:text-[0.95rem] flex-1">
-                          {guide.bullets.slice(0, 4).map((bullet, bulletIndex) => (
-                            <li key={bulletIndex} className="flex items-start gap-3">
-                              <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "var(--brand)" }} />
-                              <span className="leading-relaxed" style={{ color: "#4f4f4f" }}>
-                                {bullet}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        {guide.bullets.length > 4 && (
-                          <p className="mt-2 text-xs text-[#6b7280]">
-                            + {guide.bullets.length - 4} more points inside the guide
-                          </p>
-                        )}
-
-                        <div className="mt-4">
-                          <Button
-                            size="sm"
-                            variant="cta"
-                            asChild
-                            className="w-full justify-center text-xs sm:text-sm"
+                        <div className="mt-5">
+                          <Link
+                            to={`/guides/${guide.slug}`}
+                            className="w-full py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 shadow"
                           >
-                            <Link to={`/guides/${guide.slug}`}>
-                              <Play className="w-4 h-4 mr-1" />
-                              {language === "HI" ? "वीडियो देखें" : "Watch guide"}
-                            </Link>
-                          </Button>
+                            <Play className="w-3.5 h-3.5 fill-white" />
+                            {language === "HI" ? "वीडियो देखें" : "Watch Guide"}
+                          </Link>
                         </div>
                       </motion.div>
                     ))}
@@ -484,7 +464,7 @@ export default function Guides() {
         </section>
 
         {/* FAQs Section */}
-        <section className="section-padding bg-gradient-to-b from-white via-[var(--brand-tint)]/20 to-white">
+        <section className="section-spacing bg-slate-950 text-white border-t border-purple-900/30">
           <div className="site-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -493,46 +473,35 @@ export default function Guides() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <div className="inline-flex items-center gap-2 mb-4">
-                <HelpCircle className="w-6 h-6" style={{ color: 'var(--brand)' }} />
-                <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: '#1b181f' }}>
-                  {language === "HI" ? "अक्सर पूछे जाने वाले सवाल" : "Frequently Asked Questions"}
-                </h2>
+              <div className="inline-flex items-center gap-2 mb-4 px-3.5 py-1 rounded-full bg-purple-950 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider">
+                <HelpCircle className="w-4 h-4 text-pink-400" />
+                <span>{language === "HI" ? "अक्सर पूछे जाने वाले सवाल" : "Frequently Asked Questions"}</span>
               </div>
-              <p className="text-lg" style={{ color: '#4f4f4f' }}>
-                {language === "HI"
-                  ? "Lume से जुड़े आम सवालों के जवाब यहाँ पाएँ"
-                  : "Find answers to common questions about Lume"}
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                {language === "HI" ? "अक्सर पूछे जाने वाले सवाल" : "Frequently Asked Questions"}
+              </h2>
             </motion.div>
 
             <div className="max-w-4xl mx-auto">
               <Accordion type="single" collapsible className="space-y-4">
                 {faqs.map((faq, i) => (
-                  <motion.div
+                  <AccordionItem
                     key={faq.question}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.05 }}
+                    value={`item-${i}`}
+                    className="bg-slate-900/80 rounded-2xl border border-purple-900/40 px-6 shadow-xl"
                   >
-                    <AccordionItem
-                      value={`item-${i}`}
-                      className="bg-white rounded-xl border border-gray-100 px-6 sm:px-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <AccordionTrigger className="text-left font-bold text-lg sm:text-xl hover:no-underline py-6" style={{ color: '#1b181f' }}>
-                        <div className="flex items-start gap-3">
-                          <FileText className="w-5 h-5 mt-1 flex-shrink-0" style={{ color: 'var(--brand)' }} />
-                          <span>
-                            {language === "HI" && (faq as any).questionHI ? (faq as any).questionHI : faq.question}
-                          </span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="text-base leading-relaxed pb-6 ml-8" style={{ color: '#4f4f4f' }}>
-                        {language === "HI" && (faq as any).answerHI ? (faq as any).answerHI : faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  </motion.div>
+                    <AccordionTrigger className="text-left font-bold text-base sm:text-lg hover:no-underline py-5 text-white">
+                      <div className="flex items-start gap-3">
+                        <FileText className="w-5 h-5 mt-0.5 flex-shrink-0 text-pink-400" />
+                        <span>
+                          {language === "HI" && (faq as any).questionHI ? (faq as any).questionHI : faq.question}
+                        </span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm text-slate-300 leading-relaxed pb-5 ml-8">
+                      {language === "HI" && (faq as any).answerHI ? (faq as any).answerHI : faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
                 ))}
               </Accordion>
             </div>
@@ -544,3 +513,4 @@ export default function Guides() {
     </div>
   );
 }
+

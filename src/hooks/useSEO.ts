@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-const SITE_NAME = 'Lume – Retail Growth Platform';
-const SITE_URL = 'https://lume.apeiros.ai';
+const SITE_NAME = 'Hilon — AI-Powered Retail Intelligence | Aira';
+const SITE_URL = 'https://hilon.ai';
 const DEFAULT_DESCRIPTION =
-  'Lume helps Indian retailers send digital bills, engage customers, and run marketing campaigns that turn one-time buyers into repeat customers.';
+  'Aira by Hilon brings retail billing, customer intelligence, AI insights, engagement and analytics together in one intelligent platform.';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 function setMetaByName(name: string, content: string) {
@@ -37,57 +37,55 @@ function setCanonical(href: string) {
 }
 
 export interface SEOOptions {
-  /**
-   * Overrides the canonical path (e.g. "/products") when the current URL is a
-   * variant of a page that shouldn't be indexed separately (e.g. /products/:id).
-   * Defaults to the current pathname.
-   */
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
   canonicalPath?: string;
-  /** Absolute image URL for social sharing. Defaults to the site's default OG image. */
   ogImage?: string;
 }
 
-/**
- * Set unique page title, meta description, canonical URL, and Open Graph /
- * Twitter tags for SEO. Use on every page for better search rankings.
- *
- * Note: this app is a client-side SPA with no server-side rendering, so these
- * tags are only present after JS executes. Crawlers that render JS (Googlebot)
- * will see them; scrapers that don't (some social-share bots) will still see
- * the static defaults in index.html.
- */
-export function useSEO(title: string, description?: string, options?: SEOOptions) {
+export function useSEO(options: SEOOptions | string, legacyDescription?: string) {
   useEffect(() => {
-    const fullTitle = title.toLowerCase().includes('lume') ? title : `${title} | ${SITE_NAME}`;
+    let title: string;
+    let description: string;
+    let canonicalPath: string | undefined;
+
+    if (typeof options === 'string') {
+      title = options;
+      description = legacyDescription || DEFAULT_DESCRIPTION;
+    } else {
+      title = options.title || SITE_NAME;
+      description = options.description || DEFAULT_DESCRIPTION;
+      canonicalPath = options.canonicalPath;
+    }
+
+    const fullTitle = title.toLowerCase().includes('hilon') || title.toLowerCase().includes('aira')
+      ? title
+      : `${title} | Hilon Aira`;
+
     document.title = fullTitle;
 
     const metaDesc = document.querySelector('meta[name="description"]');
-    const finalDescription = description || DEFAULT_DESCRIPTION;
     if (metaDesc) {
-      metaDesc.setAttribute('content', finalDescription);
+      metaDesc.setAttribute('content', description);
+    } else {
+      setMetaByName('description', description);
     }
 
-    const canonicalHref = `${SITE_URL}${options?.canonicalPath ?? window.location.pathname}`;
+    const canonicalHref = `${SITE_URL}${canonicalPath ?? window.location.pathname}`;
     setCanonical(canonicalHref);
 
     setMetaByProperty('og:title', fullTitle);
-    setMetaByProperty('og:description', finalDescription);
+    setMetaByProperty('og:description', description);
     setMetaByProperty('og:url', canonicalHref);
-    setMetaByProperty('og:image', options?.ogImage ?? DEFAULT_OG_IMAGE);
+    setMetaByProperty('og:image', DEFAULT_OG_IMAGE);
     setMetaByName('twitter:title', fullTitle);
-    setMetaByName('twitter:description', finalDescription);
+    setMetaByName('twitter:description', description);
 
     return () => {
       document.title = SITE_NAME;
-      if (metaDesc) {
-        metaDesc.setAttribute('content', DEFAULT_DESCRIPTION);
-      }
-      setMetaByProperty('og:title', SITE_NAME);
-      setMetaByProperty('og:description', DEFAULT_DESCRIPTION);
-      setMetaByProperty('og:url', SITE_URL);
-      setMetaByProperty('og:image', DEFAULT_OG_IMAGE);
-      setMetaByName('twitter:title', SITE_NAME);
-      setMetaByName('twitter:description', DEFAULT_DESCRIPTION);
     };
-  }, [title, description, options?.canonicalPath, options?.ogImage]);
+  }, [options, legacyDescription]);
 }
+
+export default useSEO;

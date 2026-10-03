@@ -37,7 +37,7 @@ const benefits = [
 export default function ReferralFeature() {
   const { language } = useLanguage();
   useSEO(
-    "WhatsApp-Driven Referrals – Turn Customers into Fans | Lume",
+    "WhatsApp-Driven Referrals – Turn Customers into Fans | Aira",
     "Enable one-click referrals via WhatsApp. Reward loyal customers, track referral analytics, grow with word-of-mouth. Book a demo."
   );
 
@@ -225,7 +225,7 @@ export default function ReferralFeature() {
                 </div>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold mb-3" style={{ color: "#1b181f" }}>{t("Ready to grow with referrals?", "रेफरल से ग्रोथ के लिए तैयार हैं?")}</h3>
-              <p className="text-base mb-6" style={{ color: "#4f4f4f" }}>{t("Join 285+ retailers using Lume for WhatsApp referrals and loyalty.", "285+ रिटेलर्स के साथ जुड़ें जो ल्यूम से WhatsApp रेफरल और लॉयल्टी इस्तेमाल कर रहे हैं।")}</p>
+              <p className="text-base mb-6" style={{ color: "#4f4f4f" }}>{t("Join 285+ retailers using Aira for WhatsApp referrals and loyalty.", "285+ रिटेलर्स के साथ जुड़ें जो ल्यूम से WhatsApp रेफरल और लॉयल्टी इस्तेमाल कर रहे हैं।")}</p>
             </div>
           </motion.div>
         </div>
@@ -236,3 +236,4 @@ export default function ReferralFeature() {
     </div>
   );
 }
+

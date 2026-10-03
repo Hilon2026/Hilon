@@ -4,7 +4,7 @@ import { useSEO } from "@/hooks/useSEO";
 
 const NotFound = () => {
   const location = useLocation();
-  useSEO('Page Not Found – Lume');
+  useSEO('Page Not Found – Aira');
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -24,3 +24,4 @@ const NotFound = () => {
 };
 
 export default NotFound;
+

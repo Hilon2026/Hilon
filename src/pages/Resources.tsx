@@ -10,7 +10,7 @@ const resourceCategories = [
     id: "case-studies",
     icon: FileText,
     title: "Case Studies",
-    desc: "See how retailers are growing with Lume",
+    desc: "See how retailers are growing with Aira",
     items: [
       { title: "Sharma General Store: 4x Growth", desc: "How a Delhi kirana store digitized operations", category: "Grocery" },
       { title: "Fashion Hub Mumbai", desc: "Building customer loyalty in fashion retail", category: "Fashion" },
@@ -34,7 +34,7 @@ const resourceCategories = [
     title: "Guides",
     desc: "Step-by-step tutorials",
     items: [
-      { title: "Getting Started with Lume", desc: "Complete setup guide for new users", category: "Setup" },
+      { title: "Getting Started with Aira", desc: "Complete setup guide for new users", category: "Setup" },
       { title: "Creating Your First Campaign", desc: "Send targeted messages to customers", category: "Marketing" },
       { title: "Setting Up Loyalty Points", desc: "Reward your repeat customers", category: "Loyalty" },
     ],
@@ -45,7 +45,7 @@ const resourceCategories = [
     title: "Videos",
     desc: "Watch and learn",
     items: [
-      { title: "Lume Platform Overview", desc: "5-minute walkthrough of all features", category: "Overview", duration: "5:23" },
+      { title: "Aira Platform Overview", desc: "5-minute walkthrough of all features", category: "Overview", duration: "5:23" },
       { title: "Quick Billing Tutorial", desc: "Create bills in under 30 seconds", category: "Tutorial", duration: "3:45" },
       { title: "Analytics Dashboard Guide", desc: "Understanding your business data", category: "Tutorial", duration: "8:12" },
     ],
@@ -55,31 +55,34 @@ const resourceCategories = [
 export default function Resources() {
   const { id } = useParams();
   const selectedCategory = id ? resourceCategories.find(c => c.id === id) : null;
-  useSEO(
-    selectedCategory ? `${selectedCategory.title} – Lume Resources` : 'Resources – Guides, Case Studies & Videos | Lume',
-    selectedCategory ? selectedCategory.desc : 'Lume resources: case studies, guides, videos. Learn how retailers grow with digital billing & loyalty.'
-  );
+  useSEO({
+    title: selectedCategory ? `${selectedCategory.title} – Hilon Aira Resources` : 'Resources – Guides, Case Studies & Blog | Hilon Aira',
+    description: selectedCategory ? selectedCategory.desc : 'Explore Aira resources: case studies, guides, videos, and retail growth strategies.',
+    canonicalPath: selectedCategory ? `/resources/${selectedCategory.id}` : '/resources'
+  });
 
   if (selectedCategory) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
         <Header />
         
-        <section className="hero-section hero-gradient text-white">
-          <div className="site-container">
+        <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950 text-center">
+          <div className="site-container max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center mb-4">
-                <selectedCategory.icon className="w-7 h-7" style={{ color: 'var(--brand)' }} />
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center mx-auto mb-4 text-white shadow-lg shadow-purple-600/30">
+                <selectedCategory.icon className="w-8 h-8" />
               </div>
-              <h1 className="text-3xl md:text-4xl font-display font-bold mb-2" style={{ color: '#1b181f' }}>{selectedCategory.title}</h1>
-              <p className="text-lg" style={{ color: '#4f4f4f' }}>{selectedCategory.desc}</p>
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">
+                {selectedCategory.title}
+              </h1>
+              <p className="text-slate-300 text-lg sm:text-xl">{selectedCategory.desc}</p>
             </motion.div>
           </div>
         </section>
 
-        <section className="section-spacing bg-white">
-          <div className="site-container">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section className="section-spacing bg-slate-950">
+          <div className="site-container max-w-5xl">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {selectedCategory.items.map((item, i) => (
                 <motion.div
                   key={i}
@@ -87,17 +90,19 @@ export default function Resources() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-secondary/30 p-5 rounded-xl hover:shadow-md transition-all cursor-pointer"
+                  className="bg-slate-900/80 border border-purple-900/40 p-6 rounded-2xl hover:border-purple-500/60 transition-all duration-300 shadow-xl flex flex-col justify-between"
                 >
-                  <span className="text-xs px-2 py-1 rounded font-medium" style={{ background: 'var(--brand-tint)', color: 'var(--brand)' }}>
-                    {item.category}
-                  </span>
-                  <h3 className="font-semibold mt-3 mb-1" style={{ color: '#1b181f' }}>{item.title}</h3>
-                  <p className="text-sm" style={{ color: '#4f4f4f' }}>{item.desc}</p>
+                  <div>
+                    <span className="text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider bg-purple-950 text-pink-300 border border-purple-800/50">
+                      {item.category}
+                    </span>
+                    <h3 className="text-xl font-bold mt-4 mb-2 text-white">{item.title}</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed">{item.desc}</p>
+                  </div>
                   {(item as any).duration && (
-                    <div className="flex items-center gap-1 mt-3 text-sm" style={{ color: '#4f4f4f' }}>
-                      <Play className="w-4 h-4" />
-                      {(item as any).duration}
+                    <div className="flex items-center gap-2 mt-4 text-xs font-semibold text-purple-400">
+                      <Play className="w-4 h-4 fill-purple-400" />
+                      Duration: {(item as any).duration}
                     </div>
                   )}
                 </motion.div>
@@ -112,25 +117,31 @@ export default function Resources() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
       <Header />
 
-      <section className="hero-section hero-gradient text-white">
-        <div className="site-container text-center">
+      <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950 text-center">
+        <div className="site-container max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-3xl md:text-4xl font-display font-bold mb-3" style={{ color: '#1b181f' }}>
-              Resources
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
+              Aira Knowledge Hub
+            </div>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-4">
+              Resources &{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-200">
+                Retail Growth Center.
+              </span>
             </h1>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#4f4f4f' }}>
-              Learn, grow, and succeed with Lume
+            <p className="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+              Explore step-by-step guides, case studies, video walkthroughs, and retail intelligence insights.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="section-spacing bg-white">
-        <div className="site-container">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <section className="section-spacing bg-slate-950">
+        <div className="site-container max-w-6xl">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {resourceCategories.map((category, i) => (
               <motion.div
                 key={category.id}
@@ -141,14 +152,16 @@ export default function Resources() {
               >
                 <Link
                   to={`/resources/${category.id}`}
-                  className="block bg-secondary/30 p-6 rounded-xl hover:shadow-lg transition-all h-full text-center"
+                  className="block bg-slate-900/80 border border-purple-900/40 p-6 sm:p-8 rounded-3xl hover:border-purple-500/60 hover:bg-slate-900 transition-all duration-300 h-full text-center group shadow-xl"
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ background: 'var(--brand-tint)' }}>
-                    <category.icon className="w-6 h-6" style={{ color: 'var(--brand)' }} />
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center mx-auto mb-4 text-white shadow-lg shadow-purple-600/30 group-hover:scale-110 transition-transform">
+                    <category.icon className="w-7 h-7" />
                   </div>
-                  <h3 className="font-semibold mb-1" style={{ color: '#1b181f' }}>{category.title}</h3>
-                  <p className="text-sm mb-3" style={{ color: '#4f4f4f' }}>{category.desc}</p>
-                  <span className="text-xs font-medium" style={{ color: 'var(--brand)' }}>{category.items.length} items</span>
+                  <h3 className="text-xl font-bold mb-2 text-white group-hover:text-pink-300 transition-colors">{category.title}</h3>
+                  <p className="text-xs sm:text-sm text-slate-400 mb-4 leading-relaxed">{category.desc}</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-purple-400 group-hover:text-pink-400">
+                    Explore {category.items.length} Resources <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </Link>
               </motion.div>
             ))}
@@ -160,3 +173,4 @@ export default function Resources() {
     </div>
   );
 }
+

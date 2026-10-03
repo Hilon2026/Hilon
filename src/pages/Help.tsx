@@ -52,7 +52,7 @@ const popularArticles = [
     categoryHI: "शुरुआत कैसे करें",
   },
   { 
-    title: "Setting up GST in Lume", 
+    title: "Setting up GST in Aira", 
     titleHI: "ल्यूम में GST सेटअप कैसे करें", 
     category: "Billing",
     categoryHI: "बिलिंग",
@@ -91,9 +91,9 @@ const faqs = [
     aHI: "Settings > Team > Add User पर जाएँ। उनकी जानकारी भरें और सही रोल चुनें।" 
   },
   { 
-    q: "Can I use Lume offline?", 
+    q: "Can I use Aira offline?", 
     qHI: "क्या मैं ल्यूम को ऑफ़लाइन इस्तेमाल कर सकता हूँ?", 
-    a: "Yes, Lume works offline. Bills sync automatically when you're back online.", 
+    a: "Yes, Aira works offline. Bills sync automatically when you're back online.", 
     aHI: "हाँ, ल्यूम ऑफ़लाइन भी काम करता है। जब आप दोबारा ऑनलाइन होंगे तो सारे बिल अपने आप सिंक हो जाएँगे।" 
   },
   { 
@@ -113,7 +113,7 @@ const faqs = [
 export default function Help() {
   const { language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
-  useSEO('Help Center – Lume Guides & Support', 'Get help with Lume: getting started, billing guide, FAQs. Setup in minutes. Support for Indian retailers.');
+  useSEO('Help Center – Aira Guides & Support', 'Get help with Aira: getting started, billing guide, FAQs. Setup in minutes. Support for Indian retailers.');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -248,7 +248,7 @@ export default function Help() {
               <h3 className="font-semibold text-foreground">
                 {language === "HI" ? "ईमेल" : "Email"}
               </h3>
-              <p className="text-sm text-muted-foreground">info@apeirosai.com</p>
+              <p className="text-sm text-muted-foreground">info@Hilonai.com</p>
             </div>
           </div>
         </div>

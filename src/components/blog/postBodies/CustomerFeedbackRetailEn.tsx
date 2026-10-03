@@ -219,7 +219,7 @@ export function CustomerFeedbackRetailEn() {
             to="/features/digital-bills"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume digital bills
+            Aira digital bills
           </Link>{" "}
           include a built-in feedback request on every transaction — a single tap for customers,
           and actionable data for you.
@@ -229,3 +229,4 @@ export function CustomerFeedbackRetailEn() {
     </div>
   );
 }
+

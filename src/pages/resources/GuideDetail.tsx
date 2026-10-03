@@ -15,8 +15,8 @@ export default function GuideDetail() {
   const guide = guideData.find(g => g.slug === slug);
 
   useSEO(
-    guide ? `${guide.title} – Lume Guides` : 'Guide Not Found – Lume Guides',
-    guide ? `Learn how to ${guide.title.toLowerCase()} with Lume. Step-by-step video guide.` : 'The guide you are looking for could not be found.'
+    guide ? `${guide.title} – Aira Guides` : 'Guide Not Found – Aira Guides',
+    guide ? `Learn how to ${guide.title.toLowerCase()} with Aira. Step-by-step video guide.` : 'The guide you are looking for could not be found.'
   );
 
   // If guide not found, show 404
@@ -134,3 +134,4 @@ export default function GuideDetail() {
     </div>
   );
 }
+

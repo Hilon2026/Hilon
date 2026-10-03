@@ -193,7 +193,7 @@ export function DigitalBillsRepeatCustomersEn() {
               Do I need a large customer base for digital billing to make a difference?
             </h3>
             <p>
-              No. The benefit of digital billing is proportional to transaction volume, not
+              No. The benefit of digital billing is proportional to transaction voAira, not
               absolute customer numbers. A store with three hundred active customers that
               converts 30% of them to more frequent visits gains meaningfully. The mechanics
               work at any scale — the compounding effect just takes longer to accumulate in
@@ -215,7 +215,7 @@ export function DigitalBillsRepeatCustomersEn() {
             to="/features/digital-bills"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume digital billing
+            Aira digital billing
           </Link>{" "}
           delivers WhatsApp bills with built-in offers, loyalty updates, and feedback — giving
           your customers a reason to come back with every receipt you send.
@@ -225,3 +225,4 @@ export function DigitalBillsRepeatCustomersEn() {
     </div>
   );
 }
+

@@ -1,11 +1,11 @@
-import { ClipboardList, HeartHandshake, MessageCircleQuestion, ShieldAlert, Sparkles, UserCheck2 } from "lucide-react";
+import { ClipboardList, HeartHandshake, MessageCircleQuestion, ShieldAlert, UserCheck2 } from "lucide-react";
 import FeaturePageTemplate from "./FeaturePageTemplate";
 import surveysImage from "@/assets/g-review.png";
 
 export default function SurveysFeature() {
   return (
     <FeaturePageTemplate
-      seoTitle="WhatsApp Surveys – Customer Feedback and Satisfaction Insights | Lume"
+      seoTitle="WhatsApp Surveys – Customer Feedback and Satisfaction Insights | Aira"
       seoDescription="Collect customer feedback through WhatsApp surveys, improve service quality, and resolve issues early to increase retention."
       heroBadge={{ en: "Feedback Surveys", hi: "फीडबैक सर्वे" }}
       heroTitle={{ en: "Collect customer feedback before it turns into churn", hi: "ग्राहक फीडबैक लें, churn बनने से पहले" }}
@@ -50,3 +50,4 @@ export default function SurveysFeature() {
     />
   );
 }
+

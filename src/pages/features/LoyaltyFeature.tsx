@@ -5,7 +5,7 @@ import heroImage from "@/assets/refer/in-store.png";
 export default function LoyaltyFeature() {
   return (
     <FeaturePageTemplate
-      seoTitle="Customer Loyalty Programs – Points, Cashback, Offers | Lume"
+      seoTitle="Customer Loyalty Programs – Points, Cashback, Offers | Aira"
       seoDescription="Reward repeat customers with points, cashback, and offers to increase retention and customer lifetime value."
       heroBadge={{ en: "Loyalty & Retention", hi: "लॉयल्टी और रिटेंशन" }}
       heroTitle={{ en: "Reward repeat buyers and grow lifetime value", hi: "रिपीट ग्राहकों को रिवॉर्ड दें और लाइफटाइम वैल्यू बढ़ाएं" }}
@@ -50,3 +50,4 @@ export default function LoyaltyFeature() {
     />
   );
 }
+

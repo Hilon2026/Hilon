@@ -7,7 +7,7 @@ export default function Financials() {
   const { t } = useLanguage();
   useSEO(
     "Financials",
-    "Financial insights and reporting for your retail business with Lume."
+    "Financial insights and reporting for your retail business with Aira."
   );
 
   return (
@@ -34,3 +34,4 @@ export default function Financials() {
     </div>
   );
 }
+

@@ -233,7 +233,7 @@ export function GstBillingMistakesEn() {
             to="/products"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume POS
+            Aira POS
           </Link>{" "}
           applies correct GST rates, formats invoices to spec, and generates tax summaries ready
           for filing — so you can focus on running your store.
@@ -243,3 +243,4 @@ export function GstBillingMistakesEn() {
     </div>
   );
 }
+

@@ -1,165 +1,131 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowRight, Rocket, Heart, Users, Zap, MapPin, Briefcase } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { useSEO } from "@/hooks/useSEO";
 
 const perks = [
-  { icon: Rocket, title: "High Impact Work", description: "Build products used by 285+ retailers daily" },
-  { icon: Heart, title: "Health & Wellness", description: "Comprehensive health insurance for you & family" },
-  { icon: Users, title: "Great Team", description: "Work with passionate, talented people" },
-  { icon: Zap, title: "Fast Growth", description: "Rapid learning and career progression" },
+  { icon: Rocket, title: "Autonomous Impact", description: "Build AI systems used by modern retail operators" },
+  { icon: Heart, title: "Health & Wellbeing", description: "Comprehensive health coverage for you & family" },
+  { icon: Users, title: "Elite Engineering", description: "Collaborate with senior system architects" },
+  { icon: Zap, title: "Rapid Growth", description: "Fast-tracked learning & equity incentives" },
 ];
 
 const openings = [
   {
-    title: "Senior Full Stack Engineer",
-    department: "Engineering",
-    location: "Ahmedabad / Remote",
+    title: "Senior AI / ML Engineer",
+    department: "AI Research",
+    location: "San Francisco / Remote",
     type: "Full-time",
   },
   {
-    title: "Product Designer",
-    department: "Design",
-    location: "Ahmedabad",
+    title: "Full-Stack React Engineer",
+    department: "Frontend Engineering",
+    location: "Remote",
     type: "Full-time",
   },
   {
-    title: "Growth Marketing Manager",
-    department: "Marketing",
-    location: "Ahmedabad",
+    title: "Product Designer (SaaS)",
+    department: "Product Design",
+    location: "Remote",
     type: "Full-time",
   },
   {
-    title: "Customer Success Lead",
-    department: "Customer Success",
-    location: "Ahmedabad / Remote",
+    title: "Enterprise Retail Sales Lead",
+    department: "Sales & Growth",
+    location: "Hybrid / Remote",
     type: "Full-time",
   },
 ];
 
 export default function Careers() {
-  useSEO('Careers – Join Lume & Apeiros AI', 'Join the Lume team. Build products for Indian retailers. Open roles in engineering, design, marketing.');
+  useSEO({
+    title: "Careers — Join Hilon & Aira",
+    description: "Build the future of retail AI technology. Explore open engineering, design, and product roles at Hilon.",
+    canonicalPath: "/company/careers"
+  });
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
       <Header />
 
       {/* Hero */}
-      <section className="hero-section hero-gradient text-white">
-        <div className="site-container">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
-                Build the Future of{" "}
-                <span className="text-[#4fc3ff]">Retail Technology</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-8">
-                Join a team that's on a mission to empower 13 million local retailers 
-                in India. Make an impact at scale.
-              </p>
-              <Button size="lg" variant="hero" asChild>
-                <a href="#openings">
-                  View Open Positions
-                  <ArrowRight className="w-5 h-5 ml-1" />
-                </a>
-              </Button>
-            </motion.div>
+      <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950 text-center">
+        <div className="site-container max-w-4xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider">
+            <Rocket className="w-4 h-4 text-pink-400" />
+            Careers at Hilon
           </div>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+            Build the Future of{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-200">
+              Retail Intelligence.
+            </span>
+          </h1>
+          <p className="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            Join a mission-driven team engineering the AI brain for modern retail operators worldwide.
+          </p>
         </div>
       </section>
 
-      {/* Why Join Us */}
-      <section className="section-spacing bg-white">
-        <div className="site-container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-[#1b181f] mb-4">Why Join Apeiros AI?</h2>
-            <p className="text-lg text-muted-foreground">
-              We're building something meaningful, and we want you to be part of it.
-            </p>
-          </div>
-
+      {/* Perks */}
+      <section className="section-spacing bg-slate-950">
+        <div className="site-container max-w-5xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {perks.map((perk, i) => (
-              <motion.div
-                key={perk.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center p-6"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-[#e3f0ff] flex items-center justify-center mx-auto mb-4">
-                  <perk.icon className="w-7 h-7 text-[var(--brand)]" />
+            {perks.map((perk, i) => {
+              const IconComp = perk.icon;
+              return (
+                <div key={i} className="bg-slate-900/80 border border-purple-900/40 p-6 rounded-2xl space-y-3 text-center">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white mx-auto shadow-md">
+                    <IconComp className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-white text-base">{perk.title}</h3>
+                  <p className="text-slate-400 text-xs">{perk.description}</p>
                 </div>
-                <h3 className="text-lg font-bold text-navy-900 mb-2">{perk.title}</h3>
-                <p className="text-muted-foreground">{perk.description}</p>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Open Positions */}
-      <section id="openings" className="section-spacing subtle-gradient">
-        <div className="site-container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-[#1b181f] mb-4">Open Positions</h2>
-            <p className="text-lg text-muted-foreground">
-              Find your next opportunity. We're always looking for talented people.
-            </p>
-          </div>
+      {/* Openings */}
+      <section className="section-spacing bg-slate-950">
+        <div className="site-container max-w-4xl space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center mb-8">
+            Open Positions
+          </h2>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div className="space-y-4">
             {openings.map((job, i) => (
-              <motion.div
-                key={job.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-card hover-lift border border-[rgb(var(--brand-rgb)/0.1)]"
+              <div
+                key={i}
+                className="bg-slate-900 border border-purple-900/40 p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-purple-500 transition-all"
               >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div>
-                    <h3 className="text-lg font-bold text-navy-900">{job.title}</h3>
-                    <div className="flex flex-wrap gap-3 mt-2">
-                      <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-                        <Briefcase className="w-4 h-4" />
-                        {job.department}
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-                        <MapPin className="w-4 h-4" />
-                        {job.location}
-                      </span>
-                      <span className="text-sm bg-[#e3f0ff] text-[var(--brand)] px-2 py-0.5 rounded-full">
-                        {job.type}
-                      </span>
-                    </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white">{job.title}</h3>
+                  <div className="flex items-center gap-3 mt-2 text-xs text-slate-400">
+                    <span className="flex items-center gap-1">
+                      <Briefcase className="w-3.5 h-3.5 text-purple-400" />
+                      {job.department}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-pink-400" />
+                      {job.location}
+                    </span>
+                    <span className="bg-purple-950 text-pink-300 px-2 py-0.5 rounded text-[10px]">
+                      {job.type}
+                    </span>
                   </div>
-                  <Button variant="cta" asChild>
-                    <Link to="/contact">
-                      Apply Now
-                      <ArrowRight className="w-4 h-4 ml-1" />
-                    </Link>
-                  </Button>
                 </div>
-              </motion.div>
-            ))}
-          </div>
 
-          <div className="text-center mt-12">
-            <p className="text-muted-foreground mb-4">
-              Don't see a role that fits? We're always looking for great talent.
-            </p>
-            <Button variant="outline" asChild>
-              <Link to="/contact">Send Us Your Resume</Link>
-            </Button>
+                <Link
+                  to="/contact"
+                  className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs rounded-xl shadow shrink-0"
+                >
+                  Apply Position
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>

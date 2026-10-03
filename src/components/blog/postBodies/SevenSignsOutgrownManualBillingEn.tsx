@@ -166,7 +166,7 @@ export function SevenSignsOutgrownManualBillingEn() {
               Is it worth switching to a POS system if my store is not very large?
             </h3>
             <p>
-              Size matters less than transaction volume. A small store handling eighty or more
+              Size matters less than transaction voAira. A small store handling eighty or more
               transactions daily has more to gain from a POS system than a larger store doing
               twenty. If any of the seven signs above resonate with your current situation,
               that is a more reliable indicator of readiness than square footage or staff count.
@@ -212,7 +212,7 @@ export function SevenSignsOutgrownManualBillingEn() {
             to="/products"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume POS
+            Aira POS
           </Link>{" "}
           addresses each one — faster billing, real-time stock, and clear business data, all
           in a single platform built for Indian retailers.
@@ -222,3 +222,4 @@ export function SevenSignsOutgrownManualBillingEn() {
     </div>
   );
 }
+

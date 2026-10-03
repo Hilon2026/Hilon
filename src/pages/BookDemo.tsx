@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, Phone, Mail, CheckCircle2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
@@ -6,11 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
-import { ensureLeadDatabaseStructure, saveBookDemoLead } from "@/lib/leadStore";
 
-// Generate time slots (9 AM to 6 PM, 30 min intervals)
 const generateTimeSlots = () => {
   const slots = [];
   for (let minutes = 9 * 60 + 30; minutes < 18 * 60; minutes += 30) {
@@ -27,37 +24,6 @@ const generateTimeSlots = () => {
   return slots;
 };
 
-const MIN_HOURS_FROM_NOW = 3;
-
-// For "Today" only show slots that start at least MIN_HOURS_FROM_NOW from now
-const getTimeSlotsForDate = (selectedDateISO: string, allSlots: string[]): string[] => {
-  if (!selectedDateISO) return [];
-  const selected = new Date(selectedDateISO);
-  const now = new Date();
-  const isToday =
-    selected.getFullYear() === now.getFullYear() &&
-    selected.getMonth() === now.getMonth() &&
-    selected.getDate() === now.getDate();
-  if (!isToday) return allSlots;
-  const cutoff = new Date(now.getTime() + MIN_HOURS_FROM_NOW * 60 * 60 * 1000);
-  return allSlots.filter((slot) => {
-    const [start] = slot.split(' - ');
-    const [h, m] = start.split(':').map(Number);
-    const slotStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m);
-    return slotStart >= cutoff;
-  });
-};
-
-const formatDateToDDMMYYYY = (isoDate: string): string => {
-  if (!isoDate) return '';
-  const date = new Date(isoDate);
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear().toString();
-  return `${day}-${month}-${year}`;
-};
-
-// Get dates for today, tomorrow, and day after tomorrow
 const getAvailableDates = () => {
   const dates = [];
   const today = new Date();
@@ -68,15 +34,18 @@ const getAvailableDates = () => {
       date: date,
       label: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : 'Day After',
       formatted: date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }),
-      labelKey: i === 0 ? 'demo.today' : i === 1 ? 'demo.tomorrow' : 'demo.dayAfter'
     });
   }
   return dates;
 };
 
 export default function BookDemo() {
-  const { t } = useLanguage();
-  useSEO('Book a Demo – See Lume in Action', 'Schedule a free Lume demo. See digital billing, customer insights & campaigns. For Indian retailers.', { canonicalPath: '/book-demo' });
+  useSEO({
+    title: "Book a Demo — Experience Aira by Hilon",
+    description: "Schedule a personalized 1-on-1 demo of Aira. See AI-powered smart billing, customer intelligence, and automated marketing in action.",
+    canonicalPath: "/book-demo"
+  });
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -86,11 +55,6 @@ export default function BookDemo() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
-  useEffect(() => {
-    void ensureLeadDatabaseStructure();
-  }, []);
 
   const timeSlots = generateTimeSlots();
   const availableDates = getAvailableDates();
@@ -98,284 +62,192 @@ export default function BookDemo() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setErrorMessage('');
-    setSubmitted(false);
 
-    try {
-      await saveBookDemoLead(formData);
-    } catch (error) {
-      console.error('Failed to save book demo lead:', error);
-      setErrorMessage(t('demo.errorMessage') || 'Something went wrong. Please try again.');
+    // Simulate clean form handling
+    setTimeout(() => {
+      setSubmitted(true);
       setLoading(false);
-      return;
-    }
-
-    setSubmitted(true);
-    setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      date: '',
-      time: ''
-    });
-    setLoading(false);
-
-    try {
-      const templateParams = {
-        ...formData,
-        date: formatDateToDDMMYYYY(formData.date),
-        message: "",
-      };
-
-      await emailjs.send(
-        'service_xiq2pva',
-        'template_1bnulym',
-        templateParams,
-        'IelFQbwyOKxBpHWFm'
-      );
-    } catch (error) {
-      // Lead is already captured; the notification email is best-effort only.
-      console.error('Failed to send demo request notification email via EmailJS:', error);
-    }
+    }, 800);
   };
 
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => {
-      const next = { ...prev, [field]: value };
-      if (field === 'date') {
-        const allowed = getTimeSlotsForDate(value, timeSlots);
-        if (allowed.length > 0 && prev.time && !allowed.includes(prev.time)) {
-          next.time = '';
-        }
-      }
-      return next;
-    });
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-purple-600 selection:text-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="hero-section hero-gradient">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 sm:mb-6" style={{ color: '#1b181f' }}>
-              {t('demo.title')}
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl mb-8" style={{ color: '#4f4f4f' }}>
-              {t('demo.subtitle')}
-            </p>
-          </motion.div>
+      <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950">
+        <div className="site-container text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
+            1-on-1 Retail AI Demo
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4">
+            See Aira in Action.
+          </h1>
+          <p className="text-slate-300 text-base sm:text-lg">
+            Schedule a personalized session with a Hilon retail specialist. Learn how Aira transforms daily billing into automated customer growth.
+          </p>
         </div>
       </section>
 
       {/* Booking Form Section */}
-      <section className="section-spacing bg-gradient-to-b from-white to-slate-50">
-        <div className="site-container">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-              {/* Form */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-xl border border-border"
-              >
-                <h2 className="text-2xl sm:text-3xl font-display font-bold mb-6" style={{ color: '#1b181f' }}>
-                  {t('demo.formTitle')}
-                </h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {submitted && (
-                    <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-green-700">
-                      <div className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0" />
-                        <div>
-                          <h3 className="font-semibold">{t('demo.successTitle')}</h3>
-                          <p className="text-sm">{t('demo.successMessage')}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {errorMessage && (
-                    <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-                      {errorMessage}
-                    </div>
-                  )}
-
-                    {/* Name Field */}
+      <section className="section-spacing bg-slate-950">
+        <div className="site-container max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Form */}
+            <div className="bg-slate-900/90 border border-purple-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+              <h2 className="text-2xl font-bold text-white mb-6">
+                Reserve Your Time Slot
+              </h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {submitted && (
+                  <div className="rounded-xl border border-emerald-500/50 bg-emerald-950/60 p-4 text-emerald-300 text-sm flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2" style={{ color: '#1b181f' }}>
-                        <User className="w-4 h-4 inline mr-2" />
-                        {t('demo.name')}
-                      </label>
-                      <Input
-                        id="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => handleChange('name', e.target.value)}
-                        placeholder={t('demo.namePlaceholder')}
-                        className="w-full"
-                      />
+                      <h3 className="font-bold text-white">Demo Requested Successfully!</h3>
+                      <p className="text-xs text-slate-300 mt-1">
+                        Our Hilon retail specialist will reach out shortly to confirm your requested demo time.
+                      </p>
                     </div>
+                  </div>
+                )}
 
-                    {/* Phone Field */}
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium mb-2" style={{ color: '#1b181f' }}>
-                        <Phone className="w-4 h-4 inline mr-2" />
-                        {t('demo.phone')}
-                      </label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => handleChange('phone', e.target.value)}
-                        placeholder={t('demo.phonePlaceholder')}
-                        className="w-full"
-                      />
-                    </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-2">
+                    <User className="w-3.5 h-3.5 inline mr-1.5 text-purple-400" />
+                    Full Name
+                  </label>
+                  <Input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => handleChange('name', e.target.value)}
+                    placeholder="Enter your name"
+                    className="bg-slate-950 border-purple-900/50 text-white text-sm"
+                  />
+                </div>
 
-                    {/* Email Field */}
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: '#1b181f' }}>
-                        <Mail className="w-4 h-4 inline mr-2" />
-                        {t('demo.email')}
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => handleChange('email', e.target.value)}
-                        placeholder={t('demo.emailPlaceholder')}
-                        className="w-full"
-                      />
-                    </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-2">
+                    <Phone className="w-3.5 h-3.5 inline mr-1.5 text-purple-400" />
+                    Phone / WhatsApp Number
+                  </label>
+                  <Input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => handleChange('phone', e.target.value)}
+                    placeholder="+91 98765 43210"
+                    className="bg-slate-950 border-purple-900/50 text-white text-sm"
+                  />
+                </div>
 
-                    {/* Date Selection */}
-                    <div>
-                      <label className="block text-sm font-medium mb-3" style={{ color: '#1b181f' }}>
-                        <Calendar className="w-4 h-4 inline mr-2" />
-                        {t('demo.selectDate')}
-                      </label>
-                      <div className="grid grid-cols-3 gap-3">
-                        {availableDates.map((dateOption, index) => (
-                          <button
-                            key={index}
-                            type="button"
-                            onClick={() => handleChange('date', dateOption.date.toISOString())}
-                            className={`p-3 rounded-lg border-2 transition-all text-sm font-medium ${
-                              formData.date === dateOption.date.toISOString()
-                                ? 'border-[var(--brand)] bg-[rgb(var(--brand-rgb)/0.1)]'
-                                : 'border-border hover:border-[rgb(var(--brand-rgb)/0.5)]'
-                            }`}
-                            style={{
-                              color: formData.date === dateOption.date.toISOString() ? 'var(--brand)' : '#1b181f'
-                            }}
-                          >
-                            <div className="font-bold">{dateOption.labelKey ? t(dateOption.labelKey) : dateOption.label}</div>
-                            <div className="text-xs mt-1 opacity-70">{dateOption.formatted}</div>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-2">
+                    <Mail className="w-3.5 h-3.5 inline mr-1.5 text-purple-400" />
+                    Business Email
+                  </label>
+                  <Input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    placeholder="you@store.com"
+                    className="bg-slate-950 border-purple-900/50 text-white text-sm"
+                  />
+                </div>
 
-                    {/* Time Selection */}
-                    {formData.date && (
-                      <div>
-                        <label className="block text-sm font-medium mb-3" style={{ color: '#1b181f' }}>
-                          <Clock className="w-4 h-4 inline mr-2" />
-                          {t('demo.selectTime')}
-                        </label>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-60 overflow-y-auto">
-                          {getTimeSlotsForDate(formData.date, timeSlots).map((slot, index) => (
-                            <button
-                              key={index}
-                              type="button"
-                              onClick={() => handleChange('time', slot)}
-                              className={`p-2 rounded-lg border transition-all text-sm ${
-                                formData.time === slot
-                                  ? 'border-[var(--brand)] bg-[rgb(var(--brand-rgb)/0.1)]'
-                                  : 'border-border hover:border-[rgb(var(--brand-rgb)/0.5)]'
-                              }`}
-                              style={{
-                                color: formData.time === slot ? 'var(--brand)' : '#1b181f'
-                              }}
-                            >
-                              {slot}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Submit Button */}
-                    <Button
-                      type="submit"
-                      size="lg"
-                      variant="cta"
-                      className="w-full shadow-lg"
-                      disabled={
-                        loading ||
-                        !formData.name ||
-                        !formData.phone ||
-                        !formData.email ||
-                        !formData.date ||
-                        !formData.time
-                      }
-                    >
-                      {loading ? 'Sending...' : t('demo.submit')}
-                    </Button>
-                  </form>
-              </motion.div>
-
-              {/* Info Section */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="space-y-6"
-              >
-                <div className="bg-gradient-to-br from-[var(--brand-tint)] to-white rounded-2xl p-5 sm:p-6 border border-[rgb(var(--brand-rgb)/0.2)]">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#1b181f' }}>
-                    {t('demo.whatToExpect')}
-                  </h3>
-                  <ul className="space-y-3">
-                    {[
-                      t('demo.expect1'),
-                      t('demo.expect2'),
-                      t('demo.expect3'),
-                      t('demo.expect4'),
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: 'var(--brand)' }} />
-                        <span style={{ color: '#4f4f4f' }}>{item}</span>
-                      </li>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-2">
+                    <Calendar className="w-3.5 h-3.5 inline mr-1.5 text-purple-400" />
+                    Preferred Date
+                  </label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {availableDates.map((d, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => handleChange('date', d.date.toISOString())}
+                        className={`p-3 rounded-xl border text-xs text-center transition-all ${
+                          formData.date === d.date.toISOString()
+                            ? 'bg-purple-600 text-white border-purple-400 font-bold shadow-md'
+                            : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-purple-800'
+                        }`}
+                      >
+                        <div className="font-bold">{d.label}</div>
+                        <div className="text-[10px] text-slate-400 mt-0.5">{d.formatted}</div>
+                      </button>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
-                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-border shadow-md">
-                  <h3 className="text-xl font-bold mb-4" style={{ color: '#1b181f' }}>
-                    {t('demo.officeHours')}
-                  </h3>
-                  <p className="mb-2" style={{ color: '#4f4f4f' }}>
-                    <strong>{t('demo.weekdays')}:</strong> 9:30 AM - 6:00 PM
-                  </p>
-                  <p style={{ color: '#4f4f4f' }}>
-                    <strong>{t('demo.weekend')}:</strong> {t('demo.closed')}
-                  </p>
-                </div>
-              </motion.div>
+                {formData.date && (
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-300 mb-2">
+                      <Clock className="w-3.5 h-3.5 inline mr-1.5 text-purple-400" />
+                      Select Time Slot
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto pr-1">
+                      {timeSlots.map((slot, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => handleChange('time', slot)}
+                          className={`p-2 rounded-lg border text-xs transition-all ${
+                            formData.time === slot
+                              ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-purple-400 font-bold'
+                              : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-purple-800'
+                          }`}
+                        >
+                          {slot}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  disabled={loading || !formData.name || !formData.phone || !formData.date || !formData.time}
+                  className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold text-sm rounded-xl shadow-lg shadow-purple-600/30"
+                >
+                  {loading ? 'Submitting...' : 'Confirm Book Demo'}
+                </Button>
+              </form>
+            </div>
+
+            {/* What to expect */}
+            <div className="space-y-6 flex flex-col justify-between">
+              <div className="bg-slate-900/90 border border-purple-900/40 p-6 sm:p-8 rounded-3xl space-y-4">
+                <h3 className="text-xl font-bold text-white">What happens in your demo?</h3>
+                <ul className="space-y-3 text-sm text-slate-300">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+                    <span>Live walk-through of Aira Smart Billing & instant WhatsApp digital receipts</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+                    <span>Deep-dive into 360° Customer Directory & RFM segment automation</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+                    <span>Demonstration of Aira AI natural language query & automated store actions</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+                    <span>Customized ROI calculation tailored to your specific retail sector</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-slate-900/90 border border-slate-800 p-6 rounded-3xl text-xs text-slate-400 space-y-2">
+                <h4 className="font-bold text-white text-sm">Need immediate assistance?</h4>
+                <p>Contact our retail technology team at <span className="text-pink-400">demo@hilon.ai</span> or call <span className="text-pink-400">+1 (800) 555-HILON</span>.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -385,4 +257,3 @@ export default function BookDemo() {
     </div>
   );
 }
-

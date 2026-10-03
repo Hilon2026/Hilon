@@ -1,1183 +1,175 @@
-import { useState, useRef, useEffect, Fragment } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Globe, Search, HelpCircle, Users, Gift, CreditCard, BarChart3, Smartphone, Cpu, ShoppingBag, Package, BookOpen, FileText, Video, Play, Star, Tag, Megaphone, MessageSquare, Newspaper, Store, Shirt, Gem, PlugZap, Glasses, Croissant, Sparkles, Footprints, ShoppingCart, Refrigerator, PenLine, Warehouse, Watch, CalendarDays } from "lucide-react";
-import { ReceiptIndianRupee } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { trackBookDemoClick } from "@/lib/leadStore";
-import apeirosLogo from "@/assets/apeiros-logo.png";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { 
+  Menu, X, ChevronDown, Brain, Receipt, Users, Gift, 
+  BarChart3, ArrowRight, ShieldCheck, PhoneCall 
+} from "lucide-react";
+import HilonLogo from "@/components/brand/HilonLogo";
+import AiraLogo from "@/components/brand/AiraLogo";
 
-/** 5+4+3 in 3 columns; priority items at top of first column; mega menu + flat mobile order */
-const industriesMegaColumns = [
-  [
-    {
-      name: "Fashion",
-      nameHI: "फैशन",
-      href: "/industries/fashion",
-      icon: Shirt,
-      desc: "Apparel, trends, and seasonal retail",
-      descHI: "कपड़े, ट्रेंड और मौसमी रिटेल",
-    },
-    {
-      name: "Jewellery",
-      nameHI: "ज्वैलरी",
-      href: "/industries/jewellery",
-      icon: Gem,
-      desc: "Gold, silver, and fine jewellery stores",
-      descHI: "सोना, चाँदी और ज़ेवरात की दुकानें",
-    },
-    {
-      name: "Electricals & Electronics",
-      nameHI: "इलेक्ट्रिकल्स और इलेक्ट्रॉनिक्स",
-      href: "/industries/electronics",
-      icon: PlugZap,
-      desc: "Gadgets, wiring, and consumer electronics",
-      descHI: "गैजेट, वायरिंग और उपभोक्ता इलेक्ट्रॉनिक्स",
-    },
-    {
-      name: "Accessories",
-      nameHI: "एक्सेसरीज़",
-      href: "/industries/accessories",
-      icon: Glasses,
-      desc: "Bags, belts, and lifestyle add-ons",
-      descHI: "बैग, बेल्ट और लाइफ़स्टाइल सामान",
-    },
-    {
-      name: "Bakery",
-      nameHI: "बेकरी",
-      href: "/industries/bakery",
-      icon: Croissant,
-      desc: "Fresh goods and daily bakery retail",
-      descHI: "ताज़ा सामान और रोज़ाना बेकरी रिटेल",
-    },
-  ],
-  [
-    {
-      name: "Cosmetics",
-      nameHI: "कॉस्मेटिक्स",
-      href: "/industries/cosmetics",
-      icon: Sparkles,
-      desc: "Beauty, skincare, and personal care",
-      descHI: "ब्यूटी, स्किनकेयर और व्यक्तिगत देखभाल",
-    },
-    {
-      name: "Footwear",
-      nameHI: "फुटवियर",
-      href: "/industries/footwear",
-      icon: Footprints,
-      desc: "Shoes, sandals, and sports footwear",
-      descHI: "जूते, चप्पल और खेल जूते",
-    },
-    {
-      name: "Grocery",
-      nameHI: "किराना / ग्रोसरी",
-      href: "/industries/grocery",
-      icon: ShoppingCart,
-      desc: "Kirana, staples, and packaged foods",
-      descHI: "किराना, रोज़मर्रा और पैक्ड फ़ूड",
-    },
-    {
-      name: "Home Appliances",
-      nameHI: "होम अप्लायंसेज़",
-      href: "/industries/home-appliances",
-      icon: Refrigerator,
-      desc: "TVs, fridges, and white goods",
-      descHI: "TV, फ्रिज और घरेलू उपकरण",
-    },
-  ],
-  [
-    {
-      name: "Stationery",
-      nameHI: "स्टेशनरी",
-      href: "/industries/stationery",
-      icon: PenLine,
-      desc: "Books, office, and school supplies",
-      descHI: "किताबें, ऑफ़िस और स्कूल सामान",
-    },
-    {
-      name: "Supermarket",
-      nameHI: "सुपरमार्केट",
-      href: "/industries/supermarket",
-      icon: Warehouse,
-      desc: "Multi-category modern retail",
-      descHI: "बहु-श्रेणी आधुनिक रिटेल",
-    },
-    {
-      name: "Watches",
-      nameHI: "घड़ियाँ",
-      href: "/industries/watches",
-      icon: Watch,
-      desc: "Timepieces and wearable retail",
-      descHI: "घड़ियाँ और वियरेबल रिटेल",
-    },
-  ],
-] as const;
-
-const industriesNavChildren = industriesMegaColumns.flat();
-
-// Navigation items with translation keys
-const navigation = [
-  {
-    name: "Solutions",
-    nameKey: "nav.solutions",
-    href: "/solutions",
-    children: [
-      {
-        name: "For Retailers",
-        nameHI: "दुकानदारों के लिए",
-        href: "/for-retailers",
-        icon: Store,
-        desc: "How Lume helps your store grow",
-        descHI: "ल्यूम आपकी दुकान को कैसे बढ़ाता है",
-        isPrimaryEntry: true,
-      },
-      { name: "Smart Billing", nameHI: "बुद्धिमान बिलिंग", href: "/solutions/smart-billing", icon: ReceiptIndianRupee, desc: "Digital billing with engagement", descHI: "जुड़ाव के साथ डिजिटल बिलिंग" },
-      { name: "POS Integration", nameHI: "POS एकीकरण", href: "/solutions/pos-integration", icon: Cpu, desc: "Connect any existing POS", descHI: "किसी भी मौजूदा POS को जोड़ें" },
-      { name: "Customer Analytics", nameHI: "ग्राहक विश्लेषण", href: "/solutions/customer-analytics", icon: Users, desc: "Understand your customers", descHI: "अपने ग्राहकों को समझें" },
-      { name: "Loyalty & Coupons", nameHI: "वफादारी और कूपन", href: "/solutions/loyalty-coupons", icon: Gift, desc: "Reward repeat customers", descHI: "नियमित ग्राहकों को पुरस्कार दें" },
-      { name: "Campaign Management", nameHI: "अभियान प्रबंधन", href: "/solutions/campaign-management", icon: BarChart3, desc: "Multi-channel marketing", descHI: "बहु-चैनल मार्केटिंग" },
-      { name: "Reports & Dashboard", nameHI: "रिपोर्ट्स और डैशबोर्ड", href: "/solutions/reports-dashboard", icon: BarChart3, desc: "Business insights", descHI: "व्यापारिक अंतर्दृष्टि" },
-      { name: "Hyperlocal Commerce", nameHI: "स्थानीय वाणिज्य", href: "/solutions/hyperlocal-commerce", icon: ShoppingBag, desc: "Quick commerce ready", descHI: "त्वरित वाणिज्य के लिए तैयार" },
-    ],
-  },
-  {
-    name: "Category",
-    nameKey: "nav.industries",
-    href: "/industries",
-    children: industriesNavChildren,
-  },
-  {
-    name: "Features",
-    nameKey: "nav.features",
-    href: "/features",
-    children: [
-      { name: "ATTRACT", nameHI: "ATTRACT", isSectionLabel: true },
-      { name: "Reviews", nameHI: "समीक्षाएं", href: "/features/reviews", icon: Star, desc: "Earn more Google Reviews via digital bill", descHI: "डिजिटल बिल के माध्यम से अधिक Google समीक्षाएं प्राप्त करें" },
-      { name: "Referrals", nameHI: "रेफरल", href: "/features/referrals", icon: Gift, desc: "One-click referral on WhatsApp via digital bill", descHI: "डिजिटल बिल के माध्यम से WhatsApp पर एक-क्लिक रेफरल" },
-      { name: "ENGAGE & RETAIN", nameHI: "ENGAGE & RETAIN", isSectionLabel: true },
-      { name: "Digital Bills", nameHI: "डिजिटल बिल", href: "/features/digital-bills", icon: ReceiptIndianRupee, desc: "Send bills to your customers digitally on WhatsApp", descHI: "WhatsApp पर अपने ग्राहकों को डिजिटल रूप से बिल भेजें" },
-      { name: "Loyalty", nameHI: "वफादारी", href: "/features/loyalty", icon: Tag, desc: "Drive customer loyalty with coupons and latest offers", descHI: "कूपन और नवीनतम ऑफ़र के साथ ग्राहक वफादारी बढ़ाएं" },
-      { name: "Promotion", nameHI: "प्रचार", href: "/features/promotion", icon: Megaphone, desc: "Share offers, discounts and greetings on WhatsApp", descHI: "WhatsApp पर ऑफ़र, छूट और अभिवादन साझा करें" },
-      { name: "MANAGE", nameHI: "MANAGE", isSectionLabel: true },
-      { name: "Analytics", nameHI: "विश्लेषण", href: "/features/analytics", icon: BarChart3, desc: "Uncover trends and insights for multiple stores", descHI: "कई स्टोर के लिए रुझान और अंतर्दृष्टि खोजें" },
-      { name: "Surveys", nameHI: "सर्वेक्षण", href: "/features/surveys", icon: MessageSquare, desc: "Collect customer feedback via digital bill on WhatsApp", descHI: "WhatsApp पर डिजिटल बिल के माध्यम से ग्राहक प्रतिक्रिया एकत्र करें" },
-    ],
-  },
-  {
-    name: "Products",
-    nameKey: "nav.products",
-    href: "/products",
-    children: [
-      { name: "Lume", nameHI: "ल्यूम", href: "/products", icon: Smartphone, desc: "Complete retail platform", descHI: "पूर्ण खुदरा मंच" },
-      { name: "Lume Shop", nameHI: "ल्यूम दुकान", href: "#", icon: ShoppingBag, desc: "Coming Soon", descHI: "जल्द आ रहा है", comingSoon: true },
-      { name: "MPos", nameHI: "एमपीओएस", href: "/products/mpos", icon: Smartphone, desc: "Mobile POS for fast billing", descHI: "तेज़ बिलिंग के लिए मोबाइल POS" },
-    ],
-  },
-  {
-    name: "Resources",
-    nameKey: "nav.resources",
-    href: "/resources",
-    children: [
-      { name: "Guide and FAQs", nameHI: "मार्गदर्शिका और सवाल-जवाब", href: "/resources/guides", icon: BookOpen, desc: "Quick guides and FAQs", descHI: "त्वरित मार्गदर्शिका और सवाल-जवाब" },
-      { name: "Case Studies", nameHI: "सफलता के उदाहरण", href: "/resources/case-studies", icon: FileText, desc: "Success stories", descHI: "सफलता की कहानियाँ" },
-      { name: "Blog", nameHI: "ब्लॉग", href: "/resources/blog", icon: Newspaper, desc: "Retail tips and news", descHI: "रिटेल टिप्स और ख़बरें" },
-    ],
-  },
-  { name: "Pricing", nameKey: "nav.pricing", href: "/pricing" },
-  { name: "Financials", nameKey: "nav.financials", href: "/financials" },
-];
-
-const searchablePages = [
-  { name: "Home", href: "/", keywords: ["home", "main", "start", "apeiros", "lume", "index"] },
-  { name: "For Retailers", href: "/for-retailers", keywords: ["retailers", "shops", "stores", "business", "kirana", "दुकान", "for retailers"] },
-
-  // Solutions
-  { name: "Solutions (Overview)", href: "/solutions", keywords: ["solutions", "features", "tools", "समाधान पेज"] },
-  { name: "Digital Billing", href: "/solutions/digital-billing", keywords: ["digital billing", "smart billing", "invoice", "gst", "bill", "बिलिंग"] },
-  { name: "Customer Capture", href: "/solutions/customer-capture", keywords: ["customer capture", "customer data", "ग्राहक डेटा", "customer list"] },
-  { name: "Feedback & Engagement", href: "/solutions/feedback-engagement", keywords: ["feedback", "engagement", "ratings", "reviews", "feedback और जुड़ाव"] },
-  { name: "Real-time Engagement", href: "/solutions/real-time-engagement", keywords: ["whatsapp campaign", "real time", "offers", "campaigns"] },
-  { name: "Credit (Udhaar) Management", href: "/solutions/credit-management", keywords: ["credit", "udhaar", "उधार", "ledger"] },
-  { name: "Analytics & Reports", href: "/solutions/analytics", keywords: ["analytics", "reports", "डैशबोर्ड", "insights"] },
-
-  // Products
-  { name: "Products (Overview)", href: "/products", keywords: ["products", "apps", "software", "product page"] },
-  { name: "Products – Core Capabilities", href: "/products/core", keywords: ["features", "core capabilities", "billing & pos", "smart digital bills", "campaign manager"] },
-  { name: "Products – How Lume Works", href: "/products/how-it-works", keywords: ["how lume works", "process", "workflow"] },
-  { name: "Products – Who is Lume For", href: "/products/who-is-lume-for", keywords: ["who is lume for", "single store", "multi store", "chains"] },
-  { name: "Lume Shop", href: "/products/lume-shop", keywords: ["lume shop", "hyperlocal", "online store", "shopping app"] },
-
-  // Pricing & plans
-  { name: "Pricing", href: "/pricing", keywords: ["pricing", "plans", "cost", "price", "free", "कीमत", "advance", "premium"] },
-  { name: "Financials", href: "/financials", keywords: ["financials", "finance", "reports", "फाइनेंशियल्स"] },
-
-  // Dedicated feature pages
-  { name: "Reviews Feature", href: "/features/reviews", keywords: ["reviews", "google reviews", "rating", "feature reviews"] },
-  { name: "Referrals Feature", href: "/features/referrals", keywords: ["referrals", "word of mouth", "feature referrals"] },
-  { name: "Digital Bills Feature", href: "/features/digital-bills", keywords: ["digital bills", "whatsapp bill", "invoice", "paperless billing"] },
-  { name: "Loyalty Feature", href: "/features/loyalty", keywords: ["loyalty", "points", "cashback", "retention"] },
-  { name: "Promotion Feature", href: "/features/promotion", keywords: ["promotion", "offers", "discounts", "campaign", "whatsapp promotion"] },
-  { name: "Analytics Feature", href: "/features/analytics", keywords: ["analytics", "reports", "insights", "trends", "multi store"] },
-  { name: "Surveys Feature", href: "/features/surveys", keywords: ["surveys", "feedback", "satisfaction", "customer survey"] },
-
-  // Help & Guides
-  { name: "Help Center", href: "/help", keywords: ["help", "support", "faq", "tutorial", "guide center"] },
-  { name: "Getting Started Guide", href: "/help/getting-started", keywords: ["getting started", "onboarding", "setup", "ल्यूम के साथ शुरुआत"] },
-  { name: "Billing Guide", href: "/help/billing-guide", keywords: ["billing guide", "quick bill", "pos bill", "mpos", "ebill", "बिलिंग गाइड"] },
-
-  // Resources
-  { name: "Guides & FAQs", href: "/resources/guides", keywords: ["guides", "faqs", "quick guides", "resource", "help articles"] },
-  { name: "Case Studies", href: "/resources/case-studies", keywords: ["case studies", "success stories", "customer success", "stories"] },
-  { name: "Blog", href: "/resources/blog", keywords: ["blog", "articles", "retail tips", "news", "insights"] },
-
-  // Company
-  { name: "About Us", href: "/company/about", keywords: ["about", "about us", "apeiros", "हमारे बारे में"] },
-  { name: "Careers", href: "/company/careers", keywords: ["careers", "jobs", "join team", "hiring"] },
-  { name: "Contact", href: "/contact", keywords: ["contact", "support", "email", "call", "संपर्क"] },
-
-  // Legal
-  { name: "Privacy Policy", href: "/privacy-policy", keywords: ["privacy", "data", "गोपनीयता"] },
-  { name: "Terms & Conditions", href: "/terms-conditions", keywords: ["terms", "conditions", "rules", "नियम और शर्तें"] },
-];
-
-const languages = [
-  { code: "EN" as const, name: "English" },
-  { code: "HI" as const, name: "हिंदी" },
-];
-
-export function Header() {
-  const { language, setLanguage, t } = useLanguage();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileExpandedMenu, setMobileExpandedMenu] = useState<string | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<typeof searchablePages>([]);
-  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
-  const navigate = useNavigate();
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  const searchContainerRef = useRef<HTMLDivElement>(null);
-  const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const isActive = (href: string) => location.pathname === href;
-
-  // Close any open header dropdown when route changes (prevents stuck mega menus)
-  useEffect(() => {
-    setHoveredMenu(null);
-  }, [location.pathname]);
-
-  // Scroll detection for header styling
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial state
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      const results = searchablePages.filter(
-        (page) =>
-          page.name.toLowerCase().includes(query) ||
-          page.keywords.some((keyword) => keyword.includes(query))
-      );
-      setSearchResults(results);
-    } else {
-      setSearchResults([]);
-    }
-  }, [searchQuery]);
+    setMobileMenuOpen(false);
+    setOpenDropdown(null);
+  }, [location.pathname]);
 
-  useEffect(() => {
-    if (searchOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [searchOpen]);
-
-  // Close search when clicking outside
-  useEffect(() => {
-    if (!searchOpen) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      
-      // Don't do anything if clicking inside search container (multiple checks)
-      if (
-        searchContainerRef.current?.contains(target) ||
-        target.closest('[data-search-container]') ||
-        target.closest('.search-results-dropdown') ||
-        target === searchInputRef.current ||
-        searchInputRef.current?.contains(target)
-      ) {
-        return;
-      }
-      
-      // Only close if truly outside
-      setSearchOpen(false);
-      setSearchQuery("");
-      setSearchResults([]);
-    };
-
-    // Add delay and use capture phase
-    const timeoutId = setTimeout(() => {
-      // Use click instead of mousedown to avoid conflicts
-      document.addEventListener("click", handleClickOutside, true);
-    }, 500);
-
-    return () => {
-      clearTimeout(timeoutId);
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, [searchOpen]);
-
-  const handleSearchSelect = (href: string) => {
-    setSearchOpen(false);
-    setSearchQuery("");
-    navigate(href);
+  const toggleDropdown = (name: string) => {
+    setOpenDropdown(openDropdown === name ? null : name);
   };
-
-  const handleMouseEnter = (name: string) => {
-    if (menuTimeoutRef.current) {
-      clearTimeout(menuTimeoutRef.current);
-    }
-    setHoveredMenu(name);
-  };
-
-  const handleMouseLeave = () => {
-    menuTimeoutRef.current = setTimeout(() => {
-      setHoveredMenu(null);
-    }, 150);
-  };
-
-  // Disable page scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
 
   return (
-    <>
-      <header 
-        className={`${
-          mobileMenuOpen
-            ? "fixed top-0 left-0 right-0 z-50 bg-white shadow-md border-b border-border"
-            : isScrolled
-              ? "fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-b border-border shadow-sm"
-              : "absolute top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm"
-        } transition-all duration-300 overflow-visible`}
-      >
-        <nav className="site-container flex items-center justify-between h-16 overflow-visible">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <img 
-              src={apeirosLogo} 
-              alt="Apeiros AI" 
-              className="h-12 lg:h-14 w-auto object-contain"
-            />
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-slate-950/90 backdrop-blur-xl border-b border-purple-900/40 py-3 shadow-xl"
+          : "bg-gradient-to-b from-slate-950/90 to-transparent py-4 sm:py-5"
+      }`}
+    >
+      <div className="site-container flex items-center justify-between">
+        {/* Left: Brand Logos */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          <HilonLogo variant="light" size="sm" showTagline={false} />
+          <span className="h-5 w-px bg-purple-900/60 hidden sm:block"></span>
+          <div className="hidden sm:block">
+            <AiraLogo variant="light" size="sm" withCompany={false} />
+          </div>
+        </div>
+
+        {/* Center: Main Navigation */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <Link
+            to="/ai-intelligence"
+            className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors"
+          >
+            AI Intelligence
           </Link>
 
-          {/* Desktop Navigation - Center */}
-          <div className="hidden lg:flex items-center gap-0.5 overflow-visible">
-            {navigation.map((item) =>
-              item.children ? (
-                <div
-                  key={item.name}
-                  className="relative z-50"
-                  onMouseEnter={() => handleMouseEnter(item.name)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className={`gap-1 text-base font-medium transition-colors ${
-                      hoveredMenu === item.name 
-                        ? isScrolled 
-                          ? 'text-foreground bg-muted/60' 
-                          : 'text-[var(--brand)] bg-[rgb(var(--brand-rgb)/0.1)]'
-                        : isScrolled 
-                          ? 'text-muted-foreground hover:bg-muted/60 hover:text-foreground' 
-                          : 'text-[#1b181f] hover:bg-[rgb(var(--brand-rgb)/0.1)] hover:text-[var(--brand)]'
-                    }`}
-                  >
-                    {item.nameKey ? t(item.nameKey) : item.name}
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform ${hoveredMenu === item.name ? 'rotate-180' : ''}`} />
-                  </Button>
-                  
-                  <AnimatePresence>
-                    {hoveredMenu === item.name && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.15 }}
-                        className="absolute top-full left-0 pt-2 z-[100]"
-                        style={{ position: 'absolute' }}
-                        onMouseEnter={() => handleMouseEnter(item.name)}
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        {item.name === "Features" ? (
-                          // Features Mega Menu - 3 Column Layout
-                          <div className="bg-white rounded-xl shadow-xl border border-border/50 p-6 w-[720px]">
-                            <div className="grid grid-cols-3 gap-6">
-                              {(() => {
-                                // Group items by section
-                                const sections: { label: string; items: typeof item.children }[] = [];
-                                let currentSection: typeof sections[0] | null = null;
-                                
-                                item.children.forEach((child) => {
-                                  if (child.isSectionLabel) {
-                                    if (currentSection) {
-                                      sections.push(currentSection);
-                                    }
-                                    currentSection = { label: child.name, items: [] };
-                                  } else if (currentSection) {
-                                    currentSection.items.push(child);
-                                  }
-                                });
-                                if (currentSection) {
-                                  sections.push(currentSection);
-                                }
-                                
-                                return sections.map((section, sectionIndex) => (
-                                  <div key={section.label} className="flex flex-col">
-                                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                                      {section.label}
-                                    </h3>
-                                    <div className="space-y-1">
-                                      {section.items.map((child) => {
-                                        if (child.comingSoon) {
-                                          return (
-                                            <div
-                                              key={child.name}
-                                              className="flex items-start gap-3 p-3 rounded-lg cursor-not-allowed opacity-60"
-                                            >
-                                              <div className="w-9 h-9 rounded-lg bg-[rgb(var(--brand-rgb)/0.1)] flex items-center justify-center shrink-0">
-                                                <child.icon className="w-4.5 h-4.5" style={{ color: 'var(--brand)' }} />
-                                              </div>
-                                              <div className="flex-1 min-w-0">
-                                                <div className="flex items-center gap-2 flex-wrap">
-                                                  <p className="font-medium text-sm text-foreground">
-                                                    {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                                  </p>
-                                                  <span className="text-xs px-2 py-0.5 rounded-full bg-[rgb(var(--brand-rgb)/0.1)] text-[var(--brand)] font-medium">
-                                                    {language === "HI" ? "जल्द आ रहा है" : "Coming Soon"}
-                                                  </span>
-                                                </div>
-                                                <p className="text-xs text-muted-foreground mt-1">
-                                                  {language === "HI" && child.descHI ? child.descHI : child.desc}
-                                                </p>
-                                              </div>
-                                            </div>
-                                          );
-                                        }
-                                        
-                                        return (
-                                          <Link
-                                            key={child.name}
-                                            to={child.href}
-                                            className="flex items-start gap-3 p-3 rounded-lg transition-colors group hover:bg-secondary/50"
-                                          >
-                                            <div className="w-9 h-9 rounded-lg bg-[rgb(var(--brand-rgb)/0.1)] flex items-center justify-center shrink-0 group-hover:bg-[rgb(var(--brand-rgb)/0.15)]">
-                                              <child.icon className="w-4.5 h-4.5" style={{ color: 'var(--brand)' }} />
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                              <p className="font-medium text-sm text-foreground group-hover:text-[var(--brand)]">
-                                                {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                              </p>
-                                              <p className="text-xs text-muted-foreground mt-1">
-                                                {language === "HI" && child.descHI ? child.descHI : child.desc}
-                                              </p>
-                                            </div>
-                                          </Link>
-                                        );
-                                      })}
-                                    </div>
-                                  </div>
-                                ));
-                              })()}
-                            </div>
-                          </div>
-                        ) : item.nameKey === "nav.industries" ? (
-                          <div className="bg-white rounded-xl shadow-xl border border-border/50 p-6 w-[min(900px,calc(100vw-2rem))] max-w-[calc(100vw-1.5rem)]">
-                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                              {industriesMegaColumns.map((column, columnIndex) => (
-                                <div
-                                  key={column[0].name}
-                                  className={`space-y-1 min-w-0 ${
-                                    columnIndex === 2 ? "sm:col-span-2 xl:col-span-1" : ""
-                                  }`}
-                                >
-                                  {column.map((row) => (
-                                    <Link
-                                      key={row.name}
-                                      to={row.href}
-                                      onClick={() => setHoveredMenu(null)}
-                                      className="flex items-start gap-3 p-3 rounded-lg transition-colors group hover:bg-secondary/50"
-                                    >
-                                      <div className="w-9 h-9 rounded-lg bg-[rgb(var(--brand-rgb)/0.1)] flex items-center justify-center shrink-0 group-hover:bg-[rgb(var(--brand-rgb)/0.15)]">
-                                        <row.icon className="w-4.5 h-4.5" style={{ color: "var(--brand)" }} />
-                                      </div>
-                                      <div className="flex-1 min-w-0">
-                                        <p className="font-medium text-sm text-foreground group-hover:text-[var(--brand)]">
-                                          {language === "HI" ? row.nameHI : row.name}
-                                        </p>
-                                        <p className="text-xs text-muted-foreground mt-1">
-                                          {language === "HI" ? row.descHI : row.desc}
-                                        </p>
-                                      </div>
-                                    </Link>
-                                  ))}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        ) : (
-                          // Regular Dropdown - Vertical Stack
-                          <div className="bg-white rounded-xl shadow-xl border border-border/50 p-2 min-w-[280px]">
-                            {item.children.map((child, index) => {
-                              // Primary entry (e.g. For Retailers under Solutions)
-                              if ("isPrimaryEntry" in child && child.isPrimaryEntry && child.icon) {
-                                return (
-                                  <Fragment key={child.name}>
-                                    <Link
-                                      to={child.href}
-                                      className="flex items-start gap-3 p-3 rounded-lg transition-colors group hover:bg-secondary/50"
-                                    >
-                                      <div className="w-9 h-9 rounded-lg bg-[rgb(var(--brand-rgb)/0.1)] flex items-center justify-center shrink-0 group-hover:bg-[rgb(var(--brand-rgb)/0.15)]">
-                                        <child.icon className="w-4.5 h-4.5" style={{ color: "var(--brand)" }} />
-                                      </div>
-                                      <div className="flex-1">
-                                        <div className="flex items-center gap-2">
-                                          <p className="font-semibold text-base text-[var(--brand)]">
-                                            {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                          </p>
-                                        </div>
-                                        <p className="text-xs text-muted-foreground mt-0.5">
-                                          {language === "HI" && child.descHI ? child.descHI : child.desc}
-                                        </p>
-                                      </div>
-                                    </Link>
-                                    <div className="mx-2 my-1.5 border-b border-border/50" aria-hidden />
-                                  </Fragment>
-                                );
-                              }
+          <Link
+            to="/solutions"
+            className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+          >
+            Solutions
+          </Link>
 
-                              // Section label
-                              if (child.isSectionLabel) {
-                                return (
-                                  <div
-                                    key={child.name}
-                                    className={`text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 py-2 ${
-                                      index > 0 ? 'mt-2 border-t border-border/30 pt-3' : ''
-                                    }`}
-                                  >
-                                    {child.name}
-                                  </div>
-                                );
-                              }
-                              
-                              // Coming soon item
-                              if (child.comingSoon) {
-                                return (
-                                  <div
-                                    key={child.name}
-                                    className="flex items-start gap-3 p-3 rounded-lg cursor-not-allowed opacity-60"
-                                  >
-                                    <div className="w-9 h-9 rounded-lg bg-[rgb(var(--brand-rgb)/0.1)] flex items-center justify-center shrink-0">
-                                      <child.icon className="w-4.5 h-4.5" style={{ color: 'var(--brand)' }} />
-                                    </div>
-                                    <div className="flex-1">
-                                      <div className="flex items-center gap-2">
-                                        <p className="font-medium text-base text-foreground">
-                                          {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                        </p>
-                                        <span className="text-xs px-2 py-0.5 rounded-full bg-[rgb(var(--brand-rgb)/0.1)] text-[var(--brand)] font-medium">
-                                          {language === "HI" ? "जल्द आ रहा है" : "Coming Soon"}
-                                        </span>
-                                      </div>
-                                      <p className="text-xs text-muted-foreground">
-                                        {language === "HI" && child.descHI ? child.descHI : child.desc}
-                                      </p>
-                                    </div>
-                                  </div>
-                                );
-                              }
-                              
-                              // Regular link item
-                              return (
-                                <Link
-                                  key={child.name}
-                                  to={child.href}
-                                  className="flex items-start gap-3 p-3 rounded-lg transition-colors group hover:bg-secondary/50"
-                                >
-                                  <div className="w-9 h-9 rounded-lg bg-[rgb(var(--brand-rgb)/0.1)] flex items-center justify-center shrink-0 group-hover:bg-[rgb(var(--brand-rgb)/0.15)]">
-                                    <child.icon className="w-4.5 h-4.5" style={{ color: 'var(--brand)' }} />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="flex items-center gap-2">
-                                      <p className="font-medium text-base text-foreground">
-                                        {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                      </p>
-                                    </div>
-                                    <p className="text-xs text-muted-foreground">
-                                      {language === "HI" && child.descHI ? child.descHI : child.desc}
-                                    </p>
-                                  </div>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
-                <Button
-                  key={item.name}
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                  className={`text-base font-medium transition-colors ${
-                    isActive(item.href)
-                      ? "text-[var(--brand)]"
-                      : isScrolled
-                        ? "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
-                        : "text-[#1b181f] hover:bg-[rgb(var(--brand-rgb)/0.1)] hover:text-[var(--brand)]"
-                  }`}
-                >
-                  <Link to={item.href}>{item.nameKey ? t(item.nameKey) : item.name}</Link>
-                </Button>
-              )
-            )}
-          </div>
+          <Link
+            to="/industries"
+            className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+          >
+            Industries
+          </Link>
 
-          {/* Right Side */}
-          <div className="hidden lg:flex items-center gap-1.5">
-            {/* Search - Inline in Header */}
-            <div 
-              ref={searchContainerRef}
-              data-search-container
-              className="relative"
-              onClick={(e) => e.stopPropagation()}
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
-            >
-              {!searchOpen ? (
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={`transition-colors h-9 w-9 ${
-                    isScrolled 
-                      ? "text-muted-foreground hover:text-foreground hover:bg-muted/60" 
-                      : "text-[#1b181f] hover:text-[var(--brand)] hover:bg-[rgb(var(--brand-rgb)/0.1)]"
-                  }`}
-                  onClick={() => setSearchOpen(true)}
-                >
-                  <Search className="w-4 h-4" />
-                </Button>
-              ) : (
-                <motion.div
-                  initial={{ width: 40 }}
-                  animate={{ width: 240 }}
-                  exit={{ width: 40 }}
-                  transition={{ duration: 0.2 }}
-                  className="relative max-w-[240px] sm:max-w-[240px]"
-                  data-search-container
-                  onClick={(e) => e.stopPropagation()}
-                  onMouseDown={(e) => e.stopPropagation()}
-                  onTouchStart={(e) => e.stopPropagation()}
-                >
-                  <div 
-                    className="relative flex items-center" 
-                    onClick={(e) => e.stopPropagation()}
-                    onMouseDown={(e) => e.stopPropagation()}
-                    onTouchStart={(e) => e.stopPropagation()}
-                  >
-                    <Search className="absolute left-3 w-4 h-4 z-10" style={{ color: '#9ca3af' }} />
-                    <Input
-                      ref={searchInputRef}
-                      type="text"
-                      placeholder={language === 'HI' ? 'पेज खोजें...' : 'Search pages...'}
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                      onMouseDown={(e) => e.stopPropagation()}
-                      onTouchStart={(e) => e.stopPropagation()}
-                      onFocus={(e) => {
-                        e.stopPropagation();
-                        e.currentTarget.focus();
-                      }}
-                      onKeyDown={(e) => {
-                        e.stopPropagation();
-                        if (e.key === 'Escape') {
-                          setSearchOpen(false);
-                          setSearchQuery("");
-                          setSearchResults([]);
-                        }
-                        if (e.key === 'Enter' && searchResults.length > 0) {
-                          handleSearchSelect(searchResults[0].href);
-                        }
-                      }}
-                      className="w-full pl-10 pr-10 h-9 text-sm bg-white border-border focus:border-border focus:ring-0"
-                      autoFocus
-                    />
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute right-0 h-9 w-9 hover:bg-transparent"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSearchOpen(false);
-                        setSearchQuery("");
-                        setSearchResults([]);
-                      }}
-                      onMouseDown={(e) => e.stopPropagation()}
-                    >
-                      <X className="w-4 h-4 text-muted-foreground" />
-                    </Button>
-                  </div>
-                  
-                  {/* Search Results Dropdown */}
-                  {searchQuery.trim() && searchResults.length > 0 && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="search-results-dropdown absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-border/50 overflow-hidden z-50 max-h-96 overflow-y-auto w-[240px]"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <div className="py-1">
-                        {searchResults.map((result) => (
-                          <button
-                            key={result.href}
-                            onClick={() => handleSearchSelect(result.href)}
-                            className="w-full text-left px-4 py-3 hover:bg-[#e0f0ff] transition-colors flex items-center gap-3 group"
-                          >
-                            <Search className="w-4 h-4 text-muted-foreground group-hover:text-[var(--brand)]" />
-                            <div className="flex-1">
-                              <p className="font-medium text-sm text-foreground group-hover:text-[var(--brand)]">
-                                {result.name}
-                              </p>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </motion.div>
-              )}
-            </div>
-            
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className={`transition-colors h-9 w-9 ${
-                isScrolled 
-                  ? "text-muted-foreground hover:text-foreground hover:bg-muted/60" 
-                  : "text-[#1b181f] hover:text-[var(--brand)] hover:bg-[rgb(var(--brand-rgb)/0.1)]"
-              }`}
-              asChild
-            >
-              <Link to="/help">
-                <HelpCircle className="w-4 h-4" />
-              </Link>
-            </Button>
-            
-            {/* Language Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => handleMouseEnter('lang')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className={`gap-1 transition-colors h-9 px-2 ${
-                  isScrolled 
-                    ? "text-muted-foreground hover:text-foreground hover:bg-muted/60" 
-                    : "text-[#1b181f] hover:text-[var(--brand)] hover:bg-[rgb(var(--brand-rgb)/0.1)]"
-                }`}
-              >
-                <Globe className="w-4 h-4" />
-                <span className="text-xs">{language === 'HI' ? 'HI' : 'EN'}</span>
-                <ChevronDown className="w-3 h-3" />
-              </Button>
-              
-              <AnimatePresence>
-                {hoveredMenu === 'lang' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute top-full right-0 pt-2"
-                  >
-                    <div className="bg-white rounded-lg shadow-xl border border-border/50 p-1 min-w-[140px]">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => setLanguage(lang.code)}
-                          className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                            language === lang.code 
-                              ? 'bg-primary/10 text-[var(--brand)] font-semibold' 
-                              : 'text-[#1b181f] hover:bg-secondary/50'
-                          }`}
-                        >
-                          {lang.code === 'HI' ? 'हिंदी' : 'English'}
-                        </button>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+          <Link
+            to="/pricing"
+            className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+          >
+            Pricing
+          </Link>
 
-            <Button
-              variant="cta"
-              size="sm"
-              asChild
-              className="ml-1 gap-1.5 rounded-full px-4 transition-all duration-200 active:scale-95"
-            >
-              <Link to="/book-demo" onClick={() => void trackBookDemoClick()}>
-                <CalendarDays className="w-4 h-4" />
-                {t('nav.bookDemo')}
-              </Link>
-            </Button>
-          </div>
+          <Link
+            to="/resources"
+            className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+          >
+            Resources
+          </Link>
 
-          {/* Mobile */}
-          <div className="lg:hidden flex items-center gap-1 ml-auto">
-            <div 
-              ref={searchContainerRef}
-              data-search-container
-              className="relative"
-              onClick={(e) => e.stopPropagation()}
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
-            >
-              {!searchOpen ? (
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={`transition-colors ${
-                    isScrolled 
-                      ? "text-muted-foreground hover:text-foreground hover:bg-muted/60" 
-                      : "text-[#1b181f] hover:text-[var(--brand)] hover:bg-[rgb(var(--brand-rgb)/0.1)]"
-                  }`}
-                  onClick={() => setSearchOpen(true)}
-                >
-                  <Search className="w-5 h-5" />
-                </Button>
-              ) : (
-                <motion.div
-                  initial={{ width: 40 }}
-                  animate={{ width: 180 }}
-                  exit={{ width: 40 }}
-                  transition={{ duration: 0.2 }}
-                  className="relative max-w-[180px]"
-                  data-search-container
-                  onClick={(e) => e.stopPropagation()}
-                  onMouseDown={(e) => e.stopPropagation()}
-                  onTouchStart={(e) => e.stopPropagation()}
-                >
-                  <div 
-                    className="relative flex items-center w-full" 
-                    onClick={(e) => e.stopPropagation()}
-                    onMouseDown={(e) => e.stopPropagation()}
-                    onTouchStart={(e) => e.stopPropagation()}
-                  >
-                    <Search className="absolute left-3 w-4 h-4 z-10" style={{ color: '#9ca3af' }} />
-                    <Input
-                      ref={searchInputRef}
-                      type="text"
-                      placeholder={language === 'HI' ? 'पेज खोजें...' : 'Search pages...'}
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                      onMouseDown={(e) => e.stopPropagation()}
-                      onTouchStart={(e) => e.stopPropagation()}
-                      onFocus={(e) => {
-                        e.stopPropagation();
-                        e.currentTarget.focus();
-                      }}
-                      onKeyDown={(e) => {
-                        e.stopPropagation();
-                        if (e.key === 'Escape') {
-                          setSearchOpen(false);
-                          setSearchQuery("");
-                          setSearchResults([]);
-                        }
-                        if (e.key === 'Enter' && searchResults.length > 0) {
-                          handleSearchSelect(searchResults[0].href);
-                        }
-                      }}
-                      className="w-full pl-10 pr-10 h-9 text-sm bg-white border-border focus:border-border focus:ring-0"
-                      autoFocus
-                    />
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute right-0 h-9 w-9 hover:bg-transparent"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSearchOpen(false);
-                        setSearchQuery("");
-                        setSearchResults([]);
-                      }}
-                      onMouseDown={(e) => e.stopPropagation()}
-                    >
-                      <X className="w-4 h-4 text-muted-foreground" />
-                    </Button>
-                  </div>
-                  
-                  {/* Search Results Dropdown - Mobile */}
-                  {searchQuery.trim() && searchResults.length > 0 && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="search-results-dropdown absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-border/50 overflow-hidden z-50 max-h-96 overflow-y-auto w-[180px]"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {searchResults.length > 0 ? (
-                        <div className="py-1">
-                          {searchResults.map((result) => (
-                            <button
-                              key={result.href}
-                              onClick={() => handleSearchSelect(result.href)}
-                              className="w-full text-left px-4 py-3 hover:bg-[#e0f0ff] transition-colors flex items-center gap-3 group"
-                            >
-                              <Search className="w-4 h-4 text-muted-foreground group-hover:text-[var(--brand)]" />
-                              <div className="flex-1">
-                                <p className="font-medium text-sm text-foreground group-hover:text-[var(--brand)]">
-                                  {result.name}
-                                </p>
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="px-4 py-8 text-center">
-                          <p className="text-sm text-muted-foreground">
-                            No results for "{searchQuery}"
-                          </p>
-                        </div>
-                      )}
-                    </motion.div>
-                  )}
-                </motion.div>
-              )}
-            </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className={`transition-colors hover:bg-transparent ${
-                isScrolled 
-                  ? "text-muted-foreground hover:text-foreground" 
-                  : "text-[#1b181f] hover:text-[var(--brand)]"
-              }`}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </Button>
-          </div>
+          <Link
+            to="/company/about"
+            className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+          >
+            Company
+          </Link>
         </nav>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-gradient-to-b from-white via-[var(--brand-tint)]/60 to-white border-b border-border/60 overflow-hidden shadow-md"
+        {/* Right: CTA */}
+        <div className="hidden lg:flex items-center gap-3">
+          <Link
+            to="/contact"
+            className="text-xs font-medium text-slate-300 hover:text-white px-3 py-2 transition-colors"
+          >
+            Contact Sales
+          </Link>
+          <Link
+            to="/book-demo"
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs hover:opacity-90 transition-opacity shadow-lg shadow-purple-600/30 flex items-center gap-1.5"
+          >
+            Book a Demo
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <Link
+            to="/book-demo"
+            className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs"
+          >
+            Demo
+          </Link>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-slate-300 hover:text-white rounded-lg bg-slate-900 border border-slate-800"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-slate-950 border-b border-purple-900/50 px-5 py-6 space-y-4 animate-fade-in text-white">
+          <div className="pb-3 border-b border-slate-800">
+            <AiraLogo variant="light" size="sm" />
+          </div>
+
+          <div className="space-y-3 text-sm font-medium">
+            <Link to="/ai-intelligence" className="block py-1 text-slate-200 hover:text-pink-300">
+              AI Intelligence
+            </Link>
+            <Link to="/solutions" className="block py-1 text-slate-200 hover:text-pink-300">
+              Solutions
+            </Link>
+            <Link to="/industries" className="block py-1 text-slate-200 hover:text-pink-300">
+              Industries
+            </Link>
+            <Link to="/pricing" className="block py-1 text-slate-200 hover:text-pink-300">
+              Pricing
+            </Link>
+            <Link to="/resources" className="block py-1 text-slate-200 hover:text-pink-300">
+              Resources & Blog
+            </Link>
+            <Link to="/company/about" className="block py-1 text-slate-200 hover:text-pink-300">
+              Company
+            </Link>
+            <Link to="/contact" className="block py-1 text-slate-200 hover:text-pink-300">
+              Contact Sales
+            </Link>
+          </div>
+
+          <div className="pt-4 border-t border-slate-800">
+            <Link
+              to="/book-demo"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-center block shadow-lg"
             >
-              <div className="site-container py-4 space-y-2">
-                <Button
-                  variant="cta"
-                  size="lg"
-                  asChild
-                  className="w-full min-h-[44px] gap-2 rounded-full transition-all duration-200 active:scale-95"
-                >
-                  <Link
-                    to="/book-demo"
-                    onClick={() => {
-                      void trackBookDemoClick();
-                      setMobileMenuOpen(false);
-                    }}
-                  >
-                    <CalendarDays className="w-4 h-4" />
-                    {t('nav.bookDemo')}
-                  </Link>
-                </Button>
-                {navigation.map((item) => {
-                  const hasChildren = !!item.children;
-                  const isExpanded = mobileExpandedMenu === item.name;
-                  const label = item.nameKey ? t(item.nameKey) : item.name;
-
-                  return (
-                    <div
-                      key={item.name}
-                      className="rounded-lg bg-white/95 border border-border/60 overflow-hidden"
-                    >
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-between px-3 py-3 min-h-[52px] text-base font-medium text-[#1b181f]"
-                        onClick={() => {
-                          if (hasChildren) {
-                            setMobileExpandedMenu(isExpanded ? null : item.name);
-                          } else {
-                            setMobileMenuOpen(false);
-                            navigate(item.href);
-                          }
-                        }}
-                      >
-                        <span>{label}</span>
-                        {hasChildren ? (
-                          <ChevronDown
-                            className={`w-4 h-4 text-muted-foreground transition-transform ${
-                              isExpanded ? "rotate-180" : ""
-                            }`}
-                          />
-                        ) : (
-                          <span className="text-[11px] text-primary/80">
-                            {language === "HI" ? "पेज खोलें" : "Open"}
-                          </span>
-                        )}
-                      </button>
-
-                      {hasChildren && isExpanded && (
-                        <div className="border-t border-border/50 bg-gradient-to-b from-white to-[#f5f8fc]">
-                          {item.children!.map((child, index) => {
-                            // Primary entry (e.g. For Retailers under Solutions)
-                            if ("isPrimaryEntry" in child && child.isPrimaryEntry && child.icon) {
-                              return (
-                                <Fragment key={child.name}>
-                                  <Link
-                                    to={child.href}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="flex items-center gap-2 px-3 py-2.5 text-base font-semibold text-[var(--brand)] hover:text-[var(--brand)] hover:bg-secondary/20"
-                                  >
-                                    <child.icon className="w-4 h-4 shrink-0" />
-                                    <span>
-                                      {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                    </span>
-                                  </Link>
-                                  <div className="mx-3 my-1 border-b border-border/50" aria-hidden />
-                                </Fragment>
-                              );
-                            }
-
-                            // Section label
-                            if (child.isSectionLabel) {
-                              return (
-                                <div
-                                  key={child.name}
-                                  className={`text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 py-2 ${
-                                    index > 0 ? 'mt-2 border-t border-border/30 pt-3' : ''
-                                  }`}
-                                >
-                                  {child.name}
-                                </div>
-                              );
-                            }
-                            
-                            // Coming soon item
-                            if (child.comingSoon) {
-                              return (
-                                <div
-                                  key={child.name}
-                                  className="flex items-center gap-2 px-3 py-2 text-base text-muted-foreground/60 cursor-not-allowed"
-                                >
-                                  <child.icon className="w-4 h-4" />
-                                  <span>
-                                    {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                  </span>
-                                  <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-[rgb(var(--brand-rgb)/0.1)] text-[var(--brand)] font-medium">
-                                    {language === "HI" ? "जल्द आ रहा है" : "Coming Soon"}
-                                  </span>
-                                </div>
-                              );
-                            }
-                            
-                            // Regular link item
-                            return (
-                              <Link
-                                key={child.name}
-                                to={child.href}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="flex items-center gap-2 px-3 py-2 text-base text-muted-foreground hover:text-foreground hover:bg-secondary/20"
-                              >
-                                {"icon" in child && child.icon ? (
-                                  <child.icon className="w-4 h-4" />
-                                ) : null}
-                                <span>
-                                  {language === "HI" && child.nameHI ? child.nameHI : child.name}
-                                </span>
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-
-                {/* Help link inside sidebar */}
-                <div className="rounded-lg bg-white/95 border border-border/60 overflow-hidden">
-                  <Link
-                    to="/help"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full flex items-center gap-2 px-3 py-3 text-base font-medium text-[#1b181f]"
-                  >
-                    <HelpCircle className="w-4 h-4 text-[var(--brand)]" />
-                    <span>{language === "HI" ? "मदद / हेल्प सेंटर" : "Help Center"}</span>
-                  </Link>
-                </div>
-                
-                <div className="pt-4 border-t border-border space-y-3">
-                  <div className="flex items-center gap-2 px-3 text-sm text-muted-foreground">
-                    <Globe className="w-4 h-4" />
-                    <span>{language === "HI" ? "भाषा चुनें:" : "Language:"}</span>
-                    <div className="flex gap-1.5 flex-wrap">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => setLanguage(lang.code)}
-                          className={`px-2.5 py-1 rounded text-xs font-medium ${
-                            language === lang.code 
-                              ? "bg-primary text-primary-foreground" 
-                              : "bg-muted hover:bg-muted/80"
-                          }`}
-                        >
-                          {lang.code === 'HI' ? 'हिंदी' : 'EN'}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
-
-    </>
+              Book a Demo
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
   );
-}
+};
+
+export default Header;

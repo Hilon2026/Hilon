@@ -117,7 +117,7 @@ export function WhySmartPosBeatsManualBillingBusyStoresEn() {
         <p>
           For shop owners handling fifty or more transactions a day while also managing staff, vendors,
           and customers, the probability of GST errors in manual billing is high — not through negligence,
-          but through the sheer volume of decisions being made simultaneously. These errors don&apos;t always
+          but through the sheer voAira of decisions being made simultaneously. These errors don&apos;t always
           surface immediately, but they do surface: in mismatched GST returns, in customer complaints about
           incorrect invoices, or in notices from the tax authority.
         </p>
@@ -263,7 +263,7 @@ export function WhySmartPosBeatsManualBillingBusyStoresEn() {
             to="/products"
             className="font-semibold text-[var(--brand)] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] rounded-sm"
           >
-            Lume POS
+            Aira POS
           </Link>{" "}
           helps busy Indian retailers bill faster, manage stock in real time, and build customer
           relationships that bring people back.
@@ -273,3 +273,4 @@ export function WhySmartPosBeatsManualBillingBusyStoresEn() {
     </div>
   );
 }
+

@@ -154,7 +154,7 @@ function standardFeatureCards(label: string): IndustryFeatureCard[] {
 }
 
 const BASE_CTA = {
-  ctaTitle: "Get started with Lume today",
+  ctaTitle: "Get started with Aira today",
   ctaSubtext:
     "Connect billing, customer data, and marketing in one platform built for Indian retailers.",
 };
@@ -181,7 +181,7 @@ function cfg(
     heroHighlightLines,
     benefitsHeading: BENEFITS_HEADING,
     benefitBlocks,
-    overviewTitle: `${categoryLabel} retail, powered by Lume`,
+    overviewTitle: `${categoryLabel} retail, powered by Aira`,
     overviewParagraphs,
     overviewLearnMoreHref: "/for-retailers",
     featureCards: standardFeatureCards(featureSubjectLabel),
@@ -212,7 +212,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less billing friction", description: "Digital bills reduce queues and errors at peak hours." },
       ],
       [
-        "Fashion retail moves fast—seasons, sizes, and trends change every week. Lume helps you bill quickly, capture customer data at checkout, and bring them back with offers that match what they buy.",
+        "Fashion retail moves fast—seasons, sizes, and trends change every week. Aira helps you bill quickly, capture customer data at checkout, and bring them back with offers that match what they buy.",
         "From single stores to multi-outlet chains, you get one view of sales and loyalty so you can invest in the right inventory and marketing.",
       ],
       "Digital billing, loyalty, and WhatsApp campaigns for fashion and apparel retailers in India. Request a demo.",
@@ -243,7 +243,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less billing friction", description: "Digital bills reduce errors and keep counters moving during peak hours." },
       ],
       [
-        "Jewellery retail is built on trust and long-term relationships. Lume helps you bill quickly, capture customer details at checkout, and keep every purchase tied to a customer profile.",
+        "Jewellery retail is built on trust and long-term relationships. Aira helps you bill quickly, capture customer details at checkout, and keep every purchase tied to a customer profile.",
         "Use WhatsApp bills, loyalty, and targeted offers to stay top-of-mind for festivals, gifting seasons, and repeat upgrades—without manual follow-ups.",
       ],
       "Retail software for jewellery stores in India: digital bills, loyalty, WhatsApp campaigns, and analytics. Book a demo.",
@@ -274,7 +274,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Faster checkout", description: "Digital bills reduce delays and errors during peak hours." },
       ],
       [
-        "Electricals and electronics retail moves quickly—models change, accessories matter, and service follow-ups build trust. Lume helps you bill consistently, capture customer contacts, and keep post-sale engagement effortless.",
+        "Electricals and electronics retail moves quickly—models change, accessories matter, and service follow-ups build trust. Aira helps you bill consistently, capture customer contacts, and keep post-sale engagement effortless.",
         "Send WhatsApp bills, run targeted campaigns for upgrades and add-ons, and track performance across categories so you can restock smarter.",
       ],
       "Retail software for electronics and electricals stores in India: digital bills, WhatsApp campaigns, loyalty, and analytics. Book a demo.",
@@ -305,7 +305,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Smoother billing", description: "Fast digital bills reduce friction at the counter." },
       ],
       [
-        "Accessories retail thrives on frequency and add-ons. Lume helps you bill quickly, capture customer details at checkout, and bring shoppers back with offers that match what they buy.",
+        "Accessories retail thrives on frequency and add-ons. Aira helps you bill quickly, capture customer details at checkout, and bring shoppers back with offers that match what they buy.",
         "Promote new arrivals, combos, and seasonal drops on WhatsApp, and track what sells best so you can stock the right styles.",
       ],
       "Retail software for accessories stores in India: digital bills, WhatsApp campaigns, loyalty, and analytics. Book a demo.",
@@ -336,7 +336,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less counter wait", description: "Quick billing keeps rush-hour lines short." },
       ],
       [
-        "Bakeries rely on speed and freshness. Lume speeds up checkout, sends digital bills customers can trust, and helps you run same-day offers when you need to clear stock.",
+        "Bakeries rely on speed and freshness. Aira speeds up checkout, sends digital bills customers can trust, and helps you run same-day offers when you need to clear stock.",
         "Use loyalty and feedback to understand what your neighbourhood loves most.",
       ],
       "Bakery POS and customer engagement: digital bills, WhatsApp offers, loyalty. Request a demo.",
@@ -367,7 +367,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less billing friction", description: "Digital bills reduce errors at busy counters." },
       ],
       [
-        "Cosmetics shoppers love trying new products. Lume helps you capture preferences, send relevant offers, and collect reviews that attract new customers searching online.",
+        "Cosmetics shoppers love trying new products. Aira helps you capture preferences, send relevant offers, and collect reviews that attract new customers searching online.",
         "Digital bills on WhatsApp keep your store looking modern and trustworthy.",
       ],
       "Cosmetics retail software: loyalty, reviews, WhatsApp campaigns, analytics. Book a demo.",
@@ -398,7 +398,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Quicker checkout", description: "Digital billing keeps peak shopping days smooth." },
       ],
       [
-        "Footwear stores need speed at billing and clarity on what sells. Lume connects every sale to customer data so you can run offers that match school seasons, sports, and festivals.",
+        "Footwear stores need speed at billing and clarity on what sells. Aira connects every sale to customer data so you can run offers that match school seasons, sports, and festivals.",
         "Use WhatsApp to share bills and follow up when new stock arrives.",
       ],
       "Footwear retail POS and engagement: digital bills, loyalty, campaigns. Request a demo.",
@@ -429,7 +429,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less billing friction", description: "Digital bills reduce queues during peak hours." },
       ],
       [
-        "Grocery and kirana stores win on speed and trust. Lume helps you bill quickly, track regular customers, and keep them informed about offers and staples.",
+        "Grocery and kirana stores win on speed and trust. Aira helps you bill quickly, track regular customers, and keep them informed about offers and staples.",
         "Digital bills strengthen trust while giving you data to run smarter promotions.",
       ],
       "Kirana and grocery retail software: fast billing, WhatsApp engagement, loyalty. Book a demo.",
@@ -460,7 +460,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less paperwork", description: "Digital records reduce manual follow-up." },
       ],
       [
-        "Home appliance retailers need strong post-sale engagement. Lume connects billing to customer data so you can remind buyers about service, accessories, and exchange offers.",
+        "Home appliance retailers need strong post-sale engagement. Aira connects billing to customer data so you can remind buyers about service, accessories, and exchange offers.",
         "WhatsApp keeps communication professional and timely.",
       ],
       "Home appliances retail: digital bills, campaigns, analytics, reviews. Request a demo.",
@@ -491,7 +491,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less checkout delay", description: "Digital billing keeps peak days manageable." },
       ],
       [
-        "Stationery demand spikes in seasons. Lume helps you bill quickly, capture institutional buyers, and run timely WhatsApp campaigns when parents and students shop most.",
+        "Stationery demand spikes in seasons. Aira helps you bill quickly, capture institutional buyers, and run timely WhatsApp campaigns when parents and students shop most.",
         "Digital bills build trust with schools and small businesses alike.",
       ],
       "Stationery store software: billing, loyalty, WhatsApp campaigns. Book a demo.",
@@ -522,7 +522,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less friction at checkout", description: "Digital bills reduce queues and errors." },
       ],
       [
-        "Supermarkets need repeat visits and bigger baskets. Lume helps you capture customer data, run targeted offers, and measure what works across departments.",
+        "Supermarkets need repeat visits and bigger baskets. Aira helps you capture customer data, run targeted offers, and measure what works across departments.",
         "Reviews and surveys help you tune assortment and service to local shoppers.",
       ],
       "Supermarket retail platform: loyalty, campaigns, analytics, digital bills. Request a demo.",
@@ -553,7 +553,7 @@ export const industryPageBySlug: Record<string, IndustryPageConfig> = {
         { metric: "90%", title: "Less billing friction", description: "Digital bills reduce paperwork at high-value sales." },
       ],
       [
-        "Watch retailers blend prestige and service. Lume connects every sale to a customer profile so you can follow up with care tips, new arrivals, and trade-in opportunities.",
+        "Watch retailers blend prestige and service. Aira connects every sale to a customer profile so you can follow up with care tips, new arrivals, and trade-in opportunities.",
         "Digital bills reinforce trust and make reviews easy to collect.",
       ],
       "Watch retail software: digital bills, loyalty, WhatsApp engagement, reviews. Book a demo.",

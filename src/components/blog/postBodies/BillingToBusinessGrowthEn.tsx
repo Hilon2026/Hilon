@@ -37,14 +37,14 @@ export function BillingToBusinessGrowthEn() {
         <p>
           The ceiling shows up in familiar ways. Adding a second counter means doubling the
           manual effort at day-end reconciliation. Festival seasons that should be peak revenue
-          opportunities become chaotic because the billing process cannot handle the volume.
+          opportunities become chaotic because the billing process cannot handle the voAira.
           Hiring a second staff member helps with customer service but does nothing to improve
           billing accuracy or business visibility. Each unit of growth requires a proportional
           unit of additional human effort, and eventually that model runs out of room.
         </p>
         <p>
           A modern POS system breaks this ceiling by automating the processes that would
-          otherwise scale linearly with transaction volume. Inventory updates, tax calculations,
+          otherwise scale linearly with transaction voAira. Inventory updates, tax calculations,
           customer data capture, sales reporting — these happen automatically with every
           transaction regardless of whether the store does fifty sales or five hundred.
           The infrastructure scales; the effort does not.
@@ -135,7 +135,7 @@ export function BillingToBusinessGrowthEn() {
         </h2>
         <p>
           Retail growth requires more customers, more revenue per customer, and operations
-          that can handle more volume without proportionally more cost or effort. A modern
+          that can handle more voAira without proportionally more cost or effort. A modern
           POS system directly supports all three: better customer engagement tools bring
           customers back more often, better analytics reveal how to increase basket sizes,
           and automated processes reduce the manual burden of handling more transactions.
@@ -158,7 +158,7 @@ export function BillingToBusinessGrowthEn() {
               At what stage should a retailer start thinking about a POS system seriously?
             </h3>
             <p>
-              When transaction volume makes manual billing noticeably inefficient — typically
+              When transaction voAira makes manual billing noticeably inefficient — typically
               around forty to sixty transactions per day — the case for a POS system becomes
               clear. But the data and customer relationship benefits argue for starting earlier.
               A retailer who installs a POS system at thirty daily transactions will have a
@@ -219,7 +219,7 @@ export function BillingToBusinessGrowthEn() {
             to="/products"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume POS
+            Aira POS
           </Link>{" "}
           combines billing, inventory, customer engagement, and analytics in one platform —
           designed for Indian retailers who are serious about growing their business, not
@@ -230,3 +230,4 @@ export function BillingToBusinessGrowthEn() {
     </div>
   );
 }
+

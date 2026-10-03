@@ -2,7 +2,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { Maximize2, Minimize2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import lumeLogo from "@/assets/lumelogo.jpg";
+import { AiraLogo } from "@/components/brand/AiraLogo";
 
 // Unmuted by default; some browsers may block autoplay with sound until user interaction
 const DEFAULT_VIDEO_ID = "ojflp89LdjE";
@@ -11,7 +11,7 @@ function getEmbedUrl(videoId: string) {
   return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`;
 }
 
-const INSTAGRAM_PROFILE_URL = "https://www.instagram.com/the_lume_app/";
+const INSTAGRAM_PROFILE_URL = "https://www.instagram.com/the_Aira_app/";
 
 const DESKTOP_BREAKPOINT = 768;
 
@@ -133,19 +133,14 @@ export function FloatingYouTubeShorts({ videoId = DEFAULT_VIDEO_ID }: FloatingYo
         )}
       >
         <div className="flex min-w-0 flex-1 items-center gap-1.5">
-          {/* Lume logo in circle */}
-          <img
-            src={lumeLogo}
-            alt="Lume"
-            className={cn("shrink-0 rounded-full object-cover", isExpanded ? "h-7 w-7" : "h-5 w-5")}
-          />
+          <AiraLogo showText={false} size="sm" />
           <span
             className={cn(
               "truncate font-semibold text-foreground",
               isExpanded ? "text-base" : "text-xs"
             )}
           >
-            the_lume_app
+            the_Aira_app
           </span>
           {/* Blue verified tick (Instagram style) */}
           <span
@@ -247,3 +242,4 @@ export function FloatingYouTubeShorts({ videoId = DEFAULT_VIDEO_ID }: FloatingYo
     </div>
   );
 }
+

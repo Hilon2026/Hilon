@@ -57,7 +57,7 @@ export default function ForRetailers() {
   const { t, language } = useLanguage();
   useSEO(
     'For Retailers – Turn Your Store into a Modern Business',
-    'Lume gives Indian retailers digital billing, customer insights & smart tools. Compete with quick commerce. No expensive machines.'
+    'Aira gives Indian retailers digital billing, customer insights & smart tools. Compete with quick commerce. No expensive machines.'
   );
 
   const painPoints = [
@@ -247,7 +247,7 @@ export default function ForRetailers() {
               >
                 <img 
                   src={retbanGif} 
-                  alt="Lume Retail Banner" 
+                  alt="Aira Retail Banner" 
                   className="w-full h-auto rounded-lg"
                 />
               </motion.div>
@@ -563,3 +563,4 @@ export default function ForRetailers() {
     </div>
   );
 }
+

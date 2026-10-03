@@ -1,941 +1,151 @@
-import { motion } from "framer-motion";
-import { CheckCircle2, HelpCircle, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { CheckCircle2, Zap, ArrowRight, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { FaqJsonLd } from "@/components/seo/FaqJsonLd";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 const plans = [
   {
-    name: "Advance",
-    nameHI: "एडवांस",
-    tagLine: "Focus on retention & insights",
-    price: "₹19,999",
-    originalPrice: "₹39,999",
-    periodLabel: "per year + 18% GST",
-    highlightLine: "What's included:",
-    messagesLabel: "500 FREE MESSAGES",
+    name: "Aira Growth",
+    tagLine: "Designed for single & growing retail stores",
+    price: "₹15,000",
+    periodLabel: "per store / year",
+    highlightLine: "Core Features Included:",
     features: [
-      "E-Bill Sending (WhatsApp, SMS, Email)",
-      "Smart E-Bills (Logo, Social, AI-Driven)",
-      "Credit Management (Udhar Control)",
-      "Marketing & Campaign Tools",
+      "Sub-second Smart POS & barcode billing",
+      "Instant WhatsApp & paperless e-bills",
+      "Automated WhatsApp customer campaigns",
+      "360° Customer directory & engagement",
+      "Festival & seasonal campaign automation",
+      "Real-time sales & growth telemetry dashboard"
     ],
-    featuresHI: [
-      "ई-बिल भेजना (व्हाट्सऐप, SMS, ईमेल)",
-      "स्मार्ट ई-बिल (लोगो, सोशल, AI-संचालित)",
-      "क्रेडिट मैनेजमेंट (उधार कंट्रोल)",
-      "मार्केटिंग और कैंपेन टूल्स",
-    ],
-    featuresMore: [
-      "Customer Behavior Analysis",
-      "Customer Loyalty & Rewards",
-      "Cashback & Smart Coupons",
-      "Advanced Growth Insights",
-    ],
-    featuresMoreHI: [
-      "ग्राहक व्यवहार विश्लेषण",
-      "ग्राहक लॉयल्टी और रिवॉर्ड्स",
-      "कैशबैक और स्मार्ट कूपन",
-      "एडवांस ग्रोथ इनसाइट्स",
-    ],
-    cta: "Get Started",
+    cta: "Book Demo & Get Started",
     href: "/book-demo",
     popular: false,
     badge: null,
   },
   {
-    name: "Premium",
-    nameHI: "प्रीमियम",
-    tagLine: "Maximize Brand Impact",
-    price: "₹34,999",
-    originalPrice: "₹69,999",
-    periodLabel: "per year + 18% GST",
-    highlightLine: "Everything in Advance, plus:",
-    messagesLabel: "500 FREE MESSAGES",
+    name: "Aira Enterprise",
+    tagLine: "Designed for multi-store retail chains & franchises",
+    price: "₹20,000",
+    periodLabel: "per store / year",
+    highlightLine: "Everything in Growth, plus:",
     features: [
-      "Your own customer shopping app",
-      "Direct access to your customers",
-      "No third‑party dependency",
-      "Higher repeat sales & engagement",
+      "24/7 Autonomous AI Intelligence Core & insights",
+      "Advanced WhatsApp campaign automation suite",
+      "Festival & targeted promotional campaigns",
+      "Multi-store unified executive telemetry",
+      "Custom POS plugin & API developer access",
+      "Dedicated 1-on-1 account manager & priority support"
     ],
-    featuresHI: [
-      "आपकी अपनी शॉपिंग ऐप",
-      "ग्राहकों से सीधा जुड़ाव",
-      "थर्ड-पार्टी पर निर्भरता नहीं",
-      "ज़्यादा रिपीट सेल और जुड़ाव",
-    ],
-    cta: "Get Started",
+    cta: "Book Enterprise Demo",
     href: "/book-demo",
     popular: true,
-    badge: "Recommended",
-    badgeHI: "सुझावित",
-  },
-];
-
-type PlanFlag = "yes" | "no";
-
-const comparisonFeatures = [
-  {
-    name: "Smart Billing",
-    nameHI: "स्मार्ट बिलिंग",
-    description:
-      "Create and manage POS, Quick and Image bills with e-bill sharing via WhatsApp or SMS",
-    descriptionHI: "POS, Quick और Image बिल बनाएँ और व्हाट्सऐप या SMS के ज़रिये ई-बिल शेयर करें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Widget Plugin for POS",
-    nameHI: "POS के लिए विजेट प्लगइन",
-    description:
-      "Integrate Lume widget in existing POS to capture and send digital bills seamlessly",
-    descriptionHI: "मौजूदा POS में Lume विजेट इंटीग्रेट करें और डिजिटल बिल कैप्चर और भेजें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Smart e-Bill Customization",
-    nameHI: "स्मार्ट ई-बिल कस्टमाइज़ेशन",
-    description:
-      "Add Google review, social links, WhatsApp buttons, logos and referral programs to e-bills",
-    descriptionHI: "ई-बिल में गूगल रिव्यू, सोशल लिंक, व्हाट्सऐप बटन, लोगो और रेफरल प्रोग्राम जोड़ें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "e-Bill Listing & Tracking",
-    nameHI: "ई-बिल लिस्टिंग और ट्रैकिंग",
-    description: "View all e-bills with date, store and amount filters",
-    descriptionHI: "तारीख, स्टोर और रकम के फिल्टर के साथ सभी ई-बिल देखें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Dynamic Dashboard",
-    nameHI: "डायनामिक डैशबोर्ड",
-    description:
-      "Real-time daily, weekly, monthly, quarterly and yearly sales insights",
-    descriptionHI: "रियल-टाइम दैनिक, साप्ताहिक, मासिक, त्रैमासिक और वार्षिक सेल्स इनसाइट्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Automated Campaign Builder",
-    nameHI: "ऑटोमेटेड कैंपेन बिल्डर",
-    description: "Birthday, anniversary and seasonal offer campaigns",
-    descriptionHI: "जन्मदिन, वर्षगाँठ और मौसमी ऑफर कैंपेन",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Social Media Campaigns",
-    nameHI: "सोशल मीडिया कैंपेन",
-    description: "Facebook and Instagram campaign integration",
-    descriptionHI: "फेसबुक और इंस्टाग्राम कैंपेन इंटीग्रेशन",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Promotional Templates",
-    nameHI: "प्रमोशनल टेम्प्लेट्स",
-    description: "Predefined templates for offers, products and branding",
-    descriptionHI: "ऑफर, प्रोडक्ट्स और ब्रांडिंग के लिए पहले से तैयार टेम्प्लेट्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Customer Feedback System",
-    nameHI: "ग्राहक फीडबैक सिस्टम",
-    description: "Collect reviews, ratings and feedback via bills and WhatsApp",
-    descriptionHI: "बिल और व्हाट्सऐप के ज़रिये रिव्यू, रेटिंग और फीडबैक इकट्ठा करें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Master Sales Reports",
-    nameHI: "मास्टर सेल्स रिपोर्ट्स",
-    description: "Sales, customer and store-level reports with drill-down",
-    descriptionHI: "सेल्स, कस्टमर और स्टोर-लेवल रिपोर्ट्स ड्रिल-डाउन के साथ",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Business Insights Dashboard",
-    nameHI: "बिज़नेस इनसाइट्स डैशबोर्ड",
-    description: "AI powered insights on trends, visits and growth",
-    descriptionHI: "ट्रेंड्स, विज़िट्स और ग्रोथ पर AI-पावर्ड इनसाइट्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "SMS & Campaign Analytics & Reports",
-    nameHI: "SMS और कैंपेन एनालिटिक्स और रिपोर्ट्स",
-    description: "Message usage, campaign performance and ROI tracking",
-    descriptionHI: "मैसेज यूज़ेज, कैंपेन परफॉर्मेंस और ROI ट्रैकिंग",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Multi-Store POS Management",
-    nameHI: "मल्टी-स्टोर POS मैनेजमेंट",
-    description: "Manage multiple stores and POS devices centrally",
-    descriptionHI: "कई स्टोर्स और POS डिवाइस को केंद्रीय रूप से मैनेज करें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Product & SKU Management",
-    nameHI: "प्रोडक्ट और SKU मैनेजमेंट",
-    description: "Manual and CSV product upload with POS sync",
-    descriptionHI: "POS सिंक के साथ मैन्युअल और CSV प्रोडक्ट अपलोड",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Franchise Management",
-    nameHI: "फ्रैंचाइज़ मैनेजमेंट",
-    description: "Franchise level access control, tracking and reports",
-    descriptionHI: "फ्रैंचाइज़ लेवल एक्सेस कंट्रोल, ट्रैकिंग और रिपोर्ट्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "User Role Management",
-    nameHI: "यूज़र रोल मैनेजमेंट",
-    description: "Roles for managers, cashiers and admins",
-    descriptionHI: "मैनेजर्स, कैशियर्स और एडमिन्स के लिए रोल्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Historical Data Upload",
-    nameHI: "हिस्टोरिकल डेटा अपलोड",
-    description: "Import past customer and sales data",
-    descriptionHI: "पिछले कस्टमर और सेल्स डेटा इम्पोर्ट करें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Credit and Advance Management",
-    nameHI: "क्रेडिट और एडवांस मैनेजमेंट",
-    description: "Customer credit and advance management system",
-    descriptionHI: "कस्टमर क्रेडिट और एडवांस मैनेजमेंट सिस्टम",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Promo Slips and Banners",
-    nameHI: "प्रोमो स्लिप्स और बैनर्स",
-    description: "Promote products and offers via images, videos and text",
-    descriptionHI: "इमेज, वीडियो और टेक्स्ट के ज़रिये प्रोडक्ट्स और ऑफर प्रमोट करें",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Quick Store Setup",
-    nameHI: "क्विक स्टोर सेटअप",
-    description: "Dynamic QR code generation for UPI transactions",
-    descriptionHI: "UPI ट्रांजैक्शन के लिए डायनामिक QR कोड जेनरेशन",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Quick & Verified Store Setup",
-    nameHI: "क्विक और वेरिफाइड स्टोर सेटअप",
-    description: "Self registration, KYC and multi outlet onboarding",
-    descriptionHI: "सेल्फ रजिस्ट्रेशन, KYC और मल्टी आउटलेट ऑनबोर्डिंग",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Integrated POS & Data Management",
-    nameHI: "इंटीग्रेटेड POS और डेटा मैनेजमेंट",
-    description: "POS integration, device linking, bulk upload and recovery",
-    descriptionHI: "POS इंटीग्रेशन, डिवाइस लिंकिंग, बल्क अपलोड और रिकवरी",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Custom Access & Branding",
-    nameHI: "कस्टम एक्सेस और ब्रांडिंग",
-    description: "Store logos, themes and digital agreement approvals",
-    descriptionHI: "स्टोर लोगो, थीम्स और डिजिटल एग्रीमेंट अप्रूवल्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "In-App & WhatsApp Alerts",
-    nameHI: "इन-ऐप और व्हाट्सऐप अलर्ट्स",
-    description:
-      "Real-time alerts for transactions, campaigns and performance",
-    descriptionHI: "ट्रांजैक्शन, कैंपेन और परफॉर्मेंस के लिए रियल-टाइम अलर्ट्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "SMS Packages & Tracking",
-    nameHI: "SMS पैकेज और ट्रैकिंग",
-    description: "SMS bundles, recharge, usage and analytics",
-    descriptionHI: "SMS बंडल, रिचार्ज, यूज़ेज और एनालिटिक्स",
-    standard: "yes",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Advanced Campaign Builder (6W Logic)",
-    nameHI: "एडवांस कैंपेन बिल्डर (6W लॉजिक)",
-    description: "Who, What, When, Where, Why, How campaign logic",
-    descriptionHI: "कौन, क्या, कब, कहाँ, क्यों, कैसे कैंपेन लॉजिक",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Personalized Notifications & Promo Slips",
-    nameHI: "पर्सनलाइज़्ड नोटिफिकेशन और प्रोमो स्लिप्स",
-    description: "Campaigns based on purchase history",
-    descriptionHI: "खरीदारी के इतिहास पर आधारित कैंपेन",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Cross-Retailer Campaigns",
-    nameHI: "क्रॉस-रिटेलर कैंपेन",
-    description: "Multi store shopping carnival promotions",
-    descriptionHI: "मल्टी स्टोर शॉपिंग कार्निवल प्रमोशन",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Rewards Redemption at POS",
-    nameHI: "POS पर रिवॉर्ड रिडेम्प्शन",
-    description: "Instant reward redemption at checkout",
-    descriptionHI: "चेकआउट पर तुरंत रिवॉर्ड रिडेम्प्शन",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Brand-Sponsored Campaigns",
-    nameHI: "ब्रांड-स्पॉन्सर्ड कैंपेन",
-    description:
-      "FMCG or brand funded rewards, coupons, cashback points",
-    descriptionHI: "FMCG या ब्रांड फंडेड रिवॉर्ड्स, कूपन, कैशबैक पॉइंट्स",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Reward Campaigns",
-    nameHI: "रिवॉर्ड कैंपेन",
-    description:
-      "Advanced coupon, cashback, referral, upsell and cross-sell campaigns",
-    descriptionHI: "एडवांस कूपन, कैशबैक, रेफरल, अपसेल और क्रॉस-सेल कैंपेन",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Rewards on Bill",
-    nameHI: "बिल पर रिवॉर्ड्स",
-    description: "Rewards by brand, HSN category or SKU",
-    descriptionHI: "ब्रांड, HSN कैटेगरी या SKU के अनुसार रिवॉर्ड्स",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Auto Reward Reminders and Expiry",
-    nameHI: "ऑटो रिवॉर्ड रिमाइंडर्स और एक्सपायरी",
-    description: "System managed reward expiry reminders",
-    descriptionHI: "सिस्टम मैनेज्ड रिवॉर्ड एक्सपायरी रिमाइंडर्स",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Reward for Non-Transactional Events",
-    nameHI: "नॉन-ट्रांजैक्शनल इवेंट्स के लिए रिवॉर्ड",
-    description: "Rewards for referrals, reviews, registration and follows",
-    descriptionHI: "रेफरल, रिव्यू, रजिस्ट्रेशन और फॉलो के लिए रिवॉर्ड्स",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Loyalty & Referral Program",
-    nameHI: "लॉयल्टी और रेफरल प्रोग्राम",
-    description: "Loyalty points and referral tracking system",
-    descriptionHI: "लॉयल्टी पॉइंट्स और रेफरल ट्रैकिंग सिस्टम",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "Wallet & Transaction History",
-    nameHI: "वॉलेट और ट्रांजैक्शन हिस्ट्री",
-    description: "Wallet topups, spends and auto reconciliation",
-    descriptionHI: "वॉलेट टॉपअप, खर्च और ऑटो रिकॉन्सिलिएशन",
-    standard: "no",
-    advance: "yes",
-    premium: "yes",
-  },
-  {
-    name: "E-Commerce Storefront",
-    nameHI: "ई-कॉमर्स स्टोरफ्रंट",
-    description: "Online store for retailers to sell digitally",
-    descriptionHI: "रिटेलर्स के लिए डिजिटली बेचने के लिए ऑनलाइन स्टोर",
-    standard: "no",
-    advance: "no",
-    premium: "yes",
-  },
-  {
-    name: "E-Commerce Shopping App",
-    nameHI: "ई-कॉमर्स शॉपिंग ऐप",
-    description: "Customer app for shopping discovery and delivery",
-    descriptionHI: "शॉपिंग डिस्कवरी और डिलीवरी के लिए कस्टमर ऐप",
-    standard: "no",
-    advance: "no",
-    premium: "yes",
-  },
-  {
-    name: "Nearby Store Discovery",
-    nameHI: "नज़दीकी स्टोर डिस्कवरी",
-    description: "Discover nearby retailers on Lume network",
-    descriptionHI: "Lume नेटवर्क पर नज़दीकी रिटेलर्स खोजें",
-    standard: "no",
-    advance: "no",
-    premium: "yes",
-  },
-  {
-    name: "Instant Order Placement",
-    nameHI: "इंस्टेंट ऑर्डर प्लेसमेंट",
-    description: "Buy directly from nearby stores",
-    descriptionHI: "नज़दीकी स्टोर्स से सीधे खरीदें",
-    standard: "no",
-    advance: "no",
-    premium: "yes",
-  },
-  {
-    name: "Order Tracking",
-    nameHI: "ऑर्डर ट्रैकिंग",
-    description: "Live order acceptance and delivery updates",
-    descriptionHI: "लाइव ऑर्डर एक्सेप्टेंस और डिलीवरी अपडेट्स",
-    standard: "no",
-    advance: "no",
-    premium: "yes",
-  },
-  {
-    name: "Digital Wallet Integration",
-    nameHI: "डिजिटल वॉलेट इंटीग्रेशन",
-    description: "Pay, earn and redeem points or cashback",
-    descriptionHI: "पे करें, कमाएँ और पॉइंट्स या कैशबैक रिडीम करें",
-    standard: "no",
-    advance: "no",
-    premium: "yes",
-  },
-];
-
-const faqs = [
-  {
-    question: "What plans does Lume offer?",
-    questionHI: "ल्यूम कौन से प्लान ऑफर करता है?",
-    answer:
-      "Lume offers flexible paid plans designed for different types of retailers — from single stores to multi-store businesses. Each plan is based on store size, feature usage, messaging (WhatsApp / SMS), and analytics & growth tools. You can choose a plan that fits your current business and upgrade anytime as you grow.",
-    answerHI:
-      "ल्यूम अलग-अलग तरह के रिटेलर्स के लिए लचीले पेड प्लान ऑफर करता है — सिंगल स्टोर से लेकर मल्टी-स्टोर बिज़नेस तक। हर प्लान स्टोर साइज़, फीचर यूज़ेज, मैसेजिंग (व्हाट्सऐप / SMS), और एनालिटिक्स और ग्रोथ टूल्स पर आधारित है। आप अपने मौजूदा बिज़नेस के लिए सही प्लान चुन सकते हैं और जैसे-जैसे बिज़नेस बढ़े, कभी भी अपग्रेड कर सकते हैं।",
-  },
-  {
-    question: "What features are included in all plans?",
-    questionHI: "सभी प्लान में कौन से फीचर्स शामिल हैं?",
-    answer:
-      "All Lume plans include core retail features such as Quick Bill, POS Bill, Image Bill & MPOS, digital bills via WhatsApp / SMS / Email, customer data capture, e-bill history & listing, and basic store & billing management. Advanced growth tools like loyalty, rewards, and deep analytics vary by plan.",
-    answerHI:
-      "सभी ल्यूम प्लान में कोर रिटेल फीचर्स शामिल हैं जैसे क्विक बिल, POS बिल, इमेज बिल और MPOS, व्हाट्सऐप / SMS / Email के ज़रिये डिजिटल बिल, कस्टमर डेटा कैप्चर, ई‑बिल हिस्ट्री और लिस्टिंग, और बेसिक स्टोर और बिलिंग मैनेजमेंट। एडवांस ग्रोथ टूल्स जैसे लॉयल्टी, रिवॉर्ड्स, और डीप एनालिटिक्स प्लान के अनुसार अलग‑अलग होते हैं।",
-  },
-  {
-    question: "Are WhatsApp and SMS charges included in the plan price?",
-    questionHI: "क्या व्हाट्सऐप और SMS चार्ज प्लान की कीमत में शामिल हैं?",
-    answer:
-      "No. WhatsApp and SMS are usage-based and charged separately, as per actual usage. This helps you pay only for what you use, control communication costs, and view charges transparently inside the Lume dashboard. There are no hidden communication charges.",
-    answerHI:
-      "नहीं। व्हाट्सऐप और SMS यूज़ेज‑आधारित हैं और अलग से चार्ज किए जाते हैं, जैसा कि आपका असली यूज़ेज हो। इससे आप सिर्फ उतना ही पे करते हैं जितना यूज़ करते हैं, कम्युनिकेशन कॉस्ट कंट्रोल कर सकते हैं, और ल्यूम डैशबोर्ड में चार्जेस को पारदर्शी तरीके से देख सकते हैं। कोई छुपे हुए कम्युनिकेशन चार्ज नहीं हैं।",
-  },
-  {
-    question: "Can I change or upgrade my plan later?",
-    questionHI: "क्या मैं बाद में अपना प्लान बदल या अपग्रेड कर सकता हूँ?",
-    answer:
-      "Yes. You can upgrade your plan anytime from the Lume dashboard. As your business grows you can add more features, enable advanced campaigns, and manage multiple stores and POS systems under one account. Lume is built to scale with your business.",
-    answerHI:
-      "हाँ। आप ल्यूम डैशबोर्ड से कभी भी अपना प्लान अपग्रेड कर सकते हैं। जैसे‑जैसे आपका बिज़नेस बढ़ेगा, आप और फीचर्स जोड़ सकते हैं, एडवांस कैंपेन चालू कर सकते हैं, और एक अकाउंट के तहत कई स्टोर्स और POS सिस्टम मैनेज कर सकते हैं। ल्यूम आपके बिज़नेस के साथ बढ़ने के लिए बना है।",
-  },
-  {
-    question: "Do I need an existing POS system to use Lume?",
-    questionHI: "क्या ल्यूम इस्तेमाल करने के लिए मुझे मौजूदा POS सिस्टम चाहिए?",
-    answer:
-      "No. You can start with Lume’s own web or mobile POS for quick billing, or integrate Lume with your existing POS using Lume plugins. All billing data from different sources is unified in one place so your reports and analytics stay consistent.",
-    answerHI:
-      "नहीं। आप ल्यूम के अपने वेब या मोबाइल POS से क्विक बिलिंग के लिए शुरू कर सकते हैं, या ल्यूम प्लगइन का इस्तेमाल करके ल्यूम को अपने मौजूदा POS के साथ इंटीग्रेट कर सकते हैं। अलग‑अलग स्रोतों से सभी बिलिंग डेटा एक जगह यूनिफाइड होता है ताकि आपकी रिपोर्ट्स और एनालिटिक्स कंसिस्टेंट रहें।",
-  },
-  {
-    question: "Is onboarding and support included?",
-    questionHI: "क्या ऑनबोर्डिंग और सपोर्ट शामिल है?",
-    answer:
-      "Yes. Every plan includes assisted onboarding, WhatsApp and phone support, and help with setup, billing, and integrations. Whether you are a single-store kirana or a multi-store chain, our team is available to guide you at every step.",
-    answerHI:
-      "हाँ। हर प्लान में असिस्टेड ऑनबोर्डिंग, व्हाट्सऐप और फोन सपोर्ट, और सेटअप, बिलिंग, और इंटीग्रेशन में मदद शामिल है। चाहे आप सिंगल-स्टोर किराना हों या मल्टी-स्टोर चेन, हमारी टीम हर कदम पर आपकी मदद के लिए उपलब्ध है।",
+    badge: "Most Popular",
   },
 ];
 
 export default function Pricing() {
-  const { language } = useLanguage();
-  const [showComparison, setShowComparison] = useState(false);
-  const [advanceFeaturesExpanded, setAdvanceFeaturesExpanded] = useState(false);
-  useSEO(
-    'Pricing Plans – Lume for Retailers',
-    'Lume pricing: Advance & Premium plans. Digital billing, customer loyalty, campaigns. Start from ₹19,999/year. Book a demo.'
-  );
-
-  const faqSchemaItems = faqs.map((faq) => ({
-    question: language === "HI" && faq.questionHI ? faq.questionHI : faq.question,
-    answer: language === "HI" && faq.answerHI ? faq.answerHI : faq.answer,
-  }));
+  useSEO({
+    title: "Pricing Plans — Hilon Aira Platform",
+    description: "Transparent annual pricing plans for Aira AI Retail Platform. Smart billing, e-bills, WhatsApp campaigns, AI insights, and multi-store telemetry.",
+    canonicalPath: "/pricing"
+  });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[var(--brand-tint)]/50 via-white to-amber-50/30">
-      <FaqJsonLd faqs={faqSchemaItems} />
+    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
       <Header />
 
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute top-40 right-20 w-96 h-96 bg-[rgb(var(--brand-rgb)/0.1)] rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[var(--brand-tint-3)]/20 rounded-full blur-3xl" />
-      </div>
-
       {/* Hero */}
-      <section className="hero-section relative z-10">
-        <div className="site-container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            {language === "HI" ? (
-              <>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: "#1b181f" }}>
-                  अपने बिज़नेस के लिए सही प्लान चुनें
-                </h1>
-                <p
-                  className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-                  style={{ color: "#4f4f4f" }}
-                >
-                  पहले सिंपल से शुरू करें, जैसे‑जैसे बिज़नेस बढ़े वैसे‑वैसे प्लान अपग्रेड करें। कोई छुपा
-                  चार्ज नहीं, कोई सरप्राइज़ नहीं।
-                </p>
-              </>
-            ) : (
-              <>
-                <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#1b181f" }}>
-                  Choose the right plan for your business
-                </h1>
-                <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ color: "#4f4f4f" }}>
-                  Start free, upgrade when you're ready. No hidden fees, no surprises.
-                </p>
-              </>
-            )}
-          </motion.div>
+      <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950 text-center">
+        <div className="site-container max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
+            Transparent Investment
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-4">
+            Predictable Pricing for{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-200">
+              Modern Retailers.
+            </span>
+          </h1>
+          <p className="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            Choose the Aira plan built for your store count. No hidden fees or hardware replacement required.
+          </p>
         </div>
       </section>
 
       {/* Pricing Cards */}
-      <section className="relative z-10">
+      <section className="section-spacing bg-slate-950">
         <div className="site-container max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             {plans.map((plan, i) => (
-              <motion.div
+              <div
                 key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`relative flex flex-col justify-between rounded-3xl p-6 sm:p-8 transition-all duration-300 ${plan.popular
-                  ? "bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-white border-2 border-[var(--brand)] shadow-2xl shadow-[rgb(var(--brand-rgb)/0.25)] hover:shadow-3xl hover:-translate-y-1.5"
-                  : "bg-white border border-border shadow-xl hover:shadow-2xl hover:border-primary/40 hover:-translate-y-1.5"
-                  }`}
+                className={`relative flex flex-col justify-between rounded-3xl p-6 sm:p-10 border transition-all duration-300 ${
+                  plan.popular
+                    ? "bg-gradient-to-b from-purple-950/80 via-slate-900 to-slate-950 border-purple-500 shadow-2xl shadow-purple-600/30 scale-[1.02]"
+                    : "bg-slate-900/60 border-purple-900/40 hover:border-purple-500/60"
+                }`}
               >
                 {plan.badge && (
-                  <div className="absolute -top-3.5 right-6 rounded-full px-4 py-1 text-xs font-extrabold uppercase tracking-wider bg-gradient-to-r from-[var(--brand)] to-[var(--brand-light)] text-white shadow-md flex items-center gap-1.5">
-                    {/* <Sparkles className="w-3.5 h-3.5" /> */}
-                    {language === "HI" && plan.badgeHI ? plan.badgeHI : plan.badge}
+                  <div className="absolute -top-3.5 right-6 rounded-full px-4 py-1 text-xs font-extrabold uppercase tracking-wider bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md">
+                    {plan.badge}
                   </div>
                 )}
 
                 <div>
-                  {/* Header & Tagline */}
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ color: "#1b181f" }}>
-                        {language === "HI" && plan.nameHI ? plan.nameHI : plan.name}
-                      </h3>
-                      {plan.popular && (
-                        <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[rgb(var(--brand-rgb)/0.12)] text-[var(--brand)]">
-                          {language === "HI" ? "लोकप्रिय" : "Popular"}
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed" style={{ color: "#4f4f4f" }}>
-                      {language === "HI"
-                        ? plan.name === "Advance"
-                          ? "उन स्टोर्स के लिए जो रिपीट कस्टमर और इनसाइट्स पर फोकस करते हैं"
-                          : "ब्रांड इम्पैक्ट और कस्टमर ऐप के लिए पूरा सॉल्यूशन"
-                        : plan.tagLine}
-                    </p>
-                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+                    {plan.name}
+                  </h3>
+                  <p className="text-slate-400 text-xs sm:text-sm mb-6">
+                    {plan.tagLine}
+                  </p>
 
-                  {/* Pricing Box */}
-                  <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-slate-50/80 border border-slate-100 flex flex-col justify-between">
-                    <div className="flex items-baseline gap-3 flex-wrap">
-                      <span className="text-4xl sm:text-5xl font-black tracking-tight" style={{ color: plan.popular ? 'var(--brand)' : '#1b181f' }}>
+                  <div className="mb-6 p-5 rounded-2xl bg-slate-950 border border-purple-900/40">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl sm:text-5xl font-black text-white">
                         {plan.price}
                       </span>
-                      {plan.originalPrice && (
-                        <div className="flex items-center gap-2">
-                          <span className="text-base sm:text-lg line-through font-medium" style={{ color: '#9ca3af' }}>{plan.originalPrice}</span>
-                          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">50% OFF</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="mt-2 flex items-center justify-between flex-wrap gap-2">
-                      <p className="text-xs sm:text-sm font-semibold" style={{ color: "#4f4f4f" }}>
-                        {language === "HI" ? "प्रति वर्ष + 18% GST" : plan.periodLabel}
-                      </p>
-
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[rgb(var(--brand-rgb)/0.15)] text-[var(--brand)]">
-                        {/* <Sparkles className="w-3 h-3" /> */}
-                        {language === "HI" ? "500 मुफ्त मैसेज शामिल" : plan.messagesLabel}
-                      </span>
+                      <span className="text-xs text-slate-400">{plan.periodLabel}</span>
                     </div>
                   </div>
 
-                  <hr className="my-6 border-border" />
-
-                  {/* Features List */}
                   <div className="space-y-3 mb-8">
-                    <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                      {language === "HI"
-                        ? plan.name === "Advance"
-                          ? "इस प्लान में शामिल प्रमुख फीचर्स:"
-                          : "एडवांस में जो है, उसके साथ:"
-                        : plan.highlightLine}
+                    <p className="text-xs font-bold uppercase tracking-wider text-pink-400">
+                      {plan.highlightLine}
                     </p>
-                    <ul className="space-y-2.5">
-                      {(language === "HI" && plan.featuresHI ? plan.featuresHI : plan.features).map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-sm sm:text-base leading-snug">
-                          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" style={{ color: 'var(--brand)' }} />
-                          <span className="font-medium" style={{ color: "#1b181f" }}>{feature}</span>
+                    <ul className="space-y-3">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-200">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 text-purple-400 shrink-0" />
+                          <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-
-                    {plan.featuresMore && plan.featuresMore.length > 0 && (
-                      <div className="pt-2">
-                        {!advanceFeaturesExpanded ? (
-                          <button
-                            type="button"
-                            className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--brand)] hover:underline focus-visible:outline-none"
-                            aria-expanded={false}
-                            onClick={() => setAdvanceFeaturesExpanded(true)}
-                          >
-                            {language === "HI"
-                              ? `+ और देखें (${plan.featuresMore.length} और फीचर्स)`
-                              : `+ View more (${plan.featuresMore.length} more features)`}
-                          </button>
-                        ) : (
-                          <div className="space-y-2.5 pt-1">
-                            {(language === "HI" && plan.featuresMoreHI ? plan.featuresMoreHI : plan.featuresMore).map((feature, idx) => (
-                              <li key={`more-${idx}`} className="flex items-start gap-3 text-sm sm:text-base leading-snug">
-                                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
-                                <span className="font-medium" style={{ color: "#1b181f" }}>{feature}</span>
-                              </li>
-                            ))}
-                            <button
-                              type="button"
-                              className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-slate-600 hover:underline"
-                              aria-expanded
-                              onClick={() => setAdvanceFeaturesExpanded(false)}
-                            >
-                              {language === "HI" ? "- कम देखें" : "- View less"}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
                   </div>
                 </div>
 
-                {/* CTA Button & Footer */}
-                <div className="mt-auto pt-4 border-t border-slate-100 space-y-3">
-                  <Button
-                    size="lg"
-                    className={`w-full py-6 text-base font-bold rounded-xl shadow-lg transition-all ${plan.popular
-                      ? "bg-gradient-to-r from-[var(--brand)] to-[var(--brand-light)] text-white hover:opacity-95 hover:shadow-xl"
-                      : "bg-slate-900 text-white hover:bg-slate-800"
-                      }`}
-                    asChild
+                <div className="pt-4 border-t border-slate-800">
+                  <Link
+                    to={plan.href}
+                    className={`w-full py-3.5 rounded-xl font-bold text-xs sm:text-sm text-center block transition-all shadow-lg ${
+                      plan.popular
+                        ? "bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white hover:opacity-90 shadow-purple-600/30"
+                        : "bg-slate-950 border border-purple-900/60 text-white hover:border-purple-500"
+                    }`}
                   >
-                    <a href="/book-demo">
-                      {language === "HI"
-                        ? plan.name === "Advance" ? "एडवांस प्लान चुनें" : "प्रीमियम प्लान चुनें"
-                        : `Get Started with ${plan.name}`}
-                    </a>
-                  </Button>
-
-                  <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
-                    <span className="flex items-center gap-1">
-                      {/* <Sparkles className="w-3.5 h-3.5 text-[var(--brand)]" /> */}
-                      {language === "HI" ? "ल्यूम द्वारा संचालित" : "POWERED BY LUME"}
-                    </span>
-                    <span>{language === "HI" ? "त्वरित सेटअप" : "Instant Setup"}</span>
-                  </div>
+                    {plan.cta}
+                  </Link>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Plan Comparison */}
-      <section className="section-spacing relative z-10">
-        <div className="site-container max-w-5xl">
-          <div className="flex justify-center mb-4">
-            <label className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-border shadow-sm cursor-pointer">
-              <input
-                type="checkbox"
-                className="form-checkbox h-4 w-4 text-[var(--brand)]"
-                checked={showComparison}
-                onChange={(e) => setShowComparison(e.target.checked)}
-              />
-              <span className="text-sm" style={{ color: "#1b181f" }}>
-                {language === "HI"
-                  ? "प्लान तुलना देखें"
-                  : "Plan comparison"}
-              </span>
-            </label>
+          <div className="mt-12 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <span>Need custom voAira enterprise pricing for &gt;10 stores? Contact demo@hilon.ai</span>
           </div>
-
-          {showComparison && (
-            <>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-center mb-3"
-              >
-                <h2 className="text-2xl font-bold mb-2" style={{ color: "#1b181f" }}>
-                  {language === "HI" ? "प्लान तुलना" : "Plan comparison"}
-                </h2>
-                <p style={{ color: "#4f4f4f" }}>
-                  {language === "HI"
-                    ? "एडवांस बनाम प्रीमियम"
-                    : "Advance vs Premium"}
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-xl border border-border overflow-hidden"
-              >
-                <div className="overflow-x-auto">
-                  <table className="w-full comparison-table">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-slate-50 to-slate-100">
-                        <th className="text-left py-4 px-6 font-semibold" style={{ color: '#1b181f' }}>
-                          {language === "HI" ? "फीचर्स" : "Features"}
-                        </th>
-                        <th className="text-center py-4 px-4 font-semibold" style={{ color: '#1b181f' }}>
-                          <div className="flex flex-col items-center">
-                            <span>{language === "HI" ? "एडवांस" : "Advance"}</span>
-                            <span className="text-sm font-normal" style={{ color: '#4f4f4f' }}>₹19,999 / year</span>
-                          </div>
-                        </th>
-                        <th className="text-center py-4 px-4 font-semibold bg-[rgb(var(--brand-rgb)/0.1)]" style={{ color: '#1b181f' }}>
-                          <div className="flex flex-col items-center">
-                            <span>
-                              {language === "HI" ? "प्रीमियम" : "Premium"}
-                            </span>
-                            <span className="text-sm font-normal" style={{ color: '#4f4f4f' }}>₹34,999 / year</span>
-                          </div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {/* Detailed feature rows */}
-                      {comparisonFeatures.map((feature, index) => (
-                        <tr
-                          key={feature.name}
-                          className={`${index % 2 === 0 ? "bg-white" : "bg-slate-50/50"} align-top`}
-                        >
-                          <td className="py-4 px-6 text-sm" style={{ color: '#1b181f' }}>
-                            <div className="font-medium mb-1">
-                              {language === "HI" && feature.nameHI ? feature.nameHI : feature.name}
-                            </div>
-                            <div className="text-xs" style={{ color: '#4f4f4f' }}>
-                              {language === "HI" && feature.descriptionHI ? feature.descriptionHI : feature.description}
-                            </div>
-                          </td>
-                          <td className="py-4 px-4 text-center">
-                            {feature.standard === "yes" || feature.advance === "yes" ? (
-                              <CheckCircle2 className="w-5 h-5 mx-auto" style={{ color: '#16a34a' }} />
-                            ) : (
-                              <span className="text-base" style={{ color: '#9ca3af' }}>—</span>
-                            )}
-                          </td>
-                          <td className="py-4 px-4 text-center">
-                            {feature.advance === "yes" ? (
-                              <CheckCircle2 className="w-5 h-5 mx-auto" style={{ color: '#16a34a' }} />
-                            ) : (
-                              <span className="text-base" style={{ color: '#9ca3af' }}>—</span>
-                            )}
-                          </td>
-                          <td className="py-4 px-4 text-center bg-[rgb(var(--brand-rgb)/0.05)]">
-                            {feature.premium === "yes" ? (
-                              <CheckCircle2 className="w-5 h-5 mx-auto" style={{ color: '#16a34a' }} />
-                            ) : (
-                              <span className="text-base" style={{ color: '#9ca3af' }}>—</span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </div>
-      </section>
-
-      {/* Enterprise */}
-      <section className="relative z-10">
-        <div className="site-container max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-6 bg-gradient-to-r from-primary/5 via-white to-accent/5 rounded-2xl p-6 border border-border text-center"
-          >
-            <h3 className="text-xl font-bold mb-2" style={{ color: '#1b181f' }}>
-              {language === "HI" ? "एंटरप्राइज़" : "Enterprise"}
-            </h3>
-            <p className="mb-4" style={{ color: '#4f4f4f' }}>
-              {language === "HI"
-                ? "मल्टी-स्टोर चेन के लिए जिन्हें कस्टम ज़रूरतें हों। API एक्सेस, समर्पित सपोर्ट और कस्टम इंटीग्रेशन पाएँ।"
-                : "For multi-store chains with custom needs. Get API access, dedicated support, and custom integrations."}
-            </p>
-            <Button variant="outline" size="lg" asChild>
-              <a
-                href={`https://wa.me/919326601463?text=${encodeURIComponent(
-                  language === "HI"
-                    ? "नमस्ते! मुझे अपनी रिटेल दुकान के लिए Lume POS और बिलिंग प्लान में दिलचस्पी है। कृपया प्राइसिंग और सही प्लान चुनने में मदद करें।"
-                    : "Hi! I'm interested in Lume POS and billing solutions for my retail store. Please share pricing details and help me choose the right plan."
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {language === "HI" ? "सेल्स से संपर्क करें" : "Contact Sales"}
-              </a>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQs */}
-      <section className="section-spacing relative z-10">
-        <div className="site-container">
-          <div className="text-center mb-8">
-            <HelpCircle className="w-12 h-12 mx-auto mb-4" style={{ color: 'var(--brand)' }} />
-            <h2 className="text-3xl font-bold" style={{ color: '#1b181f' }}>
-              {language === "HI" ? "अक्सर पूछे जाने वाले सवाल" : "Frequently Asked Questions"}
-            </h2>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="bg-white rounded-xl border border-border px-5 shadow-sm"
-              >
-                <AccordionTrigger className="text-left font-semibold hover:no-underline" style={{ color: '#1b181f' }}>
-                  {language === "HI" && faq.questionHI ? faq.questionHI : faq.question}
-                </AccordionTrigger>
-                <AccordionContent style={{ color: '#4f4f4f' }}>
-                  {language === "HI" && faq.answerHI ? faq.answerHI : faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section-spacing relative z-10">
-        <div className="site-container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 lg:p-9 text-white"
-          >
-            <h2 className="text-3xl font-bold mb-4">
-              {language === "HI" ? "शुरू करने के लिए तैयार हैं?" : "Ready to Get Started?"}
-            </h2>
-            <p className="text-lg text-white/80 mb-8">
-              {language === "HI"
-                ? "285+ रिटेलर्स जो अपने बिज़नेस के लिए ल्यूम पर भरोसा करते हैं, उनके साथ जुड़ें।"
-                : "Join 285+ retailers who trust Lume for their business."}
-            </p>
-          </motion.div>
         </div>
       </section>
 
@@ -943,3 +153,4 @@ export default function Pricing() {
     </div>
   );
 }
+

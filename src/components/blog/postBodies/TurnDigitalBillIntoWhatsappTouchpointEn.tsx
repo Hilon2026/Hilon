@@ -216,7 +216,7 @@ export function TurnDigitalBillIntoWhatsappTouchpointEn() {
             to="/features/digital-bills"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume digital billing
+            Aira digital billing
           </Link>{" "}
           turns every transaction into a WhatsApp touchpoint — with feedback, offers, and loyalty
           built right into the bill.
@@ -226,3 +226,4 @@ export function TurnDigitalBillIntoWhatsappTouchpointEn() {
     </div>
   );
 }
+

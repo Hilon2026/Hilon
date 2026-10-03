@@ -5,7 +5,7 @@ import billVideo from "@/assets/hero-banner/bill-vdoo.mp4";
 export default function DigitalBillsFeature() {
   return (
     <FeaturePageTemplate
-      seoTitle="Digital Bills on WhatsApp – Fast, Paperless Billing | Lume"
+      seoTitle="Digital Bills on WhatsApp – Fast, Paperless Billing | Aira"
       seoDescription="Send digital bills instantly on WhatsApp, collect customer data, and improve repeat visits with faster, paperless billing."
       heroBadge={{ en: "Digital Bills on WhatsApp", hi: "WhatsApp पर डिजिटल बिल" }}
       heroTitle={{ en: "Send branded digital bills in seconds", hi: "सेकंड्स में ब्रांडेड डिजिटल बिल भेजें" }}
@@ -48,7 +48,8 @@ export default function DigitalBillsFeature() {
         { question: { en: "Does digital billing help repeat visits?", hi: "क्या डिजिटल बिलिंग से रिपीट विजिट बढ़ती हैं?" }, answer: { en: "Yes, because every bill helps capture customer data for follow-up campaigns.", hi: "हां, क्योंकि हर बिल से ग्राहक डेटा कैप्चर होता है जिससे फॉलो-अप कैंपेन चलते हैं।" } },
       ]}
       finalCtaTitle={{ en: "Ready to switch to digital bills?", hi: "डिजिटल बिलिंग शुरू करने के लिए तैयार हैं?" }}
-      finalCtaText={{ en: "Deliver faster billing, paperless operations, and stronger repeat customer growth with Lume.", hi: "ल्यूम के साथ तेज बिलिंग, पेपरलेस ऑपरेशन और बेहतर रिपीट ग्राहक ग्रोथ पाएं।" }}
+      finalCtaText={{ en: "Deliver faster billing, paperless operations, and stronger repeat customer growth with Aira.", hi: "ल्यूम के साथ तेज बिलिंग, पेपरलेस ऑपरेशन और बेहतर रिपीट ग्राहक ग्रोथ पाएं।" }}
     />
   );
 }
+

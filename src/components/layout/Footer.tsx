@@ -1,192 +1,201 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import apeirosLogo from "@/assets/apeiros-logo.png";
+import { Linkedin, Instagram, Youtube } from "lucide-react";
+import HilonLogo from "@/components/brand/HilonLogo";
+import AiraLogo from "@/components/brand/AiraLogo";
 
-const footerLinks = {
-  company: [
-    { nameKey: "footer.about", href: "/company/about" },
-    // { nameKey: "footer.careers", href: "/company/careers" },
-    // { nameKey: "footer.investors", href: "/company/investors" },
-    { nameKey: "footer.contact", href: "/contact" },
-  ],
-  products: [
-    { nameKey: "footer.lume", href: "/products" },
-    { nameKey: "footer.mpos", href: "/products/mpos" },
-    { nameKey: "footer.lumeShopComingSoon", href: "/products#lume-shop" },
-    { nameKey: "footer.pricing", href: "/pricing" },
-  ],
-  solutions: [
-    { nameKey: "footer.digitalBills", href: "/features/digital-bills" },
-    { nameKey: "footer.smartBilling", href: "/solutions/smart-billing" },
-    { nameKey: "footer.customerAnalytics", href: "/solutions/customer-analytics" },
-    { nameKey: "footer.loyalty", href: "/solutions/loyalty-coupons" },
-    { nameKey: "footer.campaignManagement", href: "/solutions/campaign-management" },
-  ],
-  resources: [
-    { nameKey: "footer.caseStudies", href: "/resources/case-studies" },
-    { nameKey: "footer.blog", href: "/resources/blog" },
-    { nameKey: "footer.guides", href: "/resources/guides" },
-    { nameKey: "footer.helpCenter", href: "/help" },
-  ],
-  legal: [
-    { nameKey: "footer.privacy", href: "/privacy-policy" },
-    { nameKey: "footer.terms", href: "/terms-conditions" },
-  ],
-};
-
-export function Footer() {
-  const { t, language } = useLanguage();
+export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[var(--brand-dark)] text-white">
-      {/* Links Section */}
-      <div className="site-container py-10 lg:py-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
-          {/* Brand */}
-          <div className="col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-3">
-              <img src={apeirosLogo} alt="Apeiros AI" loading="lazy" className="h-8 w-auto rounded" />
-            </Link>
-            <p className="text-white/80 text-sm mb-1 max-w-xs leading-relaxed">
-              {t('footer.tagline')}
+    <footer className="bg-slate-950 text-slate-400 border-t border-purple-900/30 pt-16 pb-12 relative overflow-hidden">
+      {/* Subtle glowing aura */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="site-container relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-900">
+          {/* Brand Info */}
+          <div className="lg:col-span-4 space-y-4">
+            <div className="flex items-center gap-3">
+              <HilonLogo variant="light" size="md" />
+            </div>
+
+            <div className="mt-2">
+              <AiraLogo variant="light" size="sm" withCompany={false} />
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
+              AI-Powered Retail Intelligence & Growth Platform. Turn every sale into your next opportunity with fast billing, WhatsApp campaigns, e-bills, and store automation.
             </p>
-            <p className="text-white/80 text-xs mb-3">
-              Apeiros AI · Retail Intelligence Platform
-            </p>
-            <div className="space-y-2">
-            <a href="mailto:support@apeirosai.com" className="flex items-center gap-2 text-white/80 hover:text-white text-sm transition-colors">
-                <Mail className="w-4 h-4" />
-                support@apeirosai.com
+
+            {/* Social Links (Non-redirecting icons) */}
+            <div className="flex items-center gap-3 pt-2">
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-500 transition-colors cursor-default"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
               </a>
-              <a href="tel:+919326601463" className="flex items-center gap-2 text-white/80 hover:text-white text-sm transition-colors">
-                <Phone className="w-4 h-4" />
-                +91 93266 01463
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-500 transition-colors cursor-default"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
               </a>
-              <div className="flex items-start gap-2 text-white/80 text-sm">
-                <MapPin className="w-4 h-4 mt-0.5" />
-                <span>{language === 'HI' ? 'अहमदाबाद, भारत' : 'Ahmedabad, India'}</span>
-              </div>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-500 transition-colors cursor-default"
+                aria-label="YouTube"
+              >
+                <Youtube className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
-          {/* Company */}
-          <div>
-            <h4 className="font-semibold mb-3 text-sm text-white">{t('footer.company')}</h4>
-            <ul className="space-y-2">
-              {footerLinks.company.map((link) => (
-                <li key={link.nameKey}>
-                  <Link to={link.href} className="text-white/80 hover:text-white text-sm transition-colors">
-                    {t(link.nameKey)}
-                  </Link>
-                </li>
-              ))}
+          {/* Nav Column 1: AI Intelligence & Solutions */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">AI Intelligence</h4>
+            <ul className="space-y-2 text-xs">
               <li>
-                <Link to="/startup" className="text-white/80 hover:text-white text-sm transition-colors">
-                  Startup overview
+                <Link to="/ai-intelligence" className="hover:text-white transition-colors">
+                  AI Intelligence Core
+                </Link>
+              </li>
+              <li>
+                <Link to="/solutions" className="hover:text-white transition-colors">
+                  WhatsApp Campaigns
+                </Link>
+              </li>
+              <li>
+                <Link to="/features" className="hover:text-white transition-colors">
+                  Fast Billing & E-Bills
+                </Link>
+              </li>
+              <li>
+                <Link to="/features/analytics" className="hover:text-white transition-colors">
+                  Campaign Automation
+                </Link>
+              </li>
+              <li>
+                <Link to="/features/loyalty" className="hover:text-white transition-colors">
+                  Festival Campaigns
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Products */}
-          <div>
-            <h4 className="font-semibold mb-3 text-sm text-white">{t('footer.products')}</h4>
-            <ul className="space-y-2">
-              {footerLinks.products.map((link) => (
-                <li key={link.nameKey}>
-                  <Link to={link.href} className="text-white/80 hover:text-white text-sm transition-colors">
-                    {t(link.nameKey)}
-                  </Link>
-                </li>
-              ))}
+          {/* Nav Column 2: Solutions & Industries */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Industries</h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <Link to="/industries/fashion" className="hover:text-white transition-colors">
+                  Fashion & Apparel
+                </Link>
+              </li>
+              <li>
+                <Link to="/industries/grocery" className="hover:text-white transition-colors">
+                  Grocery & Supermarket
+                </Link>
+              </li>
+              <li>
+                <Link to="/industries/electronics" className="hover:text-white transition-colors">
+                  Electronics & Tech
+                </Link>
+              </li>
+              <li>
+                <Link to="/industries/pharmacy" className="hover:text-white transition-colors">
+                  Pharmacy & Wellness
+                </Link>
+              </li>
+              <li>
+                <Link to="/industries" className="hover:text-white transition-colors font-semibold text-purple-400">
+                  All 9 Sectors →
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Solutions */}
-          <div>
-            <h4 className="font-semibold mb-3 text-sm text-white">{t('footer.solutions')}</h4>
-            <ul className="space-y-2">
-              {footerLinks.solutions.map((link) => (
-                <li key={link.nameKey}>
-                  <Link to={link.href} className="text-white/80 hover:text-white text-sm transition-colors">
-                    {t(link.nameKey)}
-                  </Link>
-                </li>
-              ))}
+          {/* Nav Column 3: Resources & Company */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Company</h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <Link to="/company/about" className="hover:text-white transition-colors">
+                  About Hilon
+                </Link>
+              </li>
+              <li>
+                <Link to="/company/careers" className="hover:text-white transition-colors">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link to="/resources/blog" className="hover:text-white transition-colors">
+                  Blog & Insights
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-white transition-colors">
+                  Contact Sales
+                </Link>
+              </li>
+              <li>
+                <Link to="/pricing" className="hover:text-white transition-colors">
+                  Pricing Plans
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Resources */}
-          <div>
-            <h4 className="font-semibold mb-3 text-sm text-white">{t('footer.resources')}</h4>
-            <ul className="space-y-2">
-              {footerLinks.resources.map((link) => (
-                <li key={link.nameKey}>
-                  <Link to={link.href} className="text-white/80 hover:text-white text-sm transition-colors">
-                    {t(link.nameKey)}
-                  </Link>
-                </li>
-              ))}
+          {/* Nav Column 4: Legal & Security */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Legal & Compliance</h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <Link to="/privacy" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link to="/help" className="hover:text-white transition-colors">
+                  Security Standards
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="site-container py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/80 text-xs">
-            © {new Date().getFullYear()} Apeiros AI. {t('footer.copyright')}
-          </p>
+        {/* Bottom copyright */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+          <div>
+            © {new Date().getFullYear()} Hilon Inc. All rights reserved. Aira is a registered trademark of Hilon.
+          </div>
           <div className="flex items-center gap-4">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-              <div className="flex items-center gap-3">
-                <Link to="/privacy" className="text-white/80 hover:text-white text-xs transition-colors">
-                  Privacy
-                </Link>
-                <Link to="/terms" className="text-white/80 hover:text-white text-xs transition-colors">
-                  Terms
-                </Link>
-              </div>
-              <span className="hidden sm:inline text-white/40 text-xs">·</span>
-              <a
-                href="https://apeirosai.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white/80 hover:text-white text-xs transition-colors"
-              >
-                apeirosai.com
-              </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://www.facebook.com/people/Lume/61577808437645/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/107869065/admin/page-posts/published/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.instagram.com/the_lume_app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-            </div>
+            <Link to="/privacy" className="hover:text-white transition-colors">
+              Privacy
+            </Link>
+            <span>•</span>
+            <Link to="/terms" className="hover:text-white transition-colors">
+              Terms
+            </Link>
+            <span>•</span>
+            <Link to="/help" className="hover:text-white transition-colors">
+              Help Center
+            </Link>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

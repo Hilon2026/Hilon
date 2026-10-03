@@ -1,751 +1,82 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, Target, Lightbulb, Users, Heart } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, Target, Lightbulb, Users, Heart, Brain, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import gyanPhoto from "@/assets/about-us/gyan.jpg";
-import seemaPhoto from "@/assets/about-us/seema.jpg";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 
 export default function About() {
-  const { language } = useLanguage();
-  useSEO('About Us – Lume & Apeiros AI', 'Meet the team behind Lume. We build digital tools for Indian retailers. Billing, loyalty, growth – one platform.');
+  useSEO({
+    title: "About Us — Hilon & Aira Retail AI Platform",
+    description: "Learn about Hilon Inc., the creators of Aira — the flagship AI-powered retail intelligence and growth platform.",
+    canonicalPath: "/company/about"
+  });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
       <Header />
 
       {/* Hero */}
-      <section className="hero-section bg-gradient-to-b from-[#e9f4ff] via-white to-white">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            {language === "HI" ? (
-              <>
-                <p className="text-sm font-semibold tracking-[0.18em] uppercase text-[rgb(var(--brand-rgb)/0.8)] mb-3">
-                  हमारे बारे में
-                </p>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl leading-snug font-display font-bold mb-3 text-[#1b181f]">
-                  भारत के रिटेलर्स को{" "}
-                  <span className="text-[var(--brand)]">स्पष्टता, नियंत्रण और भरोसा</span> देने वाला
-                  टेक्नोलॉजी पार्टनर
-                </h1>
-                <p
-                  className="text-base md:text-lg text-muted-foreground leading-relaxed"
-                  style={{ color: "#3b3b3f" }}
-                >
-                  Apeiros AI Pvt. Ltd. एक रिटेल टेक्नोलॉजी कंपनी है, जो इस एक साफ़ विश्वास पर बनी है कि
-                  स्थानीय रिटेलर्स को ऐसा टेक्नोलॉजी प्लैटफॉर्म मिलना चाहिए जो सच में समझे कि रिटेल
-                  ज़मीन पर कैसे चलता है।
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-sm font-semibold tracking-[0.18em] uppercase text-[rgb(var(--brand-rgb)/0.8)] mb-3">
-                  About Us
-                </p>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 text-[#1b181f]">
-                  Empowering India’s Retailers with{" "}
-                  <span className="text-[var(--brand)]">Clarity, Control, and Confidence</span>
-                </h1>
-                <p
-                  className="text-base md:text-lg text-muted-foreground leading-relaxed"
-                  style={{ color: "#3b3b3f" }}
-                >
-                  Apeiros AI Pvt. Ltd. is a retail technology company built with one clear belief:
-                  local retailers deserve technology that actually understands how retail works.
-                </p>
-              </>
-            )}
-          </motion.div>
+      <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950">
+        <div className="site-container max-w-4xl mx-auto text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider">
+            <Brain className="w-4 h-4 text-pink-400" />
+            Company & Vision
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+            Building the Brain for{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-200">
+              Modern Retail Commerce.
+            </span>
+          </h1>
+          <p className="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            Hilon is a retail technology company dedicated to giving brick-and-mortar retailers autonomous intelligence, 360° customer data, and effortless store growth.
+          </p>
         </div>
       </section>
 
-      {/* Why we exist */}
-      <section className="section-spacing bg-white">
-        <div className="site-container grid lg:grid-cols-[1.1fr,1fr] gap-10 lg:gap-14 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-4 text-[#1b181f]">
-              {language === "HI" ? "हम क्यों मौजूद हैं" : "Why We Exist"}
-            </h2>
-            {language === "HI" ? (
-              <>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-                  आज जब क्विक कॉमर्स और बड़े प्लेटफ़ॉर्म बहुत तेज़ी से बढ़ रहे हैं, तब भारत के स्थानीय
-                  और बढ़ते रिटेलर्स अक्सर मैन्युअल बिलिंग, अलग‑अलग सिस्टम और अपने ही बिज़नेस की
-                  सीमित विज़िबिलिटी के साथ फँसे रहते हैं।
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-                  भारत का रिटेल इकोसिस्टम बहुत विशाल, विविध और इंसानी रिश्तों से भरा हुआ है — लेकिन
-                  ज़्यादातर टेक्नोलॉजी सॉल्यूशंस ऐसे लोगों ने बनाए हैं जो असल स्टोर वर्कफ़्लो को
-                  करीब से नहीं समझते।
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-                  रिटेलर्स को और ज़्यादा सॉफ़्टवेयर की नहीं,
-                  <span className="font-semibold"> साफ़ तस्वीर और क्लैरिटी की ज़रूरत है।</span>
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-                  In a world where quick commerce and large platforms are moving fast, India’s local and
-                  growing retailers are often left with manual billing, disconnected systems, and zero
-                  visibility into their own business.
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-                  India’s retail ecosystem is massive, diverse, and deeply human — yet most technology
-                  solutions are built without understanding real store workflows.
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-                  Retailers don’t need more software. <span className="font-semibold">They need clarity.</span>
-                </p>
-              </>
-            )}
-
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-[rgb(var(--brand-rgb)/0.15)] bg-[#f3f7ff] p-5">
-                <Target className="w-8 h-8 text-[var(--brand)] mb-3" />
-                <h3 className="font-semibold text-[#1b181f] mb-1">
-                  {language === "HI" ? "असल दुकानों के लिए बना" : "Built for real stores"}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "ऐसे सिस्टम जो बिलिंग, स्टाफ और काउंटर पर होने वाले असली काम से मैच करें।"
-                    : "Systems that match how billing, staff, and counters actually work on the ground."}
-                </p>
-              </div>
-              <div className="rounded-2xl border border-[rgb(var(--brand-rgb)/0.15)] bg-[#f5fbff] p-5">
-                <Lightbulb className="w-8 h-8 text-[var(--brand)] mb-3" />
-                <h3 className="font-semibold text-[#1b181f] mb-1">
-                  {language === "HI" ? "कम्प्लेक्सिटी से ज़्यादा क्लैरिटी" : "Clarity over complexity"}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "सिंपल और भरोसेमंद टूल्स जो रिटेलर्स को कस्टमर, सेल्स और ग्रोथ को साफ़‑साफ़ समझने में मदद करें।"
-                    : "Simple, reliable tools that help retailers understand customers, sales, and growth."}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-dashed border-[rgb(var(--brand-rgb)/0.3)] bg-[#f8fbff] p-6 flex flex-col gap-3"
-          >
-            <p className="text-sm font-semibold tracking-wide text-[var(--brand)] uppercase">
-              {language === "HI" ? "हम किस पर फोकस करते हैं" : "What we focus on"}
-            </p>
-            <ul className="space-y-2 text-sm md:text-base text-[#1b181f]">
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  {language === "HI"
-                    ? "मैन्युअल बिलिंग और अलग‑अलग, न जुड़े हुए काउंटर्स से आगे बढ़ना।"
-                    : "Move beyond manual billing and disconnected counters."}
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  {language === "HI"
-                    ? "गेसवर्क की जगह कस्टमर और सेल्स को डेटा के ज़रिए समझना।"
-                    : "Understand customers and sales instead of guessing."}
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  {language === "HI"
-                    ? "सिर्फ़ रिपोर्ट के लिए नहीं, रोज़मर्रा के फ़ैसलों के लिए डेटा का इस्तेमाल करना।"
-                    : "Use data to make everyday decisions — not just reports."}
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  {language === "HI"
-                    ? "स्टोर में और जटिलता बढ़ाए बिना बिज़नेस को ग्रो करना।"
-                    : "Grow without adding more complexity to the store."}
-                </span>
-              </li>
-            </ul>
-            <p className="text-sm md:text-base text-muted-foreground mt-2">
-              {language === "HI"
-                ? "हमारा फोकस सिंपल है: ऐसी टेक्नोलॉजी जो ज़मीन पर काम करे, सिर्फ़ प्रेज़ेंटेशन में नहीं।"
-                : "Our focus is simple: technology that works on the ground, not just on slides."}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* What we build - Lume */}
-      <section className="section-spacing subtle-gradient">
-        <div className="site-container grid lg:grid-cols-[1.15fr,1fr] gap-10 lg:gap-14 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--brand)] mb-2">
-              {language === "HI" ? "हम क्या बनाते हैं" : "What We Build"}
-            </p>
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-3 text-[#1b181f]">
-              {language === "HI" ? "ल्यूम — रिटेल इंटेलिजेंस प्लेटफ़ॉर्म" : "Lume — Retail Intelligence Platform"}
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              {language === "HI"
-                ? "ल्यूम हमारा फ़्लैगशिप प्रोडक्ट है — एक यूनिफ़ाइड रिटेल इंटेलिजेंस प्लेटफ़ॉर्म जो बिलिंग, POS सिस्टम, कस्टमर डेटा, लॉयल्टी, कैम्पेन और एनालिटिक्स को एक ही सिंपल सिस्टम में जोड़ देता है।"
-                : "Lume is our flagship product — a unified retail intelligence platform that connects billing, POS systems, customer data, loyalty, campaigns, and analytics into one simple system."}
-            </p>
-            <p className="text-sm font-semibold text-[var(--brand)] mb-3">
-              {language === "HI" ? "ल्यूम इन सबको एक साथ जोड़ता है:" : "Lume brings together:"}
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 mb-4">
-              <div className="rounded-2xl bg-white/80 border border-[rgb(var(--brand-rgb)/0.15)] p-4">
-                <h3 className="text-sm font-semibold text-[#1b181f] mb-1">
-                  {language === "HI" ? "बिलिंग और POS" : "Billing & POS"}
-                </h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "टैक्स और नॉन‑टैक्स बिलिंग, मौजूदा POS, वेब बिलिंग और मोबाइल‑फ्रेंडली POS।"
-                    : "Tax & non-tax billing, existing POS, web billing, and mobile-friendly POS."}
-                </p>
-              </div>
-              <div className="rounded-2xl bg-white/80 border border-[rgb(var(--brand-rgb)/0.15)] p-4">
-                <h3 className="text-sm font-semibold text-[#1b181f] mb-1">
-                  {language === "HI" ? "कस्टमर और लॉयल्टी" : "Customer & Loyalty"}
-                </h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "ऑटोमैटिक कस्टमर कैप्चर, लॉयल्टी और रिवॉर्ड्स, रिपीट ट्रैकिंग और सेगमेंट।"
-                    : "Automatic customer capture, loyalty & rewards, repeat tracking and segments."}
-                </p>
-              </div>
-              <div className="rounded-2xl bg-white/80 border border-[rgb(var(--brand-rgb)/0.15)] p-4">
-                <h3 className="text-sm font-semibold text-[#1b181f] mb-1">
-                  {language === "HI" ? "कैम्पेन और एंगेजमेंट" : "Campaigns & Engagement"}
-                </h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "व्हाट्सऐप, SMS और मल्टी‑चैनल कैम्पेन जो रियल परचेज डेटा पर चलते हैं।"
-                    : "WhatsApp, SMS and multi-channel campaigns that run on real purchase data."}
-                </p>
-              </div>
-              <div className="rounded-2xl bg-white/80 border border-[rgb(var(--brand-rgb)/0.15)] p-4">
-                <h3 className="text-sm font-semibold text-[#1b181f] mb-1">
-                  {language === "HI" ? "एनालिटिक्स और रिपोर्ट्स" : "Analytics & Reports"}
-                </h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "सेल्स, प्रोडक्ट, कस्टमर, टाइमिंग और मार्जिन — सब कुछ एक ही डैशबोर्ड में।"
-                    : "Sales, products, customers, timing and margins — all in one dashboard."}
-                </p>
-              </div>
-            </div>
-            <p className="text-sm md:text-base text-muted-foreground">
-              {language === "HI" ? (
-                <>
-                  हर बिल — चाहे वह किसी भी सोर्स से बना हो — अपने‑आप पढ़ा, प्रोसेस और एक्शन लेने लायक
-                  इनसाइट्स में बदल जाता है। रिटेलर्स सिर्फ़ बिल नहीं बनाते,
-                  <span className="font-semibold text-[var(--brand)]">
-                    {" "}
-                    ल्यूम के ज़रिए वे बिलिंग से ही अपना पूरा बिज़नेस समझने लगते हैं।
-                  </span>
-                </>
-              ) : (
-                <>
-                  Every bill created — from any source — is automatically read, processed and converted
-                  into actionable insights. Retailers don’t just generate bills with Lume —{" "}
-                  <span className="font-semibold text-[var(--brand)]">
-                    they understand their business through billing.
-                  </span>
-                </>
-              )}
-            </p>
-          </motion.div>
-
-          {/* Lume highlights card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl bg-white/90 border border-[rgb(var(--brand-rgb)/0.15)] shadow-sm p-6 space-y-4"
-          >
-            <h3 className="text-lg font-semibold text-[#1b181f] mb-1">
-              {language === "HI" ? "Lume को क्या अलग बनाता है" : "What makes Lume different"}
-            </h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  <span className="font-semibold text-[#1b181f]">
-                    {language === "HI" ? "स्मार्ट डिजिटल बिलिंग:" : "Smart Digital Billing:"}
-                  </span>{" "}
-                  {language === "HI"
-                    ? "बिल सिर्फ़ प्रिंट या PDF नहीं, बल्कि प्रमोशन, फ़ीडबैक, Google रेटिंग, रेफ़रल और लॉयल्टी के लिए एंगेजमेंट टूल बन जाते हैं।"
-                    : "Bills become engagement tools with promotions, feedback, Google ratings, referrals, and loyalty."}
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  <span className="font-semibold text-[#1b181f]">
-                    {language === "HI" ? "कस्टमर इंटेलिजेंस:" : "Customer Intelligence:"}
-                  </span>{" "}
-                  {language === "HI"
-                    ? "ऑटोमैटिक कस्टमर कैप्चर, परचेज हिस्ट्री, रिपीट विज़िट ट्रैकिंग और सेगमेंटेशन।"
-                    : "Automatic customer capture, purchase history, repeat tracking and segmentation."}
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  <span className="font-semibold text-[#1b181f]">
-                    {language === "HI" ? "वाकई काम करने वाले कैम्पेन:" : "Campaigns that actually work:"}
-                  </span>{" "}
-                  {language === "HI"
-                    ? "व्हाट्सऐप, SMS और मल्टी‑चैनल कैम्पेन जो रियल परचेज डेटा पर चलकर सही कस्टमर तक सही मैसेज पहुँचाते हैं।"
-                    : "WhatsApp, SMS and multi-channel campaigns driven by real purchase data."}
-                </span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                <span>
-                  <span className="font-semibold text-[#1b181f]">
-                    {language === "HI" ? "इंडियन रिटेल की असल ज़मीन के लिए:" : "Built for Indian retail reality:"}
-                  </span>{" "}
-                  {language === "HI"
-                    ? "किराना से लेकर फ़ैशन, इलेक्ट्रॉनिक्स, फ़ार्मेसी और मल्टी‑स्टोर चेन तक — सबके लिए काम करता है।"
-                    : "Works for kirana stores, fashion, electronics, pharmacies and multi-store chains."}
-                </span>
-              </li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Our belief */}
-      <section className="section-spacing bg-white">
-        <div className="site-container grid lg:grid-cols-[1.2fr,1fr] gap-10 lg:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-3 text-[#1b181f]">
-              {language === "HI" ? "हमारा विश्वास" : "Our Belief"}
-            </h2>
-            {language === "HI" ? (
-              <>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-                  स्थानीय रिटेलर्स भारत की इकॉनमी की रीढ़ हैं। उन्हें जटिल डैशबोर्ड या भारी‑भरकम जार्गन
-                  वाले सॉफ़्टवेयर की ज़रूरत नहीं है, बल्कि ऐसे सिंपल और भरोसेमंद सिस्टम की ज़रूरत है जो
-                  उन्हें अपने बिज़नेस पर कंट्रोल दें।
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  हमारा मिशन है कि रिटेलर्स बिना सिम्प्लिसिटी खोए डिजिटल हों — और ऐसे टेक्नोलॉजी के साथ
-                  ग्रो करें जो असल रिटेल की रियलिटी को रिस्पेक्ट करे।
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-                  Local retailers are the backbone of India’s economy. They don’t need complicated
-                  dashboards or jargon-heavy software. They need simple, reliable systems that give
-                  them control over their business.
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Our mission is to help retailers go digital without losing simplicity — and grow using
-                  technology that respects how retail actually works.
-                </p>
-              </>
-            )}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-[rgb(var(--brand-rgb)/0.15)] bg-[#f4f8ff] p-6 flex gap-4 items-start"
-          >
-            <Heart className="w-8 h-8 text-[var(--brand)] mt-1" />
-            <div>
-              <p className="text-sm md:text-base text-[#1b181f] font-semibold mb-2">
-                {language === "HI"
-                  ? "हम डेमो के लिए फीचर्स नहीं बनाते।"
-                  : "We don’t build features for demos."}
+      {/* Why We Exist */}
+      <section className="section-spacing bg-slate-950">
+        <div className="site-container max-w-5xl space-y-12">
+          <div className="grid lg:grid-cols-2 gap-8 items-center bg-slate-900/80 border border-purple-900/40 p-6 sm:p-10 rounded-3xl backdrop-blur-xl">
+            <div className="space-y-4">
+              <span className="text-xs font-bold text-pink-400 uppercase tracking-widest block">
+                OUR MISSION
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                Retailers don't need more complex software. They need clarity.
+              </h2>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                In a fast-paced commerce landscape, independent retailers are often stuck with slow billing, manual POS systems, and zero visibility into customer retention.
               </p>
-              <p className="text-sm md:text-base text-muted-foreground">
-                {language === "HI"
-                  ? "हम ऐसे सिस्टम बनाते हैं जिन पर रिटेलर्स हर दिन भरोसा कर सकें — भीड़ वाले बिलिंग काउंटर पर, त्योहारों के समय, छोटे कस्बों से लेकर बड़े शहरों तक।"
-                  : "We build systems retailers can rely on every single day — at busy billing counters, during festivals, in small towns and big cities alike."}
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                We built <strong>Aira</strong> to sit seamlessly on top of existing retail transactions — converting raw checkout streams into instant WhatsApp receipts, 360° customer profiles, and autonomous AI growth actions.
               </p>
             </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Leadership */}
-      <section className="section-spacing subtle-gradient">
-        <div className="site-container">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-3 text-[#1b181f]">
-              {language === "HI" ? "नेतृत्व" : "Leadership"}
-            </h2>
-            <p className="text-sm md:text-base text-muted-foreground">
-              {language === "HI"
-                ? "Apeiros AI ऐसे बिल्डर्स द्वारा लीड किया जाता है जिन्होंने सालों तक भारतीय रिटेल के अंदर काम किया है — स्टोर फ़्लोर और POS टर्मिनल से लेकर पेमेंट रेल्स और लॉयल्टी प्लेटफ़ॉर्म तक।"
-                : "Apeiros AI is led by builders who have spent decades inside Indian retail — from store floors and POS terminals to payment rails and loyalty platforms."}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Gyan card */}
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl border border-[rgb(var(--brand-rgb)/0.15)] shadow-sm overflow-hidden flex flex-col"
-            >
-              <div className="bg-[#f4f7ff] px-6 pt-6 pb-4 flex items-center gap-4">
-                <div className="w-24 h-24 rounded-2xl overflow-hidden border border-[rgb(var(--brand-rgb)/0.2)] bg-white flex-shrink-0">
-                  <img
-                    src={gyanPhoto}
-                    alt="Gyanendra singh – Founder & Director"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-left">
-                  <h3 className="text-lg font-semibold text-[#1b181f]">Gyanendra Singh</h3>
-                  <p className="text-sm font-medium text-[var(--brand)]">Founder & Director</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    23+ years across Retail, POS, FinTech, Payments, Loyalty, Banking & Digital Platforms.
-                  </p>
+            <div className="space-y-4 bg-slate-950 border border-purple-900/50 p-6 rounded-2xl">
+              <div className="flex items-start gap-3">
+                <Target className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-bold text-white text-sm">Ground-Level Retail Focus</h3>
+                  <p className="text-slate-400 text-xs mt-1">Built to handle sub-second billing counters, rush hours, and multi-store chains.</p>
                 </div>
               </div>
-              <div className="px-6 pb-6 pt-4 space-y-3 text-sm text-muted-foreground leading-relaxed">
-                {language === "HI" ? (
-                  <>
-                    <p>
-                      Gyanendra singh के पास रिटेल, POS, फ़िनटेक, पेमेंट्स, लॉयल्टी, बैंकिंग और डिजिटल प्लेटफ़ॉर्म्स
-                      में 23+ साल का डीप, हैंड्स‑ऑन अनुभव है।
-                    </p>
-                    <ul className="space-y-1.5">
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>मैथमेटिक्स और कंप्यूटर एप्लिकेशन में मास्टर्स।</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Future Group में FuturePay को 2.5 करोड़+ यूज़र्स तक स्केल किया।</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>10 लाख+ लाइनों का प्रोडक्शन POS और रिटेल सिस्टम कोड खुद लिखा और शिप किया।</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>हज़ारों रिटेल स्टोर्स में ज़ीरो‑डाउनटाइम माइग्रेशन्स लीड किए।</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>
-                          Fiserv (US), Specsavers (UK), JK Technosoft, Future Group और कई ग्लोबल व इंडियन
-                          एंटरप्राइज़ के साथ काम किया।
-                        </span>
-                      </li>
-                    </ul>
-                    <p>
-                      दो दशकों से ज़्यादा समय भारतीय रिटेल रियलिटी के भीतर काम करने के बाद Gyan स्टोर
-                      ऑपरेशंस, मार्जिन, लॉयल्टी मार्केटिंग, स्टाफ बिहेवियर और कस्टमर साइकोलॉजी को गहराई
-                      से समझते हैं। उन्होंने Apeiros AI इस मिशन के साथ शुरू किया कि भारत के छोटे और मिड‑साइज़
-                      रिटेलर्स भी बड़े, ऑर्गेनाइज़्ड प्लेयर्स जितनी पावर और इंटेलिजेंस के साथ ऑपरेट कर सकें।
-                      दिल से बिल्डर — आज भी खुद कोड लिखते हैं, डिसिप्लिन के साथ एग्ज़िक्यूट करते हैं और
-                      लॉन्ग‑टर्म रिज़ल्ट्स पर फोकस रखते हैं।
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      Gyanendra singh brings over 23+ years of deep, hands-on experience across retail, POS,
-                      fintech, payments, loyalty, banking and digital platforms.
-                    </p>
-                    <ul className="space-y-1.5">
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Masters in Mathematics and Computer Applications.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Built and scaled FuturePay at Future Group to 25+ million users.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Personally wrote and shipped 10+ lakh lines of production POS code.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Led zero‑downtime migrations across thousands of retail stores.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>
-                          Worked with Fiserv (US), Specsavers (UK), JK Technosoft, Future Group and other
-                          enterprises.
-                        </span>
-                      </li>
-                    </ul>
-                    <p>
-                      With over two decades embedded in Indian retail reality, Gyan understands store
-                      operations, margins, loyalty marketing, staff behaviour and customer psychology at
-                      ground level. He founded Apeiros AI with one clear mission: enable India’s small
-                      and mid retailers to operate with the power and intelligence of large, organised
-                      players. A builder at heart — he still codes, executes with discipline and focuses
-                      on long-term outcomes.
-                    </p>
-                  </>
-                )}
-              </div>
-            </motion.article>
-
-            {/* Seema card */}
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-white rounded-2xl border border-[rgb(var(--brand-rgb)/0.15)] shadow-sm overflow-hidden flex flex-col"
-            >
-              <div className="bg-[#f4f7ff] px-6 pt-6 pb-4 flex items-center gap-4">
-                <div className="w-24 h-24 rounded-2xl overflow-hidden border border-[rgb(var(--brand-rgb)/0.2)] bg-white flex-shrink-0">
-                  <img
-                    src={seemaPhoto}
-                    alt="Seema Singh– Director"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-left">
-                  <h3 className="text-lg font-semibold text-[#1b181f]">Seema Singh</h3>
-                  <p className="text-sm font-medium text-[var(--brand)]">Director</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    15+ years across QA, retail systems, POS, loyalty, FinTech & digital applications.
-                  </p>
+              <div className="flex items-start gap-3 pt-3 border-t border-slate-800">
+                <Brain className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-bold text-white text-sm">Autonomous Intelligence Core</h3>
+                  <p className="text-slate-400 text-xs mt-1">Aira continuously runs pattern analysis in the background without manual data entry.</p>
                 </div>
               </div>
-              <div className="px-6 pb-6 pt-4 space-y-3 text-sm text-muted-foreground leading-relaxed">
-                {language === "HI" ? (
-                  <>
-                    <p>
-                      Seema Singh के पास QA, रिटेल सिस्टम्स, POS प्लेटफ़ॉर्म, लॉयल्टी प्रोग्राम्स, फ़िनटेक और
-                      डिजिटल एप्लिकेशन्स में 15+ साल का अनुभव है।
-                    </p>
-                    <ul className="space-y-1.5">
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>इन्फ़ॉर्मेशन टेक्नोलॉजी में पोस्ट‑ग्रेजुएट।</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Fiserv, NIIT, M‑Intellect, Future Group और अन्य संगठनों के साथ काम किया।</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>क्वालिटी इंजीनियरिंग और एक्ज़ीक्यूशन रिलायबिलिटी में गहरी विशेषज्ञता।</span>
-                      </li>
-                    </ul>
-                    <p>
-                      Apeiros AI में Seema Singh एक्ज़ीक्यूशन एंकर की भूमिका निभाती हैं — यह सुनिश्चित करते हुए कि
-                      Lume स्थिर, स्केलेबल और प्रोडक्शन‑रेडी रहे। उनकी भूमिका में क्वालिटी इंजीनियरिंग,
-                      सेल्स प्लानिंग सपोर्ट, कस्टमर ऑपरेशंस, गवर्नन्स, ऑडिट्स और डिलीवरी डिसिप्लिन शामिल हैं।
-                    </p>
-                    <p>
-                      काम से बाहर, वे डांस, डिजिटल कंटेंट क्रिएशन और पेंटिंग में सक्रिय हैं — और यही
-                      क्रिएटिविटी व यूज़र एम्पैथी प्रोडक्ट एक्ज़ीक्यूशन में भी लेकर आती हैं।
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      Seema Singh brings 15+ years of experience across QA, retail systems, POS platforms,
-                      loyalty programs, fintech and digital applications.
-                    </p>
-                    <ul className="space-y-1.5">
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Post‑graduate in Information Technology.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Worked with Fiserv, NIIT, M‑Intellect, Future Group and others.</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />
-                        <span>Deep expertise in quality engineering and execution reliability.</span>
-                      </li>
-                    </ul>
-                    <p>
-                      At Apeiros AI, Seema Singh acts as the execution anchor — ensuring that Lume is stable,
-                      scalable and production‑ready. Her role spans quality engineering, sales planning
-                      support, customer operations, governance, audits and delivery discipline.
-                    </p>
-                    <p>
-                      Beyond work, she is actively engaged in dance, digital content creation and
-                      painting — bringing creativity and strong user empathy into product execution.
-                    </p>
-                  </>
-                )}
-              </div>
-            </motion.article>
-          </div>
-        </div>
-      </section>
-
-      {/* How we work */}
-      <section className="section-spacing bg-white">
-        <div className="site-container grid lg:grid-cols-[1.1fr,1fr] gap-10 lg:gap-16 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-3 text-[#1b181f]">
-              {language === "HI" ? "हम कैसे काम करते हैं" : "How We Work"}
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              {language === "HI"
-                ? "हम रिटेलर्स, उनके काउंटर और उनकी टीम के बहुत करीब रहते हैं। प्रोडक्ट डिसीजन स्लाइड्स से नहीं, बल्कि स्टोर में रोज़ जो होता है, वहीं से आते हैं।"
-                : "We stay close to retailers, their counters and their staff. Product decisions come from what actually happens in stores — not from slides or conference rooms."}
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-[rgb(var(--brand-rgb)/0.15)] bg-[#f5fbff] p-5">
-                <Users className="w-7 h-7 text-[var(--brand)] mb-2" />
-                <p className="text-sm font-semibold text-[#1b181f] mb-1">
-                  {language === "HI" ? "प्रोडक्ट‑फर्स्ट, रिटेलर‑फर्स्ट" : "Product‑first, retailer‑first"}
-                </p>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "रिटेल की असल रियलिटी, किसी भी थ्योरी से पहले। हर फीचर को एक असली काउंटर प्रॉब्लम सॉल्व करनी चाहिए।"
-                    : "Retail reality before assumptions. Every feature must solve a real counter problem."}
-                </p>
-              </div>
-              <div className="rounded-2xl border border-[rgb(var(--brand-rgb)/0.15)] bg-[#f3f7ff] p-5">
-                <p className="text-sm font-semibold text-[#1b181f] mb-1">
-                  {language === "HI"
-                    ? "क्वालिटी और रिलायबिलिटी, शॉर्टकट से ऊपर"
-                    : "Quality and reliability over shortcuts"}
-                </p>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  {language === "HI"
-                    ? "हम सिर्फ़ लॉन्च नहीं, बल्कि स्टेबिलिटी, अपटाइम और लॉन्ग‑टर्म स्केलेबिलिटी के लिए ऑप्टिमाइज़ करते हैं।"
-                    : "We optimise for stability, uptime and long‑term scalability, not just launches."}
-                </p>
+              <div className="flex items-start gap-3 pt-3 border-t border-slate-800">
+                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-bold text-white text-sm">Zero POS Overhaul Required</h3>
+                  <p className="text-slate-400 text-xs mt-1">Integrates with existing POS streams without retraining cashiers or breaking store operations.</p>
+                </div>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl bg-[#0b1530] text-white p-6 space-y-3"
-          >
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#7fb6ff]">
-              {language === "HI" ? "हमारे सिद्धांत" : "Principles"}
-            </p>
-            <ul className="space-y-2 text-sm md:text-base">
-              {language === "HI" ? (
-                <>
-                  <li>• प्रोडक्ट‑फर्स्ट सोच।</li>
-                  <li>• किसी भी असम्पशन से पहले रिटेल रियलिटी।</li>
-                  <li>• शॉर्टकट से ज़्यादा क्वालिटी और रिलायबिलिटी।</li>
-                  <li>• क्विक विन से ज़्यादा लॉन्ग‑टर्म स्केलेबिलिटी।</li>
-                </>
-              ) : (
-                <>
-                  <li>• Product‑first thinking.</li>
-                  <li>• Retail reality before assumptions.</li>
-                  <li>• Quality and reliability over shortcuts.</li>
-                  <li>• Long‑term scalability over quick wins.</li>
-                </>
-              )}
-            </ul>
-            <p className="text-sm md:text-base text-white/80">
-              {language === "HI"
-                ? "हम डेमो के लिए फीचर्स नहीं बनाते। हम ऐसे सिस्टम बनाते हैं जिन पर रिटेलर्स हर दिन भरोसा कर सकें।"
-                : "We don’t build features for demos. We build systems retailers can rely on every single day."}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Looking ahead & Join the journey */}
-      <section className="section-spacing bg-gradient-to-b from-[#0b1530] via-[#101c3a] to-[#0b1530] text-white">
-        <div className="site-container grid lg:grid-cols-[1.15fr,1fr] gap-10 lg:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2
-              className="text-2xl md:text-3xl font-display font-bold mb-3"
-              style={{ color: "#ffffff" }}
-            >
-              {language === "HI" ? "आगे की राह" : "Looking Ahead"}
-            </h2>
-            {language === "HI" ? (
-              <>
-                <p className="text-sm md:text-base text-white/80 leading-relaxed mb-4">
-                  हम लगातार Lume की क्षमताएँ बढ़ा रहे हैं और हाइपरलोकल कॉमर्स सॉल्यूशंस बना रहे हैं जो
-                  रिटेलर्स को बदलती हुई रिटेल दुनिया में और मज़बूती से कम्पीट करने में मदद करेंगे।
-                </p>
-                <p className="text-sm md:text-base text-white/80 leading-relaxed">
-                  यह सफ़र अभी शुरू ही हुआ है — और हम इसे एक‑एक रिटेलर के साथ मिलकर बना रहे हैं।
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-sm md:text-base text-white/80 leading-relaxed mb-4">
-                  We continue to expand Lume’s capabilities and are building hyperlocal commerce
-                  solutions that will help retailers compete more effectively in the evolving retail
-                  landscape.
-                </p>
-                <p className="text-sm md:text-base text-white/80 leading-relaxed">
-                  Our journey has just begun — and we’re building it one retailer at a time.
-                </p>
-              </>
-            )}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl bg-white/5 border border-white/10 p-6 text-center lg:text-left"
-          >
-            <h3
-              className="text-xl font-semibold mb-2"
-              style={{ color: "#ffffff" }}
-            >
-              {language === "HI" ? "हमारे साथ यह सफ़र जोड़ें" : "Join the Journey"}
-            </h3>
-            <p className="text-sm md:text-base text-white/80 mb-5">
-              {language === "HI"
-                ? "चाहे आप ग्रो करना चाहने वाले रिटेलर हों, रिटेल सॉल्यूशन बनाने वाले पार्टनर, लॉन्ग‑टर्म वैल्यू समझने वाले इन्वेस्टर, या असली प्रॉब्लम्स पर काम करना चाहने वाले बिल्डर — Apeiros AI आपके लिए खुला है।"
-                : "Whether you are a retailer looking to grow, a partner building retail solutions, an investor who understands long‑term value, or a builder who wants to work on real problems — Apeiros AI welcomes you."}
-            </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

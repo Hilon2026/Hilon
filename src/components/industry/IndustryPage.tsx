@@ -7,7 +7,6 @@ import {
   MessageCircle,
   ReceiptIndianRupee,
   HeartHandshake,
-  Sparkles,
   ShoppingCart,
   ShieldCheck,
   Repeat,
@@ -61,7 +60,7 @@ function getHeroHighlightIcon(label: string) {
   if (key.includes("whatsapp")) return MessageCircle;
   if (key.includes("billing") || key.includes("checkout")) return ReceiptIndianRupee;
   if (key.includes("loyalty")) return HeartHandshake;
-  if (key.includes("bundle") || key.includes("combo")) return Sparkles;
+  if (key.includes("bundle") || key.includes("combo")) return Boxes;
   if (key.includes("buyer") || key.includes("customer")) return Repeat;
   if (key.includes("warranty")) return ShieldCheck;
   if (key.includes("sales") || key.includes("value")) return BarChart3;

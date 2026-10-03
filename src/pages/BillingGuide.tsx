@@ -33,7 +33,7 @@ type BillingTypeKey = "quick" | "pos" | "image" | "mpos" | "listing";
 export default function BillingGuide() {
   const [openSection, setOpenSection] = useState<BillingTypeKey | null>("quick");
   const { language } = useLanguage();
-  useSEO('Billing Guide – Quick Bill, POS Bill, Image Bill | Lume', 'How to create bills in Lume: Quick Bill, POS Bill, Image Bill, MPOS, E-Bill Listing. Step-by-step guide for retailers.');
+  useSEO('Billing Guide – Quick Bill, POS Bill, Image Bill | Aira', 'How to create bills in Aira: Quick Bill, POS Bill, Image Bill, MPOS, E-Bill Listing. Step-by-step guide for retailers.');
 
   const toggleSection = (key: BillingTypeKey) => {
     setOpenSection((prev) => (prev === key ? null : key));
@@ -49,7 +49,7 @@ export default function BillingGuide() {
         <div className="absolute inset-0">
           <img
             src={billingGuideBanner}
-            alt="Illustration of billing tools and mobile POS for Lume"
+            alt="Illustration of billing tools and mobile POS for Aira"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/75 to-white/40" />
@@ -77,10 +77,10 @@ export default function BillingGuide() {
                 <>
                   <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold mb-4 text-left">
                     <span style={{ color: "#1b181f" }}>Billing Guide for </span>
-                    <span style={{ color: "var(--brand)" }}>Lume Retailers</span>
+                    <span style={{ color: "var(--brand)" }}>Aira Retailers</span>
                   </h1>
                   <p className="text-lg md:text-2xl mb-3 text-left" style={{ color: "#1b181f" }}>
-                    Learn how to create bills in Lume in just a few simple steps. You only need the
+                    Learn how to create bills in Aira in just a few simple steps. You only need the
                     minimum required details – everything else is optional.
                   </p>
                 </>
@@ -111,7 +111,7 @@ export default function BillingGuide() {
             <p className="text-sm md:text-lg mb-2" style={{ color: "#4f4f4f" }}>
               {language === "HI"
                 ? "ल्यूम में आप सिर्फ ज़रूरी फ़ील्ड्स भरकर भी बिल बना सकते हैं। बाकी ऑप्शनल फ़ील्ड्स आपको बाद में बेहतर रिपोर्ट और इनसाइट्स देने के लिए होते हैं, पर बिलिंग के लिए अनिवार्य नहीं हैं।"
-                : "In Lume, you can create a bill by filling only the mandatory fields. Optional fields are there to give you better insights later, but you can safely skip them."}
+                : "In Aira, you can create a bill by filling only the mandatory fields. Optional fields are there to give you better insights later, but you can safely skip them."}
             </p>
             <p className="text-sm md:text-lg font-medium" style={{ color: "#1b181f" }}>
               {language === "HI"
@@ -147,7 +147,7 @@ export default function BillingGuide() {
                 <div className="rounded-xl border border-border/60 overflow-hidden bg-white shadow-sm">
                   <img
                     src={billTabsImage}
-                    alt="Lume billing tabs - Quick Bill, POS Bill, Image Bill, MPOS, E‑Bill Listing"
+                    alt="Aira billing tabs - Quick Bill, POS Bill, Image Bill, MPOS, E‑Bill Listing"
                     className="w-full h-auto"
                   />
                 </div>
@@ -210,7 +210,7 @@ export default function BillingGuide() {
             image={
               <img
                 src={quickBillImage}
-                alt="Quick Bill screen in Lume"
+                alt="Quick Bill screen in Aira"
                 className="w-full h-auto"
               />
             }
@@ -275,17 +275,17 @@ export default function BillingGuide() {
               <div className="space-y-4">
                 <img
                   src={posStep1Image}
-                  alt="POS Bill customer information step in Lume"
+                  alt="POS Bill customer information step in Aira"
                   className="w-full h-auto rounded-lg border border-border"
                 />
                 <img
                   src={posStep2Image}
-                  alt="POS Bill add products step in Lume"
+                  alt="POS Bill add products step in Aira"
                   className="w-full h-auto rounded-lg border border-border"
                 />
                 <img
                   src={posStep3Image}
-                  alt="POS Bill payment details step in Lume"
+                  alt="POS Bill payment details step in Aira"
                   className="w-full h-auto rounded-lg border border-border"
                 />
               </div>
@@ -350,7 +350,7 @@ export default function BillingGuide() {
             image={
               <img
                 src={imageBillImage}
-                alt="Image Bill screen in Lume"
+                alt="Image Bill screen in Aira"
                 className="w-full h-auto rounded-lg border border-border"
               />
             }
@@ -366,7 +366,7 @@ export default function BillingGuide() {
             description={
               language === "HI"
                 ? "MPOS ल्यूम का मोबाइल‑फ्रेंडली POS है – बारकोड स्कैनिंग और बिना फिक्स्ड काउंटर के बिलिंग के लिए बिल्कुल सही।"
-                : "MPOS is Lume’s mobile‑friendly POS system, ideal for barcode scanning and counter‑less billing."
+                : "MPOS is Aira’s mobile‑friendly POS system, ideal for barcode scanning and counter‑less billing."
             }
             mandatoryItems={[
               language === "HI" ? "स्टोर सेलेक्शन" : "Store selection",
@@ -423,7 +423,7 @@ export default function BillingGuide() {
             description={
               language === "HI"
                 ? "E‑Bill लिस्टिंग वह जगह है जहाँ आप ल्यूम में बने सारे बिल देख और मैनेज कर सकते हैं।"
-                : "E‑Bill Listing is where you can view and manage all the bills created in Lume."
+                : "E‑Bill Listing is where you can view and manage all the bills created in Aira."
             }
             mandatoryItems={[
               language === "HI"
@@ -457,7 +457,7 @@ export default function BillingGuide() {
             image={
               <img
                 src={ebillListingImage}
-                alt="E‑Bill Listing screen in Lume"
+                alt="E‑Bill Listing screen in Aira"
                 className="w-full h-auto rounded-lg border border-border"
               />
             }
@@ -512,12 +512,12 @@ export default function BillingGuide() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="mailto:support@apeirosai.com"
+                href="mailto:support@Hilonai.com"
                 className="flex items-center gap-2 px-5 py-3 rounded-lg border border-border hover:border-primary/60 hover:bg-primary/5 transition-colors"
               >
                 <Mail className="w-5 h-5" style={{ color: "var(--brand)" }} />
                 <span className="text-sm font-medium" style={{ color: "#1b181f" }}>
-                  support@apeirosai.com
+                  support@Hilonai.com
                 </span>
               </a>
               <a

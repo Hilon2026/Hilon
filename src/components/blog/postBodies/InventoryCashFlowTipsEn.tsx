@@ -243,7 +243,7 @@ export function InventoryCashFlowTipsEn() {
             to="/products"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume POS
+            Aira POS
           </Link>{" "}
           tracks inventory in real time with every sale, alerts you before stock runs out, and
           gives you the sales history you need to order smarter.
@@ -253,3 +253,4 @@ export function InventoryCashFlowTipsEn() {
     </div>
   );
 }
+

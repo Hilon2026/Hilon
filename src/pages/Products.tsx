@@ -29,14 +29,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import dashboardDesktop from "@/assets/hero-banner/dashboard-hindii.png";
 import dashboardEnglish from "@/assets/hero-banner/dashboard-english.png";
-import dashboardMobile from "@/assets/hero-banner/dashboard-mob-hindi.png";
-import lumeLogo from "@/assets/lume_logo.png";
+import { AiraLogo } from "@/components/brand/AiraLogo";
 import loyaltyImage from "@/assets/products/loyalty.png";
 import storeIcon from "@/assets/lume/icon/store.png";
 import multiStoreIcon from "@/assets/lume/icon/multi-store.png";
 import storeGrowthIcon from "@/assets/lume/icon/store-growth.png";
-import lumeShopImage from "@/assets/products/lume-sop.png";
-import lumeShopIcon from "@/assets/products/lume-sop-icon.png";
+import AiraShopImage from "@/assets/products/lume-sop.png";
+import AiraShopIcon from "@/assets/products/lume-sop-icon.png";
 import campaignManagerImage from "@/assets/products/campaign_manager.png";
 import smartDigitalBillImage from "@/assets/products/smart-digital-bill.png";
 import analyticsReportImage from "@/assets/products/analytics-report.png";
@@ -46,8 +45,8 @@ export default function Products() {
   const { t, language } = useLanguage();
   const { id } = useParams<{ id?: string }>();
   useSEO(
-    'Lume Products – Digital Billing, Customer Engagement & Marketing Campaigns',
-    'Explore Lume: digital bills on WhatsApp, customer loyalty & analytics, and marketing campaign tools built for Indian retailers on one platform.',
+    'Aira Products – Digital Billing, Customer Engagement & Marketing Campaigns',
+    'Explore Aira: digital bills on WhatsApp, customer loyalty & analytics, and marketing campaign tools built for Indian retailers on one platform.',
     { canonicalPath: '/products' }
   );
 
@@ -145,21 +144,21 @@ export default function Products() {
     }
   ];
 
-  const whoIsLumeFor = [
+  const whoIsAiraFor = [
     {
       icon: storeIcon,
-      title: t('products.whoIsLumeFor.singleStore.title'),
-      description: t('products.whoIsLumeFor.singleStore.desc')
+      title: t('products.whoIsAiraFor.singleStore.title'),
+      description: t('products.whoIsAiraFor.singleStore.desc')
     },
     {
       icon: multiStoreIcon,
-      title: t('products.whoIsLumeFor.multiStore.title'),
-      description: t('products.whoIsLumeFor.multiStore.desc')
+      title: t('products.whoIsAiraFor.multiStore.title'),
+      description: t('products.whoIsAiraFor.multiStore.desc')
     },
     {
       icon: storeGrowthIcon,
-      title: t('products.whoIsLumeFor.growingChains.title'),
-      description: t('products.whoIsLumeFor.growingChains.desc')
+      title: t('products.whoIsAiraFor.growingChains.title'),
+      description: t('products.whoIsAiraFor.growingChains.desc')
     }
   ];
 
@@ -187,11 +186,7 @@ export default function Products() {
               transition={{ duration: 0.6 }}
             >
               <div className="mb-2 sm:mb-3">
-                <img 
-                  src={lumeLogo} 
-                  alt="Lume Logo" 
-                  className="h-12 sm:h-16 md:h-20 w-auto"
-                />
+                <AiraLogo size="lg" />
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 leading-tight">
                 {language === 'HI' ? (
@@ -240,7 +235,7 @@ export default function Products() {
               <div className="relative">
                 <img 
                   src={language === 'EN' ? dashboardEnglish : dashboardDesktop} 
-                  alt="Lume retail management dashboard" 
+                  alt="Aira retail management dashboard" 
                   className="w-full max-w-lg mx-auto drop-shadow-2xl rounded-lg"
                 />
               </div>
@@ -249,8 +244,8 @@ export default function Products() {
         </div>
       </section>
 
-      {/* 2. WHAT IS LUME? */}
-      <section id="what-is-lume" className="section-spacing bg-gradient-to-b from-white via-[var(--brand-tint)]/30 to-white">
+      {/* 2. WHAT IS Aira? */}
+      <section id="what-is-Aira" className="section-spacing bg-gradient-to-b from-white via-[var(--brand-tint)]/30 to-white">
           <div className="site-container">
           <div className="max-w-5xl mx-auto">
             <motion.div
@@ -261,19 +256,19 @@ export default function Products() {
               className="bg-gradient-to-r from-primary/5 via-white to-accent/5 rounded-2xl p-6 border border-border"
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center" style={{ color: '#1b181f' }}>
-                {t('products.whatIsLume.title')}
+                {t('products.whatIsAira.title')}
               </h2>
               <div className="space-y-4 text-lg sm:text-xl leading-relaxed" style={{ color: '#4f4f4f' }}>
                 <div className="flex items-start gap-4">
                   <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0" style={{ background: 'var(--brand)' }}></div>
                   <p className="font-medium" style={{ color: '#1b181f' }}>
-                    {t('products.whatIsLume.point1')}
+                    {t('products.whatIsAira.point1')}
                   </p>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0" style={{ background: 'var(--brand)' }}></div>
                   <p>
-                    {t('products.whatIsLume.point2')}
+                    {t('products.whatIsAira.point2')}
                   </p>
                 </div>
               </div>
@@ -384,7 +379,7 @@ export default function Products() {
         </div>
       </section>
 
-      {/* 4. HOW LUME WORKS */}
+      {/* 4. HOW Aira WORKS */}
       <section
         id="how-it-works"
         className="section-spacing bg-white"
@@ -440,9 +435,9 @@ export default function Products() {
           </div>
         </section>
 
-      {/* 5. WHO IS LUME FOR? */}
+      {/* 5. WHO IS Aira FOR? */}
       <section
-        id="who-is-lume-for"
+        id="who-is-Aira-for"
         className="section-spacing bg-gradient-to-b from-white via-[var(--brand-tint)]/20 to-white"
       >
         <div className="site-container">
@@ -454,12 +449,12 @@ export default function Products() {
             className="text-center mb-8 sm:mb-10"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#1b181f' }}>
-              {t('products.whoIsLumeFor.title')}
+              {t('products.whoIsAiraFor.title')}
             </h2>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
-            {whoIsLumeFor.map((item, i) => (
+            {whoIsAiraFor.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -488,9 +483,9 @@ export default function Products() {
         </div>
       </section>
 
-      {/* 6. LUME + LUME SHOP CONNECTION */}
+      {/* 6. Aira + Aira SHOP CONNECTION */}
       <section
-        id="lume-shop"
+        id="Aira-shop"
         className="section-spacing bg-white"
       >
         <div className="site-container">
@@ -507,27 +502,27 @@ export default function Products() {
                   <div className="mb-4">
                     <div className="mb-4 flex justify-center lg:justify-start">
                       <img
-                        src={lumeShopIcon}
-                        alt="Lume Shop Icon"
+                        src={AiraShopIcon}
+                        alt="Aira Shop Icon"
                         loading="lazy"
                         className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain"
                       />
                     </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{ color: '#1b181f' }}>
-                      {t('products.lumeShop.title')}
+                      {t('products.AiraShop.title')}
                     </h2>
                   </div>
                   <p className="text-lg leading-relaxed mb-6" style={{ color: '#4f4f4f' }}>
-                    {t('products.lumeShop.desc')}
+                    {t('products.AiraShop.desc')}
                   </p>
                   <Button size="lg" variant="hero-outline" className="w-full sm:w-auto" disabled>
-                    <span className="opacity-60">{t('products.lumeShop.comingSoon')}</span>
+                    <span className="opacity-60">{t('products.AiraShop.comingSoon')}</span>
                   </Button>
                 </div>
                 <div className="flex items-center justify-center">
                   <img
-                    src={lumeShopImage}
-                    alt="Lume Shop"
+                    src={AiraShopImage}
+                    alt="Aira Shop"
                     loading="lazy"
                     className="w-full max-w-xs sm:max-w-sm max-h-64 sm:max-h-80 object-contain rounded-md"
                   />
@@ -642,3 +637,4 @@ export default function Products() {
     </div>
   );
 }
+

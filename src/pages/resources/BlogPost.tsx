@@ -22,9 +22,9 @@ export default function BlogPost() {
       ? "लेख नहीं मिला"
       : "Article not found";
 
-  const metaDescription = post ? getListingBlurb(post, language) : "Retail insights and guides from Lume.";
+  const metaDescription = post ? getListingBlurb(post, language) : "Retail insights and guides from Aira.";
 
-  useSEO(post ? `${post.title} | Lume Blog` : "Blog | Lume", metaDescription);
+  useSEO(post ? `${post.title} | Aira Blog` : "Blog | Aira", metaDescription);
 
   const lead = post ? getListingBlurb(post, language) : "";
 
@@ -97,3 +97,4 @@ export default function BlogPost() {
     </div>
   );
 }
+

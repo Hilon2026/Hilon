@@ -228,7 +228,7 @@ export function LoyaltyProgramsSmallShopsEn() {
             to="/features/loyalty"
             className="font-semibold text-[#146fb5] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#146fb5] rounded-sm"
           >
-            Lume&apos;s loyalty tools
+            Aira&apos;s loyalty tools
           </Link>{" "}
           run automatically through your billing — cashback, milestones, and re-engagement messages
           without any manual effort from your team.
@@ -238,3 +238,4 @@ export function LoyaltyProgramsSmallShopsEn() {
     </div>
   );
 }
+

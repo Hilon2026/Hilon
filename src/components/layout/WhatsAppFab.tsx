@@ -2,8 +2,8 @@ import { useLocation } from "react-router-dom";
 
 const hiddenRoutePrefixes = ["/admin"];
 
-const WHATSAPP_NUMBER = "919326601463";
-const WHATSAPP_MESSAGE = "Hi Lume! I'd like to know more about your platform for my store.";
+const WHATSAPP_NUMBER = "919724151647";
+const WHATSAPP_MESSAGE = "Hi Aira! I'd like to know more about your platform for my store.";
 
 export function WhatsAppFab() {
   const { pathname } = useLocation();
@@ -30,3 +30,4 @@ export function WhatsAppFab() {
     </a>
   );
 }
+

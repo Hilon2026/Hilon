@@ -37,7 +37,7 @@ const benefits = [
 export default function ReviewFeature() {
   const { language } = useLanguage();
   useSEO(
-    "Google Reviews from Digital Bills – Turn Every Bill into a Review | Lume",
+    "Google Reviews from Digital Bills – Turn Every Bill into a Review | Aira",
     "Get more Google Reviews with every digital bill. One-click review link, rank higher in local search, build trust. Book a demo."
   );
 
@@ -329,7 +329,7 @@ export default function ReviewFeature() {
         </div>
       </section>
 
-      {/* How it works – card layout like Products "How Lume Fits" */}
+      {/* How it works – card layout like Products "How Aira Fits" */}
       <section className="section-spacing bg-white">
         <div className="site-container">
           <motion.div
@@ -406,7 +406,7 @@ export default function ReviewFeature() {
                 {t("Ready to get more Google Reviews?", "अधिक Google समीक्षाएं पाने के लिए तैयार हैं?")}
               </h3>
               <p className="text-base mb-6" style={{ color: "#4f4f4f" }}>
-                {t("Join 285+ retailers using Lume to grow with digital bills and reviews.", "285+ रिटेलर्स के साथ जुड़ें जो ल्यूम से डिजिटल बिल और समीक्षाओं के साथ बढ़ रहे हैं।")}
+                {t("Join 285+ retailers using Aira to grow with digital bills and reviews.", "285+ रिटेलर्स के साथ जुड़ें जो ल्यूम से डिजिटल बिल और समीक्षाओं के साथ बढ़ रहे हैं।")}
               </p>
             </div>
           </motion.div>
@@ -418,3 +418,4 @@ export default function ReviewFeature() {
     </div>
   );
 }
+

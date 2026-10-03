@@ -143,7 +143,7 @@ export function GstBillingBasicsRetailersIndiaEn() {
         </h2>
         <p>
           Instead of juggling multiple tools or manual processes, many retailers today are switching to
-          all-in-one POS systems. Solutions like Lume POS combine:
+          all-in-one POS systems. Solutions like Aira POS combine:
         </p>
         <ul className="list-disc pl-6 space-y-2 marker:text-[var(--brand)]">
           <li>Billing</li>
@@ -203,7 +203,7 @@ export function GstBillingBasicsRetailersIndiaEn() {
             to="/products"
             className="font-semibold text-[var(--brand)] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] rounded-sm"
           >
-            Explore Lume POS
+            Explore Aira POS
           </Link>{" "}
           and take control of your billing, inventory, and sales — all in one place.
         </p>
@@ -211,3 +211,4 @@ export function GstBillingBasicsRetailersIndiaEn() {
     </div>
   );
 }
+

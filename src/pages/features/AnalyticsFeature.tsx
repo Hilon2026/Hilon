@@ -5,13 +5,13 @@ import analyticsDashboardScreenshot from "@/assets/features/analytics.png";
 export default function AnalyticsFeature() {
   return (
     <FeaturePageTemplate
-      seoTitle="Retail Analytics – Multi-Store Trends and Growth Insights | Lume"
+      seoTitle="Retail Analytics – Multi-Store Trends and Growth Insights | Aira"
       seoDescription="Track multi-store revenue trends, customer behavior, billing performance, and growth reports for smarter decisions."
       heroBadge={{ en: "Business Analytics", hi: "बिजनेस एनालिटिक्स" }}
       heroTitle={{ en: "Get real-time insights across every store", hi: "हर स्टोर के लिए रियल-टाइम इनसाइट्स पाएं" }}
       heroSubtitle={{ en: "Understand revenue trends, customer behavior, and billing performance to make smarter growth decisions.", hi: "रेवेन्यू ट्रेंड, ग्राहक व्यवहार और बिलिंग प्रदर्शन समझकर बेहतर ग्रोथ निर्णय लें।" }}
       heroImage={analyticsDashboardScreenshot}
-      heroImageAlt="Lume analytics dashboard with KPI cards and trend charts"
+      heroImageAlt="Aira analytics dashboard with KPI cards and trend charts"
       heroUseCardFrame
       heroMediaClassName="w-full h-auto max-w-[480px] lg:max-w-[560px] xl:max-w-[620px] object-cover"
       heroCtaTargetId="analytics-features"
@@ -52,3 +52,4 @@ export default function AnalyticsFeature() {
     />
   );
 }
+

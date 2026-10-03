@@ -53,8 +53,8 @@ export default function Blog() {
   const [activeFilter, setActiveFilter] = useState<FilterKey>("All");
 
   useSEO(
-    "Retail Insights & POS Guides | Lume Blog",
-    "Grow your retail business with billing, POS, and customer engagement ideas from Lume.",
+    "Retail Insights & POS Guides | Aira Blog",
+    "Grow your retail business with billing, POS, and customer engagement ideas from Aira.",
   );
 
   const featuredPost = blogPosts[0];
@@ -126,8 +126,8 @@ export default function Blog() {
     ctaTitle: language === "HI" ? "और रिटेल ग्रोथ इनसाइट्स चाहिए?" : "Want More Retail Growth Insights?",
     ctaText:
       language === "HI"
-        ? "जानें Apeiros कैसे स्मार्ट बिलिंग, लॉयल्टी और ग्राहक जुड़ाव के साथ स्टोर्स को बढ़ने में मदद करता है।"
-        : "Explore how Apeiros helps stores with smart billing, loyalty, and customer engagement.",
+        ? "जानें Hilon कैसे स्मार्ट बिलिंग, लॉयल्टी और ग्राहक जुड़ाव के साथ स्टोर्स को बढ़ने में मदद करता है।"
+        : "Explore how Hilon helps stores with smart billing, loyalty, and customer engagement.",
     exploreProducts: language === "HI" ? "प्रोडक्ट्स देखें" : "Explore Products",
     readResources: language === "HI" ? "और संसाधन पढ़ें" : "Read More Resources",
   };
@@ -151,45 +151,34 @@ export default function Blog() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
       <Header />
 
       <main className="flex-1">
-        <section className="relative overflow-hidden border-b border-[#146fb5]/10">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#ebf4ff] via-[#f8fbff] to-white" />
-          <div
-            className="absolute inset-0 opacity-50"
-            style={{
-              backgroundImage:
-                "radial-gradient(420px circle at 8% 15%, rgba(20,111,181,0.14), transparent 58%), radial-gradient(420px circle at 92% 12%, rgba(56,189,248,0.14), transparent 56%)",
-            }}
-          />
-          <div className="site-container hero-section relative z-10">
+        <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950">
+          <div className="site-container relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
               className="max-w-4xl mx-auto text-center"
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5" style={{ color: "#1b181f" }}>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                Retail Intelligence Blog
+              </div>
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-5 text-white">
                 {labels.title}
               </h1>
-              <p className="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mb-8" style={{ color: "#4f4f4f" }}>
+              <p className="text-base sm:text-xl leading-relaxed max-w-3xl mx-auto mb-8 text-slate-300">
                 {labels.subtitle}
               </p>
-              <div className="flex justify-center mb-6">
-                <Button variant="cta" size="lg" asChild>
-                  <a href="#latest-articles">{labels.exploreArticles}</a>
-                </Button>
-              </div>
               <div className="mx-auto max-w-2xl">
                 <label htmlFor="blog-search" className="sr-only">
                   {labels.searchPlaceholder}
                 </label>
                 <div className="relative">
                   <Search
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
-                    style={{ color: "#6b7280" }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
                     aria-hidden
                   />
                   <input
@@ -198,7 +187,7 @@ export default function Blog() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={labels.searchPlaceholder}
-                    className="w-full rounded-2xl border border-[#146fb5]/20 bg-white/95 py-3.5 pl-11 pr-4 text-sm sm:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-[#146fb5]/30 focus:border-[#146fb5]/40"
+                    className="w-full rounded-2xl border border-purple-900/50 bg-slate-900 py-3.5 pl-11 pr-4 text-sm sm:text-base text-white placeholder-slate-500 shadow-sm focus:outline-none focus:border-purple-500 transition-colors"
                   />
                 </div>
               </div>
@@ -206,9 +195,9 @@ export default function Blog() {
           </div>
         </section>
 
-        <section className="border-b border-[#146fb5]/10 bg-white/95">
+        <section className="border-b border-purple-900/30 bg-slate-950">
           <div className="site-container">
-            <div className="flex gap-2 overflow-x-auto py-3 no-scrollbar">
+            <div className="flex gap-2 overflow-x-auto py-4 no-scrollbar">
               {FILTER_KEYS.map((key) => {
                 const active = activeFilter === key;
                 return (
@@ -217,10 +206,10 @@ export default function Blog() {
                     type="button"
                     onClick={() => setActiveFilter(key)}
                     className={[
-                      "whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-200",
+                      "whitespace-nowrap rounded-full border px-4 py-1.5 text-xs sm:text-sm font-semibold transition-all duration-200",
                       active
-                        ? "border-[#146fb5] bg-[#146fb5] text-white shadow-sm"
-                        : "border-[#146fb5]/20 bg-white text-[#146fb5] hover:border-[#146fb5]/40 hover:bg-[#146fb5]/8",
+                        ? "border-purple-500 bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md"
+                        : "border-purple-900/40 bg-slate-900 text-slate-300 hover:border-purple-500/60 hover:text-white",
                     ].join(" ")}
                   >
                     {filterLabels[key]}
@@ -231,16 +220,16 @@ export default function Blog() {
           </div>
         </section>
 
-        <section className="pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12">
+        <section className="pt-10 sm:pt-12 lg:pt-14 pb-10 sm:pb-12 bg-slate-950">
           <div className="site-container">
             <motion.article
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
-              className="rounded-3xl border border-[#146fb5]/15 bg-white shadow-[0_12px_48px_rgba(20,111,181,0.08)] overflow-hidden md:grid md:grid-cols-2"
+              className="rounded-3xl border border-purple-500/30 bg-slate-900/80 shadow-2xl overflow-hidden md:grid md:grid-cols-2 backdrop-blur-xl"
             >
-              <div className="relative min-h-[260px] sm:min-h-[320px] bg-gradient-to-br from-[#dbeafe] via-[#eaf4ff] to-[#fef9c3]/50">
+              <div className="relative min-h-[260px] sm:min-h-[320px] bg-slate-950">
                 {featuredImageSrc ? (
                   <img
                     src={featuredImageSrc}
@@ -252,23 +241,23 @@ export default function Blog() {
 
               <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <span className="inline-flex items-center rounded-full border border-[#146fb5]/25 bg-[#146fb5]/8 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#146fb5]">
+                  <span className="inline-flex items-center rounded-full border border-purple-500/40 bg-purple-950 px-3 py-1 text-xs font-bold uppercase tracking-wide text-pink-300">
                     {labels.featured}
                   </span>
-                  <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-[#4f4f4f]">
+                  <span className="inline-flex items-center rounded-full border border-slate-800 bg-slate-950 px-3 py-1 text-xs font-medium text-slate-300">
                     {featuredCategory}
                   </span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold leading-tight mb-4" style={{ color: "#1b181f" }}>
+                <h2 className="text-2xl sm:text-3xl font-extrabold leading-tight mb-4 text-white">
                   {language === "HI" ? featuredPost.titleHI : featuredPost.title}
                 </h2>
-                <p className="text-base sm:text-lg leading-relaxed mb-5" style={{ color: "#4f4f4f" }}>
+                <p className="text-base leading-relaxed mb-5 text-slate-300">
                   {featuredSummary}
                 </p>
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm mb-6" style={{ color: "#6b7280" }}>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-400 mb-6">
                   {featuredPost.readTime && (
                     <span className="inline-flex items-center gap-1.5">
-                      <Clock3 className="w-4 h-4" aria-hidden />
+                      <Clock3 className="w-4 h-4 text-purple-400" aria-hidden />
                       {featuredPost.readTime}
                     </span>
                   )}
@@ -277,32 +266,35 @@ export default function Blog() {
                   </span>
                 </div>
                 <div>
-                  <Button variant="cta" size="lg" className="shadow-md" asChild>
-                    <Link to={`/resources/blog/${featuredPost.slug}`}>{labels.readFull}</Link>
-                  </Button>
+                  <Link
+                    to={`/resources/blog/${featuredPost.slug}`}
+                    className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs sm:text-sm inline-flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-purple-600/30"
+                  >
+                    {labels.readFull} <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </div>
             </motion.article>
           </div>
         </section>
 
-        <section id="latest-articles" className="section-spacing bg-gradient-to-b from-white via-[#f4f7fb] to-white pt-8 pb-14 sm:pb-18 lg:pb-20">
+        <section id="latest-articles" className="section-spacing bg-slate-950 pt-8 pb-14 sm:pb-18 lg:pb-20">
           <div className="site-container">
             <div className="mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style={{ color: "#1b181f" }}>
+              <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-2 text-white">
                 {labels.latestTitle}
               </h2>
-              <p className="text-base sm:text-lg" style={{ color: "#4f4f4f" }}>
+              <p className="text-base sm:text-lg text-slate-300">
                 {labels.latestSubtitle}
               </p>
             </div>
 
             {gridPosts.length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-[#146fb5]/30 bg-white p-8 sm:p-10 text-center">
-                <p className="text-lg font-semibold mb-2" style={{ color: "#1b181f" }}>
+              <div className="rounded-2xl border border-dashed border-purple-900/40 bg-slate-900 p-8 sm:p-10 text-center">
+                <p className="text-lg font-semibold mb-2 text-white">
                   {labels.noResultsTitle}
                 </p>
-                <p style={{ color: "#4f4f4f" }}>{labels.noResultsText}</p>
+                <p className="text-slate-400">{labels.noResultsText}</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7">
@@ -316,41 +308,47 @@ export default function Blog() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: i * 0.04 }}
-                    className="group h-full rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"
+                    className="group h-full rounded-2xl border border-purple-900/40 bg-slate-900/80 shadow-xl hover:border-purple-500/60 transition-all duration-300 overflow-hidden flex flex-col justify-between"
                   >
-                    <div className="relative aspect-[3/2] w-full bg-gradient-to-br from-[#146fb5]/12 via-[#e8f2fb] to-[#fef9c3]/40">
-                      {cardImageSrc ? (
-                        <img
-                          src={cardImageSrc}
-                          alt={item.title}
-                          className="absolute inset-0 h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                      ) : null}
-                    </div>
-                    <div className="p-5 sm:p-6 flex flex-col h-full">
-                      <div className="mb-3">
-                        <span className="inline-flex items-center rounded-full border border-[#146fb5]/25 bg-[#146fb5]/8 px-2.5 py-0.5 text-xs font-medium text-[#146fb5]">
-                          {item.normalizedCategory}
-                        </span>
+                    <div>
+                      <div className="relative aspect-[3/2] w-full bg-slate-950">
+                        {cardImageSrc ? (
+                          <img
+                            src={cardImageSrc}
+                            alt={item.title}
+                            className="absolute inset-0 h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                        ) : null}
                       </div>
-                      <h3 className="text-lg sm:text-xl font-bold leading-snug mb-2 line-clamp-2" style={{ color: "#1b181f" }}>
-                        {item.title}
-                      </h3>
-                      <p className="text-sm sm:text-[0.95rem] leading-relaxed line-clamp-2 flex-1" style={{ color: "#4f4f4f" }}>
-                        {item.summary}
-                      </p>
-                      <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
-                        <span className="text-sm inline-flex items-center gap-1.5" style={{ color: "#6b7280" }}>
-                          <Clock3 className="w-4 h-4" aria-hidden />
+                      <div className="p-5 sm:p-6">
+                        <div className="mb-3">
+                          <span className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-950 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-pink-300">
+                            {item.normalizedCategory}
+                          </span>
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-bold leading-snug mb-2 text-white line-clamp-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-2">
+                          {item.summary}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-5 sm:p-6 pt-0 mt-auto">
+                      <div className="pt-4 border-t border-purple-900/40 flex items-center justify-between gap-3">
+                        <span className="text-xs text-slate-400 inline-flex items-center gap-1.5">
+                          <Clock3 className="w-3.5 h-3.5 text-purple-400" aria-hidden />
                           {item.post.readTime ?? "5-6 min read"}
                         </span>
-                        <Button variant="cta" size="sm" className="gap-1.5" asChild>
-                          <Link to={`/resources/blog/${item.post.slug}`}>
-                            {labels.readMore}
-                            <ArrowRight className="w-4 h-4" aria-hidden />
-                          </Link>
-                        </Button>
+                        <Link
+                          to={`/resources/blog/${item.post.slug}`}
+                          className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs inline-flex items-center gap-1 hover:opacity-90 transition-opacity"
+                        >
+                          {labels.readMore}
+                          <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+                        </Link>
                       </div>
                     </div>
                   </motion.article>
@@ -361,48 +359,31 @@ export default function Blog() {
           </div>
         </section>
 
-        <section className="pb-8 sm:pb-10 lg:pb-12">
-          <div className="site-container">
-            <div className="rounded-2xl border border-[#146fb5]/15 bg-white p-5 sm:p-6 lg:p-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: "#1b181f" }}>
-                {labels.popularTopics}
-              </h2>
-              <div className="flex flex-wrap gap-2.5">
-                {popularTopics.map((topic) => (
-                  <button
-                    key={topic}
-                    type="button"
-                    onClick={() => setSearchQuery(topic)}
-                    className="rounded-full border border-[#146fb5]/20 px-4 py-2 text-sm font-medium text-[#146fb5] bg-[#146fb5]/[0.05] hover:bg-[#146fb5]/10 hover:border-[#146fb5]/35 transition-colors"
-                  >
-                    {topic}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* CTA */}
-        <section className="relative pb-14 sm:pb-16 lg:pb-20 overflow-hidden">
+        <section className="relative pb-14 sm:pb-16 lg:pb-20 overflow-hidden bg-slate-950">
           <div className="site-container">
-            <div className="relative rounded-3xl border border-[#146fb5]/15 bg-gradient-to-br from-[#eaf4ff] via-[#f4f9ff] to-[#fef9c3]/30 p-7 sm:p-10 lg:p-12 shadow-[0_12px_40px_rgba(20,111,181,0.1)]">
-              <div className="absolute inset-0 opacity-40 pointer-events-none rounded-3xl" style={{ backgroundImage: "radial-gradient(500px circle at 0% 0%, rgba(20,111,181,0.18), transparent 60%)" }} />
-              <div className="relative z-10 max-w-3xl">
-                <h2 className="text-2xl sm:text-3xl lg:text-[2rem] font-bold leading-tight mb-4" style={{ color: "#1b181f" }}>
+            <div className="relative rounded-3xl border border-purple-500/30 bg-slate-900/90 p-7 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl text-center">
+              <div className="relative z-10 max-w-3xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight mb-4 text-white">
                   {labels.ctaTitle}
                 </h2>
-                <p className="text-base sm:text-lg leading-relaxed mb-8" style={{ color: "#4f4f4f" }}>
+                <p className="text-base sm:text-lg leading-relaxed mb-8 text-slate-300">
                   {labels.ctaText}
                 </p>
               </div>
-              <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-                <Button size="lg" variant="cta" className="w-full sm:w-auto min-w-[200px]" asChild>
-                  <Link to="/products">{labels.exploreProducts}</Link>
-                </Button>
-                <Button size="lg" variant="hero-outline" className="w-full sm:w-auto min-w-[220px]" asChild>
-                  <Link to="/resources">{labels.readResources}</Link>
-                </Button>
+              <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                <Link
+                  to="/products"
+                  className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white font-bold text-sm shadow-lg shadow-purple-600/30"
+                >
+                  {labels.exploreProducts}
+                </Link>
+                <Link
+                  to="/resources"
+                  className="px-8 py-3.5 rounded-xl bg-slate-950 border border-purple-900/60 text-white font-bold text-sm hover:border-purple-500 transition-colors"
+                >
+                  {labels.readResources}
+                </Link>
               </div>
             </div>
           </div>

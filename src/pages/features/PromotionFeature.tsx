@@ -5,7 +5,7 @@ import promoImage from "@/assets/refer/whatsapp-refer.png";
 export default function PromotionFeature() {
   return (
     <FeaturePageTemplate
-      seoTitle="WhatsApp Promotions – Offers, Greetings, Campaigns | Lume"
+      seoTitle="WhatsApp Promotions – Offers, Greetings, Campaigns | Aira"
       seoDescription="Send WhatsApp offers, discounts, and festive greetings to re-engage old customers and increase store traffic."
       heroBadge={{ en: "WhatsApp Promotions", hi: "WhatsApp प्रमोशन" }}
       heroTitle={{ en: "Run high-converting campaigns on WhatsApp", hi: "WhatsApp पर हाई-कन्वर्टिंग कैंपेन चलाएं" }}
@@ -50,3 +50,4 @@ export default function PromotionFeature() {
     />
   );
 }
+
