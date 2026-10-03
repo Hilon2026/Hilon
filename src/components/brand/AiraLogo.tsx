@@ -49,7 +49,7 @@ export const AiraLogo: React.FC<AiraLogoProps> = ({
             )}
             {withCompany && <span className="text-xs text-slate-400">/</span>}
             <span className={`font-display font-extrabold tracking-tight ${textSizes[size]} ${textColor}`}>
-
+              Aira
             </span>
           </div>
         </div>
