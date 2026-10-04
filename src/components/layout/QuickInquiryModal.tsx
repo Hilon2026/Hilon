@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Handshake, User, Phone, Mail, ArrowRight, Lock, CheckCircle2 } from "lucide-react";
+import { sendLeadEmail } from "@/lib/email";
 import {
   Dialog,
   DialogContent,
@@ -43,10 +44,15 @@ export function QuickInquiryModal() {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
-      setSubmitted(true);
-      setLoading(false);
-    }, 600);
+    await sendLeadEmail({
+      from_name: formData.name,
+      from_phone: formData.phone,
+      from_email: formData.email,
+      form_source: "Quick Inquiry Popup Modal"
+    });
+
+    setSubmitted(true);
+    setLoading(false);
   };
 
   return (

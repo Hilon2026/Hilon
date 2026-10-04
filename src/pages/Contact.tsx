@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { sendLeadEmail } from "@/lib/email";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Input } from "@/components/ui/input";
@@ -17,13 +18,20 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setSubmitted(true);
-      setLoading(false);
-    }, 600);
+
+    await sendLeadEmail({
+      from_name: formData.name,
+      from_phone: formData.phone,
+      from_email: formData.email,
+      message: formData.message,
+      form_source: "Contact Page Form"
+    });
+
+    setSubmitted(true);
+    setLoading(false);
   };
 
   return (
