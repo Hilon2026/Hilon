@@ -17,9 +17,8 @@ export interface SendEmailResult {
 
 // User credentials configured
 const DEFAULT_SERVICE_ID = "service_6bh5bb3";
+const DEFAULT_TEMPLATE_ID = "template_jby105u";
 const DEFAULT_PUBLIC_KEY = "WYkmzX7FTHiGdKjvE";
-// Fallback template IDs to try if default fails
-const DEFAULT_TEMPLATE_ID = "template_contact";
 
 export async function sendLeadEmail(params: SendEmailParams): Promise<SendEmailResult> {
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || DEFAULT_SERVICE_ID;
@@ -71,20 +70,6 @@ export async function sendLeadEmail(params: SendEmailParams): Promise<SendEmailR
   } catch (err: any) {
     const errorMsg = err?.text || err?.message || JSON.stringify(err);
     console.error("EmailJS Error detail:", errorMsg);
-
-    // Try fallback template ID if template_contact was not found
-    if (templateId === "template_contact" && errorMsg.includes("not found")) {
-      try {
-        // Many default EmailJS templates have ID "template_1" or "contact_form"
-        const fallbackId = "contact_form";
-        console.log("Retrying with fallback Template ID:", fallbackId);
-        const fallbackResp = await emailjs.send(serviceId, fallbackId, templateParams, publicKey);
-        console.log("EmailJS Sent with fallback Template ID!", fallbackResp.status);
-        return { success: true };
-      } catch (fallbackErr: any) {
-        console.error("Fallback template error:", fallbackErr);
-      }
-    }
 
     return {
       success: false,
