@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ShieldCheck, Zap, Brain, TrendingUp, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, Zap, CheckCircle2 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import AiraHeroDashboard from "@/components/sections/AiraHeroDashboard";
@@ -28,30 +28,30 @@ export const Index: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-slate-950 dark:bg-slate-950 light:bg-slate-50 text-white dark:text-white light:text-slate-900 font-sans overflow-x-hidden selection:bg-purple-600 selection:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white font-sans overflow-x-hidden selection:bg-purple-600 selection:text-white transition-colors duration-300">
       {/* Header */}
       <Header />
 
       {/* Hero Section (Section 01) */}
-      <section className="relative pt-28 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 bg-gradient-to-b from-slate-950 via-[#0F071D] to-slate-950 dark:from-slate-950 dark:via-[#0F071D] dark:to-slate-950 light:from-purple-50 light:via-white light:to-purple-50/50 overflow-hidden">
+      <section className="relative pt-28 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 bg-gradient-to-b from-purple-50 via-white to-slate-50 dark:from-slate-950 dark:via-[#0F071D] dark:to-slate-950 overflow-hidden transition-colors">
         {/* Glow ambient backgrounds */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-tr from-purple-700/20 via-pink-600/15 to-purple-900/20 rounded-full blur-[140px] pointer-events-none"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-tr from-purple-500/10 via-pink-500/10 to-purple-600/10 dark:from-purple-700/20 dark:via-pink-600/15 dark:to-purple-900/20 rounded-full blur-[140px] pointer-events-none"></div>
 
         <div className="site-container relative z-10">
           {/* Eyebrow & Hero Copy */}
           <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-950/90 dark:bg-purple-950/90 light:bg-purple-100 border border-purple-500/40 dark:border-purple-500/40 light:border-purple-300 text-pink-300 dark:text-pink-300 light:text-purple-700 text-xs font-bold uppercase tracking-wider mb-6 shadow-md">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/90 border border-purple-300 dark:border-purple-500/40 text-purple-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
               Aira by Hilon — Retail Customer Growth System
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white dark:text-white light:text-slate-900 tracking-tight leading-[1.08] mb-6">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6">
               TURN YOUR CUSTOMERS INTO{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-200 dark:from-purple-400 dark:via-pink-400 dark:to-purple-200 light:from-purple-700 light:via-pink-600 light:to-purple-800">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 via-pink-600 to-purple-800 dark:from-purple-400 dark:via-pink-400 dark:to-purple-200">
                 LIFELONG CUSTOMERS.
               </span>
             </h1>
 
-            <p className="text-slate-300 dark:text-slate-300 light:text-slate-600 text-lg sm:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed font-normal mb-8">
+            <p className="text-slate-600 dark:text-slate-300 text-lg sm:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed font-normal mb-8">
               Your store already has customers. Aira helps you connect with them, understand them, engage them, and bring them back again and again.
             </p>
 
@@ -67,14 +67,14 @@ export const Index: React.FC = () => {
 
               <Link
                 to="/book-demo"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 dark:bg-slate-900 light:bg-white border border-purple-900/60 dark:border-purple-900/60 light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 hover:border-purple-500 font-bold text-base transition-all flex items-center justify-center gap-2 shadow-md"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-purple-900/60 text-slate-800 dark:text-slate-200 hover:border-purple-500 font-bold text-base transition-all flex items-center justify-center gap-2 shadow-md"
               >
-                <Zap className="w-4 h-4 text-pink-400" />
+                <Zap className="w-4 h-4 text-purple-600 dark:text-pink-400" />
                 Request a Demo
               </Link>
             </div>
 
-            <p className="mt-6 text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 italic">
+            <p className="mt-6 text-xs text-slate-500 dark:text-slate-400 italic">
               From the transaction to the next purchase, Aira helps you build the customer relationship.
             </p>
           </div>

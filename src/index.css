@@ -4,14 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hilon — Aira AI Design System
-   Primary: Purple (#7C3AED)
-   Secondary: Pink (#EC4899)
-   Accent: Bright Violet (#A855F7)
-   Dark BG: #0B0614
-   Light BG: #FAF7FF
-   Text: #17121F
-*/
+/* Hilon — Aira AI Design System */
 
 @layer base {
   :root {
@@ -36,23 +29,10 @@
     --accent: 271 91% 65%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
     --border: 265 20% 90%;
     --input: 265 20% 90%;
     --ring: 262 83% 58%;
-
     --radius: 0.875rem;
-
-    --gradient-hero: linear-gradient(135deg, #0B0614 0%, #1A0B2E 50%, #0F071D 100%);
-    --gradient-brand: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
-    --gradient-subtle: linear-gradient(180deg, #FAF7FF 0%, #F3ECFE 100%);
-    --gradient-card: linear-gradient(145deg, #ffffff 0%, #FAF7FF 100%);
-    --gradient-dark-card: linear-gradient(145deg, rgba(26, 11, 46, 0.7) 0%, rgba(15, 7, 29, 0.8) 100%);
   }
 
   .dark {
@@ -64,9 +44,7 @@
     --popover-foreground: 265 20% 98%;
     --border: 265 30% 18%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -76,86 +54,23 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-purple-500 selection:text-white;
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white font-sans antialiased selection:bg-purple-500 selection:text-white transition-colors duration-300;
     font-family: 'Inter', sans-serif;
-    color: #17121F;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    @apply tracking-tight font-bold;
-    color: #17121F;
-  }
-
-  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    color: #FFFFFF;
+    @apply tracking-tight font-bold text-slate-900 dark:text-white transition-colors;
   }
 }
 
 @layer components {
-  .hero-gradient-dark {
-    background: var(--gradient-hero);
-  }
-
-  .brand-gradient {
-    background: var(--gradient-brand);
-  }
-
-  .subtle-gradient {
-    background: var(--gradient-subtle);
-  }
-
-  .glass-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(124, 58, 237, 0.12);
-  }
-
-  .glass-dark {
-    background: rgba(15, 7, 29, 0.75);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(168, 85, 247, 0.2);
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
-  }
-
-  .text-gradient-purple {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
-  }
-
-  .text-gradient-light {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #FFFFFF 0%, #E9D5FF 100%);
-  }
-
-  .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
-  }
-
   .site-container {
     @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
 
   .section-spacing {
     @apply py-16 sm:py-20 lg:py-24;
-  }
-
-  .hero-section {
-    @apply pt-24 sm:pt-32 pb-16 lg:pb-24;
-  }
-}
-
-@layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
 }
