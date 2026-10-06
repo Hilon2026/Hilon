@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import HilonLogo from "@/components/brand/HilonLogo";
 import AiraLogo from "@/components/brand/AiraLogo";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -10,6 +10,7 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,12 +24,25 @@ export const Header: React.FC = () => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  const handleSectionClick = (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (location.pathname === "/") {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      navigate(`/#${id}`);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/90 dark:bg-slate-950/95 backdrop-blur-xl border-b border-slate-200 dark:border-purple-900/30 py-3 shadow-md dark:shadow-xl"
-          : "bg-gradient-to-b from-white/90 dark:from-slate-950/90 to-transparent py-4 sm:py-5"
+          ? "bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border-b border-slate-200 dark:border-purple-900/30 py-3 shadow-md dark:shadow-xl"
+          : "bg-white/90 dark:bg-slate-950/90 backdrop-blur-md py-4 sm:py-5 border-b border-slate-200/60 dark:border-transparent"
       }`}
     >
       <div className="site-container flex items-center justify-between">
@@ -37,18 +51,19 @@ export const Header: React.FC = () => {
           <HilonLogo size="sm" showTagline={false} />
           <span className="h-5 w-px bg-slate-300 dark:bg-purple-900/40 hidden sm:block"></span>
           <div className="hidden sm:block">
-            <AiraLogo size="sm" withCompany={false} />
+            <AiraLogo size="sm" withCompany={false} showText={false} />
           </div>
         </div>
 
         {/* Center: Simplified Navigation */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-          <Link
-            to="/#growth-engine"
-            className="px-3.5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-white transition-colors"
+          <a
+            href="#growth-engine"
+            onClick={(e) => handleSectionClick("growth-engine", e)}
+            className="px-3.5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-white transition-colors cursor-pointer"
           >
             Growth Engine
-          </Link>
+          </a>
 
           <Link
             to="/solutions"
@@ -57,12 +72,13 @@ export const Header: React.FC = () => {
             Solutions
           </Link>
 
-          <Link
-            to="/#managed-marketing"
-            className="px-3.5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-white transition-colors"
+          <a
+            href="#managed-marketing"
+            onClick={(e) => handleSectionClick("managed-marketing", e)}
+            className="px-3.5 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-white transition-colors cursor-pointer"
           >
             Managed Marketing
-          </Link>
+          </a>
 
           <Link
             to="/pricing"
@@ -95,12 +111,13 @@ export const Header: React.FC = () => {
             )}
           </button>
 
-          <Link
-            to="/#growth-audit"
-            className="text-xs font-semibold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-500/40 px-3.5 py-2 rounded-xl hover:bg-purple-200 dark:hover:bg-purple-900/80 transition-all"
+          <a
+            href="#growth-audit"
+            onClick={(e) => handleSectionClick("growth-audit", e)}
+            className="text-xs font-semibold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-500/40 px-3.5 py-2 rounded-xl hover:bg-purple-200 dark:hover:bg-purple-900/80 transition-all cursor-pointer"
           >
             Growth Audit
-          </Link>
+          </a>
 
           <Link
             to="/book-demo"
@@ -133,13 +150,13 @@ export const Header: React.FC = () => {
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-purple-900/40 px-6 py-6 space-y-4 animate-in slide-in-from-top-4">
-          <Link
-            to="/#growth-engine"
+          <a
+            href="#growth-engine"
+            onClick={(e) => handleSectionClick("growth-engine", e)}
             className="block text-base font-semibold text-slate-800 dark:text-slate-200"
-            onClick={() => setMobileMenuOpen(false)}
           >
             Growth Engine
-          </Link>
+          </a>
           <Link
             to="/solutions"
             className="block text-base font-semibold text-slate-800 dark:text-slate-200"
@@ -147,13 +164,13 @@ export const Header: React.FC = () => {
           >
             Solutions
           </Link>
-          <Link
-            to="/#managed-marketing"
+          <a
+            href="#managed-marketing"
+            onClick={(e) => handleSectionClick("managed-marketing", e)}
             className="block text-base font-semibold text-slate-800 dark:text-slate-200"
-            onClick={() => setMobileMenuOpen(false)}
           >
             Managed Marketing
-          </Link>
+          </a>
           <Link
             to="/pricing"
             className="block text-base font-semibold text-slate-800 dark:text-slate-200"
@@ -170,13 +187,13 @@ export const Header: React.FC = () => {
           </Link>
 
           <div className="pt-4 border-t border-slate-200 dark:border-purple-900/40 flex flex-col gap-3">
-            <Link
-              to="/#growth-audit"
+            <a
+              href="#growth-audit"
+              onClick={(e) => handleSectionClick("growth-audit", e)}
               className="text-center py-2.5 rounded-xl border border-purple-300 dark:border-purple-500/40 bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 font-semibold text-sm"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Book Growth Audit
-            </Link>
+            </a>
             <Link
               to="/book-demo"
               className="text-center py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm shadow-lg shadow-purple-600/30"

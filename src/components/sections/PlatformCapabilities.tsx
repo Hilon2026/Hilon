@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { 
   Receipt, Users, Brain, MessageSquare, Gift, BarChart3, 
-  CheckCircle2, ArrowRight, ShieldCheck, Zap, Layers 
+  CheckCircle2, ArrowRight, ShieldCheck, Zap
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Capability {
   id: string;
@@ -58,75 +59,75 @@ const capabilities: Capability[] = [
     tagline: "Understand every buyer's habits, preferences, and visit cycle.",
     description: "Every billing transaction automatically builds a rich customer profile. Track spending tiers, product affinities, and visit frequencies automatically.",
     bullets: [
-      "Unified 360° purchase history timeline",
-      "RFM segmentation (Recency, Frequency, Monetary)",
-      "Automated churn risk alerts before customers leave",
-      "Category affinity & personalized preferences"
+      "Automated RFM (Recency, Frequency, Monetary) tagging",
+      "Product category affinity & preferred purchase time",
+      "Churn risk warnings before customers switch brands",
+      "Omnichannel chat & purchase timeline history"
     ],
     mockup: {
-      title: "Customer Profile Matrix",
-      metric1: "14,280",
-      metric1Label: "Unified Buyer Profiles",
-      metric2: "+38%",
-      metric2Label: "Repeat Purchase Rate",
+      title: "360° Customer Profile (Ananya S.)",
+      metric1: "₹18,450",
+      metric1Label: "Total Lifetime Spend",
+      metric2: "8 Visits",
+      metric2Label: "Total Store Visits",
       details: [
-        "RFM Segment: High-Value Loyalists (842 Profiles)",
-        "Avg Days Between Visits: 14.2 Days",
-        "Top Category Preference: Premium Apparel",
-        "Predicted Next Visit: This Saturday"
+        "Primary Category: Women's Apparel & Accessories",
+        "Last Purchased: 14 Days Ago (Silk Dupatta)",
+        "Preferred Store Location: Indiranagar Store",
+        "Predicted Next Purchase: Festive Saree (84% Probability)"
       ]
     }
   },
   {
-    id: "ai-insights",
-    title: "AI Insights",
-    badge: "Autonomous AI",
+    id: "ai-brain",
+    title: "AI Store Assistant",
+    badge: "24/7 Intelligence",
     icon: Brain,
-    tagline: "Your store data constantly analyzed for growth opportunities.",
-    description: "Aira's AI background model works 24/7 to flag sales anomalies, identify high-margin upsell opportunities, and recommend actionable store moves.",
+    tagline: "Natural language retail queries & autonomous store insights.",
+    description: "Ask Aira anything about your store in plain English: 'Which customers bought sarees 60 days ago?' or 'Draft a weekend discount campaign'.",
     bullets: [
-      "24/7 autonomous sales & footfall trend analysis",
-      "Deadstock & inventory velocity recommendations",
-      "Automated basket analysis for cross-selling",
-      "Dynamic pricing & peak hour store optimization"
+      "Natural language business data queries",
+      "Automated campaign draft copy & image generation",
+      "Stock replenishment & slow-moving inventory alerts",
+      "Autonomous weekly store growth summary"
     ],
     mockup: {
-      title: "Aira AI Intelligence Engine",
-      metric1: "84%",
-      metric1Label: "Insight Accuracy",
-      metric2: "+₹41,200",
-      metric2Label: "Monthly Revenue Unlocked",
+      title: "Aira AI Retail Assistant",
+      metric1: "2.4s",
+      metric1Label: "Insight Generation Speed",
+      metric2: "98.8%",
+      metric2Label: "Query Accuracy",
       details: [
-        "Alert: Weekend afternoon footfall spike detected",
-        "Cross-sell opportunity: Pair belts with footwear",
-        "Action: Trigger 10% instant combo discount",
-        "Expected Lift: +14% higher average order value"
+        "User: 'Which 40 customers are at risk of churning this month?'",
+        "Aira AI: 'Identified 42 VIP buyers inactive >45 days.'",
+        "Action Suggested: Send 15% Win-back WhatsApp Coupon",
+        "Expected Recovery Revenue: ₹48,000+"
       ]
     }
   },
   {
-    id: "customer-engagement",
-    title: "Customer Engagement",
-    badge: "Automated Campaigns",
+    id: "whatsapp-marketing",
+    title: "WhatsApp Campaigns",
+    badge: "Green Tick API",
     icon: MessageSquare,
-    tagline: "Reach buyers at the exact right moment on WhatsApp & SMS.",
-    description: "Execute highly segmented automated marketing without manual effort. Send timely re-engagement triggers, birthday offers, and restock notifications.",
+    tagline: "High-converting targeted WhatsApp campaigns with trackable ROI.",
+    description: "Launch targeted hyper-personalized WhatsApp campaigns directly synced with store purchase history with 98% open rates.",
     bullets: [
-      "Targeted WhatsApp & SMS broadcast workflows",
-      "Automated win-back triggers for dormant shoppers",
-      "Personalized product recommendations in messages",
-      "Real-time ROI & click-through performance tracking"
+      "Official Meta WhatsApp Business API integration",
+      "Dynamic trackable coupon codes & QR links",
+      "Segmented broadcasts by category & spend",
+      "Real-time ROI & revenue influence dashboard"
     ],
     mockup: {
-      title: "Omnichannel Engagement Hub",
-      metric1: "98.4%",
+      title: "WhatsApp Festival Campaign Studio",
+      metric1: "98.2%",
       metric1Label: "Message Open Rate",
-      metric2: "4.8x",
-      metric2Label: "Campaign Return on Investment",
+      metric2: "18.4%",
+      metric2Label: "Click-Through Rate",
       details: [
-        "Active Campaign: 30-Day Win-Back Automated Flow",
-        "Audience: 412 Dormant Shoppers (No visit > 30d)",
-        "Message: We miss you! Enjoy 15% off your next visit",
+        "Campaign: Diwali Festive Special Collection Alert",
+        "Audience Segment: Past Festival Apparel Buyers (1,250)",
+        "Delivery Status: 1,248 Delivered • 1,225 Read",
         "Conversions: 84 store visits generated (₹38,400 revenue)"
       ]
     }
@@ -178,10 +179,10 @@ const capabilities: Capability[] = [
       metric2: "3 Stores",
       metric2Label: "Unified Telemetry",
       details: [
-        "Top Store Today: Downtown Branch (₹84,200)",
-        "Best Performing Category: Organic Produce (+24%)",
-        "Peak Hour: 5:00 PM - 6:30 PM (64 bills/hr)",
-        "Gross Profit Margin: 42.8% (+3.2% vs last month)"
+        "Store 1 (Indiranagar): ₹1,42,800 today (184 bills)",
+        "Store 2 (Koramangala): ₹98,400 today (112 bills)",
+        "Top Category Today: Women's Ethnic Wear (+34% WoW)",
+        "Avg Basket Size: ₹1,240 (Up ₹180 after upsell prompt)"
       ]
     }
   }
@@ -192,24 +193,20 @@ export const PlatformCapabilities: React.FC = () => {
   const activeCap = capabilities.find((c) => c.id === selectedId) || capabilities[0];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
-      {/* Subtle purple background aura */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
+    <section className="py-20 bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-white border-t border-slate-200 dark:border-purple-900/30 transition-colors">
       <div className="site-container relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-900/40 border border-purple-500/30 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-500/40 text-purple-700 dark:text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
             Unified Retail Ecosystem
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
             Everything your retail business needs,{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 via-pink-600 to-purple-800 dark:from-purple-400 dark:via-pink-400 dark:to-purple-300">
               connected by AI.
             </span>
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
             Six intelligent core capabilities working seamlessly together to convert checkout data into automated store growth.
           </p>
         </div>
@@ -225,8 +222,8 @@ export const PlatformCapabilities: React.FC = () => {
                 onClick={() => setSelectedId(cap.id)}
                 className={`p-4 rounded-2xl text-left transition-all duration-300 flex flex-col justify-between border ${
                   isSelected
-                    ? "bg-gradient-to-b from-purple-900/60 to-slate-900 border-purple-500 shadow-lg shadow-purple-500/20 scale-[1.02]"
-                    : "bg-slate-900/40 border-slate-800 hover:border-purple-800/60 hover:bg-slate-900/80"
+                    ? "bg-purple-100 dark:bg-gradient-to-b dark:from-purple-900/60 dark:to-slate-900 border-purple-500 text-purple-950 dark:text-white shadow-lg shadow-purple-500/20 scale-[1.02]"
+                    : "bg-white dark:bg-slate-900/40 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-purple-400"
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
@@ -234,24 +231,24 @@ export const PlatformCapabilities: React.FC = () => {
                     className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
                       isSelected
                         ? "bg-gradient-to-tr from-purple-600 to-pink-500 text-white"
-                        : "bg-slate-800 text-slate-400"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
                     }`}
                   >
                     <IconComponent className="w-5 h-5" />
                   </div>
                   {isSelected && (
-                    <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse"></span>
+                    <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
                   )}
                 </div>
                 <div>
                   <h3
                     className={`text-sm font-bold transition-colors ${
-                      isSelected ? "text-white" : "text-slate-300"
+                      isSelected ? "text-purple-950 dark:text-white" : "text-slate-700 dark:text-slate-300"
                     }`}
                   >
                     {cap.title}
                   </h3>
-                  <span className="text-[10px] text-purple-400 font-medium">
+                  <span className="text-[10px] text-purple-600 dark:text-purple-400 font-medium">
                     {cap.badge}
                   </span>
                 </div>
@@ -261,23 +258,23 @@ export const PlatformCapabilities: React.FC = () => {
         </div>
 
         {/* Selected Capability Deep-Dive View */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-slate-900/80 border border-purple-500/30 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-purple-500/30 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl backdrop-blur-xl">
           {/* Left Column: Details & Copy */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-2.5 py-1 rounded-md bg-purple-950 text-pink-300 text-xs font-semibold border border-purple-800/60">
+                <span className="px-2.5 py-1 rounded-md bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-pink-300 text-xs font-semibold border border-purple-300 dark:border-purple-800">
                   {activeCap.badge}
                 </span>
-                <span className="text-xs text-slate-400">Powered by Aira AI</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">Powered by Aira AI</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-3">
                 {activeCap.title}
               </h3>
-              <p className="text-lg font-medium text-pink-400 mb-4">
+              <p className="text-lg font-medium text-purple-700 dark:text-pink-400 mb-4">
                 "{activeCap.tagline}"
               </p>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                 {activeCap.description}
               </p>
 
@@ -285,84 +282,66 @@ export const PlatformCapabilities: React.FC = () => {
               <div className="space-y-3">
                 {activeCap.bullets.map((bullet, idx) => (
                   <div key={idx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-purple-900/60 text-purple-400 flex items-center justify-center shrink-0 mt-0.5 border border-purple-700/50">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-pink-400" />
+                    <div className="w-5 h-5 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 mt-0.5 border border-purple-300 dark:border-purple-700/50">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 dark:text-pink-400" />
                     </div>
-                    <span className="text-slate-200 text-sm font-medium">{bullet}</span>
+                    <span className="text-slate-800 dark:text-slate-200 text-sm font-medium">{bullet}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 flex items-center gap-4">
-              <a
-                href="#book-demo"
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-4">
+              <Link
+                to="/book-demo"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-purple-600/30"
               >
-                Explore {activeCap.title}
+                Schedule Interactive Demo
                 <ArrowRight className="w-4 h-4" />
-              </a>
-              <span className="text-xs text-slate-400 flex items-center gap-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                Zero setup friction
-              </span>
+              </Link>
             </div>
           </div>
 
-          {/* Right Column: Custom Product UI Visual */}
-          <div className="lg:col-span-6 bg-slate-950 rounded-2xl border border-purple-900/50 p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden group">
-            {/* Top Bar of UI */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                <h4 className="text-xs font-bold text-white">{activeCap.mockup.title}</h4>
+          {/* Right Column: Live Feature Mockup */}
+          <div className="lg:col-span-6 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-purple-900/60 rounded-2xl p-6 flex flex-col justify-between shadow-inner">
+            <div>
+              <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+                <span className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                  {activeCap.mockup.title}
+                </span>
+                <span className="text-xs px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-pink-300 font-mono">Live Sync</span>
               </div>
-              <span className="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">
-                Live Preview
-              </span>
-            </div>
 
-            {/* Metrics Highlight Cards */}
-            <div className="grid grid-cols-2 gap-3 my-5">
-              <div className="bg-slate-900/90 border border-purple-900/40 p-3.5 rounded-xl">
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
-                  {activeCap.mockup.metric1Label}
-                </span>
-                <span className="text-xl sm:text-2xl font-extrabold text-white">
-                  {activeCap.mockup.metric1}
-                </span>
-              </div>
-              <div className="bg-slate-900/90 border border-purple-900/40 p-3.5 rounded-xl">
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
-                  {activeCap.mockup.metric2Label}
-                </span>
-                <span className="text-xl sm:text-2xl font-extrabold text-pink-400">
-                  {activeCap.mockup.metric2}
-                </span>
-              </div>
-            </div>
-
-            {/* Simulated Live Stream / Details */}
-            <div className="bg-slate-900/70 border border-slate-800/80 rounded-xl p-4 space-y-2.5 text-xs text-slate-300">
-              <div className="flex items-center justify-between font-semibold text-slate-400 text-[10px] uppercase border-b border-slate-800 pb-1.5">
-                <span>System Event Log</span>
-                <span className="text-emerald-400">Active</span>
-              </div>
-              {activeCap.mockup.details.map((detail, idx) => (
-                <div key={idx} className="flex items-center gap-2 py-1 border-b border-slate-800/40 last:border-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-pink-500"></div>
-                  <span>{detail}</span>
+              {/* Metrics Header */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-purple-900/40 shadow-sm">
+                  <div className="text-2xl font-black text-slate-900 dark:text-white">{activeCap.mockup.metric1}</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">{activeCap.mockup.metric1Label}</div>
                 </div>
-              ))}
+                <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-purple-900/40 shadow-sm">
+                  <div className="text-2xl font-black text-purple-600 dark:text-pink-400">{activeCap.mockup.metric2}</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">{activeCap.mockup.metric2Label}</div>
+                </div>
+              </div>
+
+              {/* Real-time Telemetry Lines */}
+              <div className="space-y-2.5 font-mono text-xs">
+                {activeCap.mockup.details.map((detail, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3 rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800/80 text-slate-700 dark:text-slate-300 flex items-center justify-between shadow-sm"
+                  >
+                    <span>{detail}</span>
+                    <span className="text-emerald-500 font-sans text-[10px] font-bold">✓ Active</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Subtle glow effect */}
-            <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
-              <span className="flex items-center gap-1">
-                <Zap className="w-3.5 h-3.5 text-purple-400" />
-                Auto-syncs with all store terminals
-              </span>
-              <span className="text-purple-400 font-medium">Interactive Demo →</span>
+            <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span>Zero POS change required</span>
+              <span className="text-purple-600 dark:text-pink-400 font-bold">POS-Agnostic Plugin</span>
             </div>
           </div>
         </div>
