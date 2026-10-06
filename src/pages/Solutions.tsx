@@ -1,6 +1,6 @@
 import { Link, useParams } from "react";
 import { useEffect } from "react";
-import { ArrowRight, CheckCircle2, Users, MessageSquare, Zap, CreditCard, BarChart3, Receipt, Brain } from "lucide-react";
+import { ArrowRight, CheckCircle2, MessageSquare, Zap, CreditCard, Receipt, Brain, Users } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { useSEO } from "@/hooks/useSEO";
@@ -20,7 +20,7 @@ const solutions = [
       "Inactive customer reactivation workflows",
       "Real-time campaign open, click & conversion telemetry"
     ],
-    href: "/features/promotion"
+    href: "/book-demo"
   },
   {
     id: "festival-campaigns",
@@ -36,7 +36,7 @@ const solutions = [
       "Category-specific festival bundle recommendations",
       "Instant revenue surge tracking per campaign"
     ],
-    href: "/features/promotion"
+    href: "/book-demo"
   },
   {
     id: "fast-billing",
@@ -52,7 +52,7 @@ const solutions = [
       "GST HSN tax compliance & auto-reporting",
       "Offline billing mode with automatic cloud sync"
     ],
-    href: "/features/digital-bills"
+    href: "/book-demo"
   },
   {
     id: "smart-ebill",
@@ -68,7 +68,7 @@ const solutions = [
       "Zero thermal paper printer maintenance costs",
       "Embedded loyalty points summary in every e-bill"
     ],
-    href: "/features/digital-bills"
+    href: "/book-demo"
   },
   {
     id: "campaign-automation",
@@ -84,7 +84,7 @@ const solutions = [
       "Deadstock clearance discount campaigns",
       "Autonomous 24/7 AI campaign recommendation"
     ],
-    href: "/ai-intelligence"
+    href: "/book-demo"
   },
   {
     id: "customer-loyalty",
@@ -100,7 +100,7 @@ const solutions = [
       "Increased customer visit frequency (+35% average)",
       "Executive multi-store customer retention telemetry"
     ],
-    href: "/features/loyalty"
+    href: "/book-demo"
   }
 ];
 
@@ -124,80 +124,80 @@ export default function Solutions() {
   }, [id]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white font-sans selection:bg-purple-600 selection:text-white transition-colors duration-300">
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950 text-center">
+      <section className="pt-32 pb-16 bg-gradient-to-b from-purple-50 via-white to-slate-50 dark:from-slate-950 dark:via-[#1A0B2E] dark:to-slate-950 text-center transition-colors">
         <div className="site-container max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-500/40 text-purple-700 dark:text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
             Retail Business Growth Engine
           </div>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
             Solutions Built to Grow Your{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-200">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 via-pink-600 to-purple-800 dark:from-purple-400 dark:via-pink-400 dark:to-purple-200">
               Retail Revenue.
             </span>
           </h1>
-          <p className="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
             From sub-second fast billing and paperless WhatsApp e-bills to automated festival campaigns and repeat customer retention.
           </p>
         </div>
       </section>
 
       {/* Solutions List */}
-      <section className="section-spacing bg-slate-950">
+      <section className="section-spacing bg-slate-50 dark:bg-slate-950 transition-colors">
         <div className="site-container space-y-16">
-          {solutions.map((sol, i) => {
+          {solutions.map((sol) => {
             const IconComp = sol.icon;
             return (
               <div
                 key={sol.id}
                 id={sol.id}
-                className="grid lg:grid-cols-12 gap-8 items-center bg-slate-900/80 border border-purple-900/40 p-6 sm:p-10 rounded-3xl backdrop-blur-xl hover:border-purple-500/60 transition-all duration-300 shadow-2xl"
+                className="grid lg:grid-cols-12 gap-8 items-center bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-purple-900/40 p-6 sm:p-10 rounded-3xl backdrop-blur-xl hover:border-purple-400 dark:hover:border-purple-500/60 transition-all duration-300 shadow-xl"
               >
                 <div className="lg:col-span-7 space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white shadow-md">
                       <IconComp className="w-6 h-6" />
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
                       {sol.title}
                     </h2>
                   </div>
 
-                  <p className="text-pink-400 font-semibold text-sm sm:text-base">
+                  <p className="text-purple-700 dark:text-pink-400 font-semibold text-sm sm:text-base">
                     "{sol.tagline}"
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
-                    <div className="bg-slate-950 border border-red-900/40 p-4 rounded-xl space-y-1">
-                      <span className="text-[10px] text-red-400 font-bold uppercase tracking-wider block">The Challenge</span>
-                      <p className="text-slate-300 text-xs leading-relaxed">{sol.problem}</p>
+                    <div className="bg-red-50 dark:bg-slate-950 border border-red-200 dark:border-red-900/40 p-4 rounded-xl space-y-1">
+                      <span className="text-[10px] text-red-600 dark:text-red-400 font-bold uppercase tracking-wider block">The Challenge</span>
+                      <p className="text-slate-700 dark:text-slate-300 text-xs leading-relaxed">{sol.problem}</p>
                     </div>
-                    <div className="bg-slate-950 border border-purple-500/40 p-4 rounded-xl space-y-1">
-                      <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block">Aira Solution</span>
-                      <p className="text-slate-200 text-xs leading-relaxed">{sol.solution}</p>
+                    <div className="bg-purple-50 dark:bg-slate-950 border border-purple-200 dark:border-purple-500/40 p-4 rounded-xl space-y-1">
+                      <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider block">Aira Solution</span>
+                      <p className="text-slate-800 dark:text-slate-200 text-xs leading-relaxed">{sol.solution}</p>
                     </div>
                   </div>
 
                   <Link
                     to="/book-demo"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs hover:opacity-90 transition-opacity shadow"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs hover:opacity-90 transition-opacity shadow-md"
                   >
                     Schedule Solution Demo
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
 
-                <div className="lg:col-span-5 bg-slate-950 border border-purple-900/50 p-6 rounded-2xl space-y-4">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <div className="lg:col-span-5 bg-purple-50/60 dark:bg-slate-950 border border-purple-200 dark:border-purple-900/50 p-6 rounded-2xl space-y-4">
+                  <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                     Core Capability Highlights
                   </h3>
-                  <ul className="space-y-3 text-xs sm:text-sm text-slate-200">
+                  <ul className="space-y-3 text-xs sm:text-sm text-slate-800 dark:text-slate-200">
                     {sol.benefits.map((b, idx) => (
                       <li key={idx} className="flex items-center gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-pink-400 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-purple-600 dark:text-pink-400 shrink-0" />
                         <span>{b}</span>
                       </li>
                     ))}

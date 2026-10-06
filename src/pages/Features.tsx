@@ -1,6 +1,6 @@
 import { useParams } from "react";
 import { useEffect } from "react";
-import { CheckCircle2, Brain, Receipt, Users, MessageSquare, Zap, BarChart3, ArrowRight } from "lucide-react";
+import { CheckCircle2, Brain, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -109,64 +109,64 @@ export default function Features() {
   }, [id]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-600 selection:text-white">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white font-sans selection:bg-purple-600 selection:text-white transition-colors duration-300">
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-slate-950 via-[#1A0B2E] to-slate-950 text-center">
+      <section className="pt-32 pb-16 bg-gradient-to-b from-purple-50 via-white to-slate-50 dark:from-slate-950 dark:via-[#1A0B2E] dark:to-slate-950 text-center transition-colors">
         <div className="site-container max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Brain className="w-4 h-4 text-pink-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-500/40 text-purple-700 dark:text-pink-300 text-xs font-semibold uppercase tracking-wider mb-4">
+            <Brain className="w-4 h-4 text-purple-600 dark:text-pink-400" />
             Platform Capabilities
           </div>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-4">
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
             Engineered for{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-200">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 via-pink-600 to-purple-800 dark:from-purple-400 dark:via-pink-400 dark:to-purple-200">
               Autonomous Retail Growth.
             </span>
           </h1>
-          <p className="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
             Deep dive into the architecture powering Aira — from sub-second billing to autonomous AI intelligence.
           </p>
         </div>
       </section>
 
       {/* Features List */}
-      <section className="section-spacing bg-slate-950">
+      <section className="section-spacing bg-slate-50 dark:bg-slate-950 transition-colors">
         <div className="site-container space-y-12">
           {features.map((feat) => (
             <div
               key={feat.id}
               id={feat.id}
-              className="grid lg:grid-cols-12 gap-8 items-start bg-slate-900/80 border border-purple-900/40 p-6 sm:p-8 rounded-3xl backdrop-blur-xl shadow-xl hover:border-purple-500/50 transition-all"
+              className="grid lg:grid-cols-12 gap-8 items-start bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-purple-900/40 p-6 sm:p-8 rounded-3xl backdrop-blur-xl shadow-xl hover:border-purple-400 dark:hover:border-purple-500/50 transition-all"
             >
               <div className="lg:col-span-7 space-y-4">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
                   {feat.title}
                 </h2>
-                <p className="text-pink-400 font-semibold text-sm sm:text-base">
+                <p className="text-purple-700 dark:text-pink-400 font-semibold text-sm sm:text-base">
                   "{feat.subtitle}"
                 </p>
-                <div className="bg-slate-950 border border-purple-950 p-4 rounded-xl text-slate-300 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-purple-50/50 dark:bg-slate-950 border border-purple-200 dark:border-purple-950 p-4 rounded-xl text-slate-700 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
                   {feat.overview}
                 </div>
                 <Link
                   to="/book-demo"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs hover:opacity-90 shadow"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs hover:opacity-90 transition-opacity shadow-md"
                 >
-                  Book Feature Demo
+                  Explore Feature Demo
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
 
-              <div className="lg:col-span-5 bg-slate-950 border border-purple-900/50 p-6 rounded-2xl space-y-3">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                  Key Capability Advantages
+              <div className="lg:col-span-5 bg-purple-50 dark:bg-slate-950 border border-purple-200 dark:border-purple-900/50 p-6 rounded-2xl space-y-4">
+                <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                  Key Feature Capabilities
                 </h3>
-                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-200">
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-800 dark:text-slate-200">
                   {feat.benefits.map((b, idx) => (
                     <li key={idx} className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-pink-400 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-purple-600 dark:text-pink-400 shrink-0" />
                       <span>{b}</span>
                     </li>
                   ))}
