@@ -1,4 +1,4 @@
-import { Link, useParams } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { ArrowRight, CheckCircle2, MessageSquare, Zap, CreditCard, Receipt, Brain, Users } from "lucide-react";
 import { Header } from "@/components/layout/Header";
