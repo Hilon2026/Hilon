@@ -13,11 +13,11 @@ export const AiraLogo: React.FC<AiraLogoProps> = ({
   className = "",
   variant = "dark",
   size = "md",
-  withCompany = true,
-  showText = true,
+  withCompany = false,
+  showText = false, // Set to false per user request
 }) => {
   const imageHeights = {
-    sm: "h-7",
+    sm: "h-7 sm:h-8",
     md: "h-9 sm:h-10",
     lg: "h-12 sm:h-14",
   };
@@ -28,14 +28,14 @@ export const AiraLogo: React.FC<AiraLogoProps> = ({
     lg: "text-2xl sm:text-3xl",
   };
 
-  const textColor = variant === "light" ? "text-white" : "text-slate-900";
+  const textColor = variant === "light" ? "text-white" : "text-slate-900 dark:text-white";
 
   return (
     <Link to="/" className={`inline-flex items-center gap-2.5 group ${className}`}>
       {/* Aira Logo Image */}
       <img
         src="/aira-removebg-preview.png"
-        alt="Aira Logo"
+        alt="Aira"
         className={`w-auto object-contain transition-transform duration-200 group-hover:scale-105 ${imageHeights[size]}`}
       />
 
