@@ -6,7 +6,7 @@ import AiraLogo from "@/components/brand/AiraLogo";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-950 text-slate-400 border-t border-purple-900/30 pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-slate-950 dark:bg-slate-950 light:bg-slate-900 text-slate-400 border-t border-purple-900/30 pt-16 pb-12 relative overflow-hidden transition-colors">
       {/* Subtle glowing aura */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -15,18 +15,18 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <HilonLogo variant="light" size="md" />
+              <HilonLogo size="md" />
             </div>
 
             <div className="mt-2">
-              <AiraLogo variant="light" size="sm" withCompany={false} />
+              <AiraLogo size="sm" withCompany={false} />
             </div>
 
             <p className="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
-              AI-Powered Retail Intelligence & Growth Platform. Turn every sale into your next opportunity with fast billing, WhatsApp campaigns, e-bills, and store automation.
+              Retail Customer Growth System. Turn every transaction into a lifelong customer relationship with WhatsApp CRM, automated journeys, loyalty, and managed marketing.
             </p>
 
-            {/* Social Links (Non-redirecting icons) */}
+            {/* Social Links */}
             <div className="flex items-center gap-3 pt-2">
               <a
                 href="#"
@@ -55,71 +55,66 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Nav Column 1: AI Intelligence & Solutions */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">AI Intelligence</h4>
+          {/* Nav Column 1: Core Growth Engine */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Growth Engine</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link to="/ai-intelligence" className="hover:text-white transition-colors">
-                  AI Intelligence Core
+                <Link to="/#growth-engine" className="hover:text-white transition-colors">
+                  WhatsApp API + CRM
                 </Link>
               </li>
               <li>
                 <Link to="/solutions" className="hover:text-white transition-colors">
-                  WhatsApp Campaigns
+                  Automated Customer Journeys
                 </Link>
               </li>
               <li>
-                <Link to="/features" className="hover:text-white transition-colors">
-                  Fast Billing & E-Bills
+                <Link to="/#managed-marketing" className="hover:text-white transition-colors">
+                  Managed Retail Marketing
                 </Link>
               </li>
               <li>
-                <Link to="/features/analytics" className="hover:text-white transition-colors">
-                  Campaign Automation
+                <Link to="/pricing" className="hover:text-white transition-colors">
+                  App-less Loyalty & Rewards
                 </Link>
               </li>
               <li>
-                <Link to="/features/loyalty" className="hover:text-white transition-colors">
-                  Festival Campaigns
+                <Link to="/#growth-audit" className="hover:text-white transition-colors">
+                  Retail Growth Audit
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Nav Column 2: Solutions & Industries */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Industries</h4>
+          {/* Nav Column 2: Solutions & Pricing */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Solutions & Packages</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link to="/industries/fashion" className="hover:text-white transition-colors">
-                  Fashion & Apparel
+                <Link to="/pricing" className="hover:text-white transition-colors">
+                  Retail Growth Starter (₹15,000/yr)
                 </Link>
               </li>
               <li>
-                <Link to="/industries/grocery" className="hover:text-white transition-colors">
-                  Grocery & Supermarket
+                <Link to="/pricing" className="hover:text-white transition-colors">
+                  Retail Growth Pro (₹20,000/yr)
                 </Link>
               </li>
               <li>
-                <Link to="/industries/electronics" className="hover:text-white transition-colors">
-                  Electronics & Tech
+                <Link to="/pricing" className="hover:text-white transition-colors">
+                  Retail Growth 360 Managed
                 </Link>
               </li>
               <li>
-                <Link to="/industries/pharmacy" className="hover:text-white transition-colors">
-                  Pharmacy & Wellness
-                </Link>
-              </li>
-              <li>
-                <Link to="/industries" className="hover:text-white transition-colors font-semibold text-purple-400">
-                  All 9 Sectors →
+                <Link to="/book-demo" className="hover:text-white transition-colors font-semibold text-purple-400">
+                  Book 1-on-1 Demo →
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Nav Column 3: Resources & Company */}
+          {/* Nav Column 3: Company & Legal */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Company</h4>
             <ul className="space-y-2 text-xs">
@@ -134,27 +129,10 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/resources/blog" className="hover:text-white transition-colors">
-                  Blog & Insights
-                </Link>
-              </li>
-              <li>
                 <Link to="/contact" className="hover:text-white transition-colors">
-                  Contact Sales
+                  Contact Us
                 </Link>
               </li>
-              <li>
-                <Link to="/pricing" className="hover:text-white transition-colors">
-                  Pricing Plans
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Nav Column 4: Legal & Security */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-white">Legal & Compliance</h4>
-            <ul className="space-y-2 text-xs">
               <li>
                 <Link to="/privacy" className="hover:text-white transition-colors">
                   Privacy Policy
@@ -165,11 +143,6 @@ export const Footer: React.FC = () => {
                   Terms of Service
                 </Link>
               </li>
-              <li>
-                <Link to="/help" className="hover:text-white transition-colors">
-                  Security Standards
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -177,7 +150,7 @@ export const Footer: React.FC = () => {
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
           <div>
-            © {new Date().getFullYear()} Hilon Inc. All rights reserved. Aira is a registered trademark of Hilon.
+            © {new Date().getFullYear()} Hilon Inc. All rights reserved. Aira — Retail Customer Growth System.
           </div>
           <div className="flex items-center gap-4">
             <Link to="/privacy" className="hover:text-white transition-colors">
@@ -188,8 +161,8 @@ export const Footer: React.FC = () => {
               Terms
             </Link>
             <span>•</span>
-            <Link to="/help" className="hover:text-white transition-colors">
-              Help Center
+            <Link to="/book-demo" className="hover:text-white transition-colors">
+              Book Demo
             </Link>
           </div>
         </div>
